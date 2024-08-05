@@ -6,6 +6,7 @@ import { BrowserRouter,Routes,Route } from 'react-router-dom';
 
 import Loginpage from './component/student/Loginpage';
 import Signin from './component/student/Signin';
+import Admin from './Components/admin/Admin'; 
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
     <Routes>
       <Route path='/registarion' element={<Loginpage/>}/>
       <Route path='/login' element={<Signin/>}/>
+      <Route path='/admin' element={<Admin/>}/>
     </Routes>
       
     

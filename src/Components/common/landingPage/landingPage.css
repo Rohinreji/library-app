@@ -1,0 +1,59 @@
+.landingPage-right {
+  width: 50%;
+}
+.landingPage-left-quote {
+  font-weight: bold;
+  font-size: 2.5vw;
+}
+.landingPage-right img {
+  width: 80%;
+  height: auto;
+  margin-left: 5%;
+}
+.landingPage-left {
+  margin-top: 10%;
+  width: 50%;
+  margin-left: 5%;
+  font-family: noto sans;
+}
+.landingPage-left p {
+  margin-top: 5%;
+  font-weight: 500;
+  font-size: 1.2vw;
+  text-align: justify;
+}
+.landingPage-h2-left {
+  width: 50%;
+}
+.landingPage-h2-left img {
+  width: 70%;
+  margin-left: 5%;
+}
+.landingPage-h2-right {
+  width: 100%;
+  margin-top: 10%;
+}
+.landingPage-h2-right p {
+  color: #fff;
+  margin-top: 5%;
+  font-family: noto sans;
+  font-size: 1.2vw;
+  text-align: justify;
+  width: 90%;
+}
+.landingPage-h3-left {
+  margin-top: 10%;
+  margin-left: 5%;
+}
+.landingPage-h3-left p {
+  font-family: noto sans;
+  font-size: 1.2vw;
+  text-align: justify;
+}
+.landingPage-h3-right img {
+  width: 80%;
+  height: auto;
+  margin-top: 10%;
+  margin-left: 5%;
+  font-weight: 500;
+}

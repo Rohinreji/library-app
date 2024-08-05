@@ -6,18 +6,23 @@ import { BrowserRouter,Routes,Route } from 'react-router-dom';
 
 import Loginpage from './component/student/Loginpage';
 import Signin from './component/student/Signin';
+import Admin from './Components/admin/Admin'; 
+import { StudentNav } from './component/student/studentHome/studentNav/studentNav';
 
 function App() {
   return (
-  
-<BrowserRouter>
+
+<BrowserRouter >
+
     <div className="App">
+
     <Routes>
       <Route path='/registarion' element={<Loginpage/>}/>
       <Route path='/login' element={<Signin/>}/>
-    </Routes>
-      
-    
+      <Route path='/admin' element={<Admin/>}/>
+      <Route path='/student/navbar' element={<StudentNav/>} />
+      <Route path='/*' element={<h1>The page not available</h1>} />
+    </Routes>  
     </div>
     </BrowserRouter>
   );

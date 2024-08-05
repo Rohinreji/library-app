@@ -1,0 +1,20 @@
+/* student navbar */
+.student-navbar
+{
+    background-color: #1fbf7c;
+}
+.student-nav-heading
+{
+    font-family: noto sans;
+    font-size: 30px;
+}
+.student-nav-right-side-text
+{
+    color: black !important;
+    font-size: large;
+    cursor: pointer;
+    font-family: noto sans;
+}
+
+/* studentHomeDetails */
+

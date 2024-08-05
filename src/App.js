@@ -7,6 +7,9 @@ import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import Loginpage from './component/student/Loginpage';
 import Signin from './component/student/Signin';
 import Admin from './Components/admin/Admin'; 
+import CommonNavbar from './Components/common/commonNavbar/commonNavbar';
+import Footer from './Components/common/footer/footer';
+import LandingPage from './Components/common/landingPage/landingPage';
 
 function App() {
   return (
@@ -14,9 +17,15 @@ function App() {
 <BrowserRouter>
     <div className="App">
     <Routes>
-      <Route path='/registarion' element={<Loginpage/>}/>
+      <Route path='/registration' element={<Loginpage/>}/>
       <Route path='/login' element={<Signin/>}/>
       <Route path='/admin' element={<Admin/>}/>
+      {/* common */}
+      <Route path='/commonNavbar' element={<CommonNavbar/>}/>
+      <Route path='/footer' element={<Footer/>}/>
+      <Route path='/landingPage' element={<LandingPage/>}/>
+
+
     </Routes>
       
     

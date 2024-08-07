@@ -4,16 +4,16 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Loginpage from "./componentS/student/Loginpage";
-import Signin from "./component/student/Signin";
+import Loginpage from "./Components/student/Loginpage";
+import Signin from "./Components/student/Signin";
 import Admin from "./Components/admin/Admin";
 import CommonNavbar from "./Components/common/commonNavbar/commonNavbar";
 import Footer from "./Components/common/footer/footer";
 import LandingPage from "./Components/common/landingPage/landingPage";
-import { StudentNav } from "./component/student/studentHome/studentNav/studentNav";
-import StudentHomeDetails from "./component/student/studentHome/studentHomeDetail/studentHomeDetail";
-import { StudentHome } from "./component/student/studentHome/studentHome";
-import { StudentSignUp } from "./component/student/studentSignUp/studentSignUp";
+import { StudentNav } from "./Components/student/studentHome/studentNav/studentNav";
+import StudentHomeDetails from "./Components/student/studentHome/studentHomeDetail/studentHomeDetail";
+import { StudentHome } from "./Components/student/studentHome/studentHome";
+import { StudentSignUp } from "./Components/student/studentSignUp/studentSignUp";
 
 function App() {
   return (

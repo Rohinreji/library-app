@@ -21,16 +21,18 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          
 
           {/* student */}
           <Route path="/registration" element={<Loginpage />} />
           <Route path="/login" element={<Signin />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/student/navbar" element={<StudentNav />} />
-          <Route path="/student/home-details" element={<StudentHomeDetails/>} />
-          <Route path="/student/home" element={<StudentHome/>} />
-          <Route path="/student/signup" element={<StudentSignUp/>}/>
+          <Route
+            path="/student/home-details"
+            element={<StudentHomeDetails />}
+          />
+          <Route path="/student/home" element={<StudentHome />} />
+          <Route path="/student/signup" element={<StudentSignUp />} />
           {/* common */}
           <Route path="/commonNavbar" element={<CommonNavbar />} />
           <Route path="/footer" element={<Footer />} />
@@ -40,8 +42,7 @@ function App() {
         </Routes>
       </div>
     </BrowserRouter>
-  
-  )
+  );
 }
 
 export default App;

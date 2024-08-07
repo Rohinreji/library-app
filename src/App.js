@@ -4,7 +4,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Loginpage from "./component/student/Loginpage";
+import Loginpage from "./componentS/student/Loginpage";
 import Signin from "./component/student/Signin";
 import Admin from "./Components/admin/Admin";
 import CommonNavbar from "./Components/common/commonNavbar/commonNavbar";
@@ -23,7 +23,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
 
           {/* student */}
-          <Route path="/registration" element={<Loginpage />} />
+          <Route path="/registration" element={<Loginpage/> } />
           <Route path="/login" element={<Signin />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/student/navbar" element={<StudentNav />} />

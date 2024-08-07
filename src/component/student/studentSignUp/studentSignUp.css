@@ -1,0 +1,38 @@
+.studentSignUp
+{
+    height: 80vh;
+    vertical-align:middle;
+    margin-top: 5%;
+}
+.student-signup-profile
+{
+    border: 2px solid grey;
+    height: 130px;
+    width: 130px;
+    border-radius: 50%;
+}
+.student-signup-profile img 
+{
+    height: 130px;
+    width: 130px;
+    border-radius: 50%;
+}
+.student-signup-upload-icon
+{
+    position: relative;
+    top:-60px;
+    left:95px;
+    font-size: 35px;
+}
+.student-signup-fake-image
+{
+    height: 130px;
+    width: 130px;
+    border-radius: 50%;
+}
+.student-signup-btn
+{
+    background-color:#1fbf7c;
+    font-size: 18px;
+    font-family: noto sans;
+}

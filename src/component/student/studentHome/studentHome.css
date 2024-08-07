@@ -1,20 +1,121 @@
 /* student navbar */
-.student-navbar
-{
-    background-color: #1fbf7c;
+.student-navbar {
+  background-color: #1fbf7c;
 }
-.student-nav-heading
-{
-    font-family: noto sans;
-    font-size: 30px;
+.student-nav-heading {
+  font-family: noto sans;
+  font-size: 28px;
+  font-weight: 600;
+  margin-right: 50px !important;
 }
-.student-nav-right-side-text
-{
-    color: black !important;
-    font-size: large;
-    cursor: pointer;
-    font-family: noto sans;
+.student-nav-right-side-text {
+  color: black !important;
+  font-size: large;
+  cursor: pointer;
+  font-family: noto sans;
+}
+.student-nav-dashboard {
+  font-weight: 700;
 }
 
 /* studentHomeDetails */
 
+.student-Home_carousel {
+  width: 100%;
+  margin: auto;
+}
+.student-Home_carousel img {
+  object-fit: cover;
+  max-height: 400px;
+  width: 100%;
+}
+.student-home-carousel-Item {
+  max-height: 400px;
+}
+.student-Home-carousel-outer-box {
+  max-height: 408px;
+  width: 80%;
+  margin: auto;
+  margin-top: 5%;
+  padding-bottom: 20px;
+}
+.student-details-caption {
+  padding-bottom: 7%;
+  padding-right: 40%;
+}
+.student-home-details-button {
+  width: 70%;
+  height: 50px;
+  border-radius: 20px;
+  font-family: noto sans;
+  font-size: 1.4vw;
+  font-weight: 500;
+  box-shadow: 5px 5px 20px black;
+}
+.student-home-details-button:hover {
+  width: 70% !important;
+  font-size: 1.5vw;
+}
+.student-details-caption h3 {
+  font-size: 3vw;
+}
+.student-home-details-cards-box {
+  width: 80%;
+  margin: auto;
+  margin-top: 3%;
+  padding-bottom: 50px;
+  text-align: center;
+  padding-left: 5%;
+}
+
+/* student home category */
+.home-category-image {
+  width: 186px;
+  height: 255px;
+  gap: 0px;
+  border-radius: 20px;
+  transition: opacity 0.3s ease;
+  display: block;
+}
+.student-category {
+  margin-bottom: 30px;
+}
+
+.student-category-dispay-box {
+  overflow: hidden;
+  position: relative;
+  width: 186px;
+  height: 286px;
+  cursor: pointer;
+  text-align: center;
+}
+.student-category-dispay-box h4 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+  font-size: 18px;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.student-category-dispay-box:hover img {
+  opacity: 0.7;
+}
+.student-category-dispay-box:hover h4 {
+  opacity: 1;
+}
+.student-category-dispay-box h3 {
+  transform: translate(-50%, -50%);
+  color: black;
+  font-size: 18px;
+  font-weight: 600;
+  opacity: 1;
+  padding-top: 30px;
+}
+.studentBook-cat-heading {
+  width: 186px;
+  text-align: center;
+  font-size: 15px !important;
+}

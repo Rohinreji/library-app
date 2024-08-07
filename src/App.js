@@ -4,16 +4,16 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Loginpage from "./component/student/Loginpage";
-import Signin from "./component/student/Signin";
+import Loginpage from "./Components/student/Loginpage";
+import Signin from "./Components/student/Signin";
 import Admin from "./Components/admin/Admin";
 import CommonNavbar from "./Components/common/commonNavbar/commonNavbar";
 import Footer from "./Components/common/footer/footer";
 import LandingPage from "./Components/common/landingPage/landingPage";
-import { StudentNav } from "./component/student/studentHome/studentNav/studentNav";
-import StudentHomeDetails from "./component/student/studentHome/studentHomeDetail/studentHomeDetail";
-import { StudentHome } from "./component/student/studentHome/studentHome";
-import { StudentSignUp } from "./component/student/studentSignUp/studentSignUp";
+import { StudentNav } from "./Components/student/studentHome/studentNav/studentNav";
+import StudentHomeDetails from "./Components/student/studentHome/studentHomeDetail/studentHomeDetail";
+import { StudentHome } from "./Components/student/studentHome/studentHome";
+import { StudentSignUp } from "./Components/student/studentSignUp/studentSignUp";
 
 function App() {
   return (
@@ -21,16 +21,18 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          
 
           {/* student */}
-          <Route path="/registration" element={<Loginpage />} />
+          <Route path="/registration" element={<Loginpage/> } />
           <Route path="/login" element={<Signin />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/student/navbar" element={<StudentNav />} />
-          <Route path="/student/home-details" element={<StudentHomeDetails/>} />
-          <Route path="/student/home" element={<StudentHome/>} />
-          <Route path="/student/signup" element={<StudentSignUp/>}/>
+          <Route
+            path="/student/home-details"
+            element={<StudentHomeDetails />}
+          />
+          <Route path="/student/home" element={<StudentHome />} />
+          <Route path="/student/signup" element={<StudentSignUp />} />
           {/* common */}
           <Route path="/commonNavbar" element={<CommonNavbar />} />
           <Route path="/footer" element={<Footer />} />

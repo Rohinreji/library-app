@@ -1,0 +1,11 @@
+.student-sidebar
+{
+    height: 100vh;
+    width: 25%;
+    background-color:#2fea9c;
+}
+.student-serach-box
+{
+    width: 20%;
+    margin-left: 3%;
+}

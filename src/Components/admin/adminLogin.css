@@ -25,7 +25,7 @@
     rgba(255, 255, 255, 1) 27%
   );
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1fbf7c",endColorstr="#ffffff",GradientType=1);
-  padding: 3%;
+  padding: 4%;
 }
 .adminLogin-content {
   padding-top: 2%;
@@ -63,7 +63,7 @@
   text-align: start;
 }
 .adminLogin-loginSection {
-  width: 40%;
+  width: 43%;
   border: 1px;
   text-align: start;
   height: 300px;
@@ -79,5 +79,5 @@
 .adminLogin-forgot {
   cursor: pointer;
   color: rgb(13, 132, 229);
-  margin-left: 50%;
+  margin-left: 150px;
 }

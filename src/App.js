@@ -16,6 +16,10 @@ import { StudentSignUp } from "./Components/student/studentSignUp/studentSignUp"
 import AdminLogin from "./Components/admin/adminLogin";
 import StudentLogin from "./Components/student/studentLogin/studentLogin";
 import TutorLogin from "./Components/tutor/tutorLogin/tutorLogin";
+import { StudentViewProduct } from "./Components/student/studentViewProduct/studentViewProduct";
+import { StudentSidebar } from "./Components/student/studentSidebar/studentSidebar";
+import { StudentDashboard } from "./Components/student/studentDashboard/studentDashboard";
+import { StudentviewSingleProduct } from "./Components/student/studentViewSingleProduct.js/studentViewSingleProduct";
 import AdminForgotPassword from "./Components/admin/adminForgotPassword/adminForgotPassword";
 import { Toaster } from "react-hot-toast";
 
@@ -38,6 +42,10 @@ function App() {
           <Route path="/student/home" element={<StudentHome />} />
           <Route path="/student/signup" element={<StudentSignUp />} />
           <Route path="studentLogin" element={<StudentLogin />} />
+          <Route path="/student/view-product" element={<StudentViewProduct/>}/>
+          <Route path="/student/sidebar" element={<StudentSidebar/>} />
+          <Route path="/student/dashboard" element={<StudentDashboard/>} />
+          <Route path="/student/view-single-product" element={<StudentviewSingleProduct/>}/>
           {/* common */}
           <Route path="/commonNavbar" element={<CommonNavbar />} />
           <Route path="/footer" element={<Footer />} />

@@ -7,14 +7,37 @@ import InputGroup from "react-bootstrap/InputGroup";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import Button from "react-bootstrap/Button";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import CommonNavbar from "../common/commonNavbar/commonNavbar";
+import Footer from "../common/footer/footer";
 function AdminLogin() {
+  const navigate = useNavigate();
   const [showPassword, SetShowPassword] = useState(true);
+  const [adminData, setAdminData] = useState({ email: "", password: "" });
+  const handleChanges = (data) => {
+    setAdminData({ ...adminData, [data.target.name]: data.target.value });
+  };
   const clickPassword = () => {
     SetShowPassword(!showPassword);
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("admin", adminData);
+    const { email, password } = adminData;
+    if (!email) {
+      toast.error("Enter your email");
+      return;
+    }
+    if (!password) {
+      toast.error("Enter password");
+      return;
+    }
   };
 
   return (
     <div>
+      <CommonNavbar/>
       <div className="adminLogin-main">
         <div className="adminLogin-box">
           <Row className="adminLogin-content">
@@ -23,10 +46,15 @@ function AdminLogin() {
               <img src={adminImg} alt="" />
             </Col>
             <Col className="adminLogin-loginSection" md={7}>
-              <Form>
+              <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formGroupEmail">
                   <Form.Label>Email address</Form.Label>
-                  <Form.Control type="email" placeholder="Enter email" />
+                  <Form.Control
+                    type="email"
+                    placeholder="Enter email"
+                    name="email"
+                    onChange={handleChanges}
+                  />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formGroupPassword">
                   <Form.Label>Password</Form.Label>
@@ -36,6 +64,8 @@ function AdminLogin() {
                       aria-label="Recipient's username"
                       aria-describedby="basic-addon2"
                       type={showPassword ? "password" : "text"}
+                      name="password"
+                      onChange={handleChanges}
                     />
                     <InputGroup.Text id="basic-addonAdminLogin">
                       <span
@@ -47,16 +77,25 @@ function AdminLogin() {
                     </InputGroup.Text>
                   </InputGroup>
                 </Form.Group>
+                <span
+                  className="adminLogin-forgot"
+                  onClick={() => {
+                    navigate("/adminForgotPassword");
+                  }}
+                >
+                  Forgot password?
+                </span>
+                <div className="adminLogin-submitBtn">
+                  <Button type="submit" variant="success">
+                    Login
+                  </Button>{" "}
+                </div>
               </Form>
-              <span className="adminLogin-forgot">Forgot password?</span>
-              <div className="adminLogin-submitBtn">
-                <Button variant="success">Login</Button>{" "}
-              </div>
-              Don't have an account yet? <span style={{cursor:"pointer",fontWeight:"bold"}}> Register Now</span>
             </Col>
           </Row>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }

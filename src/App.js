@@ -16,14 +16,16 @@ import { StudentSignUp } from "./Components/student/studentSignUp/studentSignUp"
 import AdminLogin from "./Components/admin/adminLogin";
 import StudentLogin from "./Components/student/studentLogin/studentLogin";
 import TutorLogin from "./Components/tutor/tutorLogin/tutorLogin";
+import AdminForgotPassword from "./Components/admin/adminForgotPassword/adminForgotPassword";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="App">
+    <>
+    <Toaster/>
+      <BrowserRouter basename="open_library">
         <Routes>
           <Route path="/" element={<LandingPage />} />
-
           {/* student */}
           <Route path="/registration" element={<Loginpage />} />
           <Route path="/login" element={<Signin />} />
@@ -42,13 +44,17 @@ function App() {
           <Route path="/landingPage" element={<LandingPage />} />
           {/* admin */}
           <Route path="/adminLogin" element={<AdminLogin />} />
+          <Route
+            path="/adminForgotPassword"
+            element={<AdminForgotPassword />}
+          />
           {/* tutor */}
-          <Route path="/tutorLogin" element={<TutorLogin/>}/>
+          <Route path="/tutorLogin" element={<TutorLogin />} />
           {/* 404 page */}
           <Route path="/*" element={<h1>The page not available</h1>} />
         </Routes>
-      </div>
-    </BrowserRouter>
+      </BrowserRouter>
+    </>
   );
 }
 

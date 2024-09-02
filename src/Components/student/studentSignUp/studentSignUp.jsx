@@ -11,12 +11,48 @@ import { FaRegImages } from "react-icons/fa6";
 import { BsEye } from "react-icons/bs";
 import { BsEyeSlash } from "react-icons/bs";
 import "./studentSignUp.css";
+import axios from "axios";
+import toast from "react-hot-toast";
 export const StudentSignUp = () => {
   const [validated, setValidated] = useState(false);
   const [profilePic, setProfilePic] = useState(null);
-  const[show1,setshow1] = useState(false)
-  const[show2,setshow2] = useState(false)
+  const [data, setData] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    photo: null,
+    addNo: "",
+  });
+  const handleChange = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+  const [show1, setshow1] = useState(false);
+  const [show2, setshow2] = useState(false);
   const handleSubmit = (event) => {
+    console.log("data", data);
+    event.preventDefault();
+    const {
+      firstname,
+      lastname,
+      email,
+      photo,
+      password,
+      confirmPassword,
+      addNo,
+    } = data;
+
+    const formdata = new FormData();
+    formdata.append("firstname", firstname);
+    formdata.append("lastname", lastname);
+    formdata.append("password", password);
+    formdata.append("addNo", addNo);
+    formdata.append("confirmPassword", confirmPassword);
+    formdata.append("email", email);
+    formdata.append("photo", photo);
+    sendToServer(formdata);
+
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -25,19 +61,31 @@ export const StudentSignUp = () => {
     setValidated(true);
   };
   const handleFileChange = (e) => {
+    setData({ ...data, [e.target.name]: e.target.files[0] });
     handleImgUpload(e);
   };
   const handleImgUpload = (e) => {
     setProfilePic(URL.createObjectURL(e.target.files[0]));
   };
-  const handleShow1 = () =>
-  {
-    setshow1(!show1)
-  }
-  const handleShow2 = () =>
-  {
-    setshow2(!show2)
-  }
+  const handleShow1 = () => {
+    setshow1(!show1);
+  };
+  const handleShow2 = () => {
+    setshow2(!show2);
+  };
+  const sendToServer = async (data) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3005/student-signUp",
+        data
+      );
+      if (response.status === 200) {
+        toast.success("Registration successfull");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="studentSignUp  ">
       <Row className="row">
@@ -68,9 +116,10 @@ export const StudentSignUp = () => {
                   <Form.Label> First name</Form.Label>
                   <Form.Control
                     type="text"
-                    name="firstName"
+                    name="firstname"
                     placeholder="Enter first name"
                     required
+                    onChange={handleChange}
                   />
                   <Form.Control.Feedback type="invalid" className="">
                     first name is required.
@@ -86,9 +135,10 @@ export const StudentSignUp = () => {
                   <Form.Label> Last name</Form.Label>
                   <Form.Control
                     type="text"
-                    name="lastName"
+                    name="lastname"
                     placeholder="Enter last name"
                     required
+                    onChange={handleChange}
                   />
                   <Form.Control.Feedback type="invalid" className="">
                     Last name is required.
@@ -111,7 +161,7 @@ export const StudentSignUp = () => {
                     <input
                       type="file"
                       style={{ display: "none" }}
-                      name="profile"
+                      name="photo"
                       onChange={handleFileChange}
                     />
                   </label>
@@ -126,6 +176,7 @@ export const StudentSignUp = () => {
                   type="email"
                   name="email"
                   placeholder="Enter your email"
+                  onChange={handleChange}
                   required
                 />
                 <Form.Control.Feedback type="invalid" className="">
@@ -137,12 +188,13 @@ export const StudentSignUp = () => {
                 <Form.Label>Admission number</Form.Label>
                 <Form.Control
                   as="input"
-                  name="admissionNumber"
+                  name="addNo"
                   placeholder="Enter admission number"
                   required
                   min="0"
                   max="100000000"
                   type="number"
+                  onChange={handleChange}
                 />
                 <Form.Control.Feedback type="invalid" className="">
                   Please provide admission number.
@@ -160,12 +212,15 @@ export const StudentSignUp = () => {
                     required
                     min="0"
                     max="100000000"
-                    type={show1 ?   "text": "password"}
+                    onChange={handleChange}
+                    type={show1 ? "text" : "password"}
                   />
                   <InputGroup.Text id="basic-addon1">
-                  {show1 ? <BsEye  onClick={handleShow1} /> : <BsEyeSlash onClick={handleShow1}/>}
-                  
-                  
+                    {show1 ? (
+                      <BsEye onClick={handleShow1} />
+                    ) : (
+                      <BsEyeSlash onClick={handleShow1} />
+                    )}
                   </InputGroup.Text>
                 </InputGroup>
                 <Form.Control.Feedback type="invalid" className="">
@@ -178,16 +233,20 @@ export const StudentSignUp = () => {
                 <InputGroup className="mb-3">
                   <Form.Control
                     as="input"
-                    name="confirmPasword"
+                    name="confirmPassword"
                     placeholder="Enter confirm password"
                     required
+                    onChange={handleChange}
                     min="0"
                     max="100000000"
-                    type={show2 ? "text": "password"}
+                    type={show2 ? "text" : "password"}
                   />
                   <InputGroup.Text id="basic-addon1">
-                  {show2 ? <BsEye  onClick={handleShow2} /> : <BsEyeSlash onClick={handleShow2}/>}
-
+                    {show2 ? (
+                      <BsEye onClick={handleShow2} />
+                    ) : (
+                      <BsEyeSlash onClick={handleShow2} />
+                    )}
                   </InputGroup.Text>
                 </InputGroup>
                 <Form.Control.Feedback type="invalid" className="">

@@ -61,7 +61,6 @@ function App() {
           <Route path="/landingPage" element={<LandingPage />} />
 
           {/* admin */}
-
           <Route path="/adminLogin" element={<AdminLogin />} />
           <Route
             path="/adminForgotPassword"
@@ -70,7 +69,6 @@ function App() {
           <Route path="/admin-add/products" element={<AdminAddProduct/>} />
           
           {/* tutor */}
-
           <Route path="/tutorLogin" element={<TutorLogin />} />
           <Route path="/tutorSignup" element={<TutorSignUp/>} />
           <Route path="/tutor-sidebar" element={<TutorSidebar/>} />

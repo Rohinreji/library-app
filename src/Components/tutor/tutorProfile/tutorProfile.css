@@ -1,0 +1,44 @@
+.tutorProfile-body
+{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.tutorProfile-box
+{
+    height: 540px;
+    width: 450px;
+    margin: auto;
+}
+.tutorProfile-viewImage
+{
+    height: 150px;
+    width: 150px;
+    background-color: black;
+    border-radius: 50%;
+    margin: auto;
+    margin-top: 5%;
+}
+.tutorProfile-body table
+{
+    width: 60%;
+    height: 45%;
+    margin: auto;
+}
+.tutorProfile-button-box
+{
+display: flex;
+justify-content: center;
+margin-top: 5%;
+}
+.tutorProfile-body button
+{
+    height: 40px;
+    width: 180px;
+    background-color: rgb(31, 191, 124);
+    color:#ffd;
+    font-size: 23px;
+    font-weight: 600;
+    border-radius: 20px;
+}

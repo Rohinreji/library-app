@@ -1,9 +1,11 @@
+import { Navbar } from "react-bootstrap";
 import { StudentSidebar } from "../studentSidebar/studentSidebar";
 import { StudentViewProduct } from "../studentViewProduct/studentViewProduct";
 
 export const StudentDashboard = () => {
   return (
-    <div className="d-flex">
+   <div>
+     <div className="d-flex">
       <div>
         <StudentSidebar />
       </div>
@@ -11,5 +13,7 @@ export const StudentDashboard = () => {
         <StudentViewProduct />
       </div>{" "}
     </div>
+
+   </div>
   );
 };

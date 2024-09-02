@@ -3,10 +3,8 @@ import { FaRupeeSign } from "react-icons/fa";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { IoSearch } from "react-icons/io5";
-import "./studentViewProduct.css";
 import { useEffect, useState } from "react";
-import { StudentNav } from "../studentHome/studentNav/studentNav";
-import Footer from "../../common/footer/footer";
+import "./studentViewProduct.css";
 export const StudentViewProduct = () => {
   const [fixedData, setFixedData] = useState([]);
   const [data, setData] = useState([]);
@@ -80,7 +78,6 @@ export const StudentViewProduct = () => {
 
   return (
     <div>
-
       <div className="student-view-product">
         <h2 className="px-5 pt-4">view products</h2>
 

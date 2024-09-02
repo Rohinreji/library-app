@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 export const TutorViewBook = () => {
   const [fixedData, setFixedData] = useState([]);
   const [data, setData] = useState([]);
-const navigate = useNavigate()
+  const navigate = useNavigate();
   const getData = async () => {
     try {
       const response = await axios.get("http://localhost:3005/viewAllBooks");
@@ -40,6 +40,8 @@ const navigate = useNavigate()
       setData(fixedData);
     }
   };
+  console.log(BASE_URL);
+  console.log(data,"data");
   return (
     <div>
       <div className="student-view-product">
@@ -62,14 +64,16 @@ const navigate = useNavigate()
           <div className="d-flex flex-wrap gap-4 justify-content-between px-5 py-5 student-view-product-body">
             {data.map((e, index) => {
               return (
-                <div 
-                className="student-product-view-box shadow" 
-                key={e.id}
-                onClick={()=>{navigate(`/tutor/view-single-product/${e._id}`)}}
+                <div
+                  className="student-product-view-box shadow"
+                  key={e.id}
+                  onClick={() => {
+                    navigate(`/tutor/view-single-product/${e._id}`);
+                  }}
                 >
                   <div className="">
                     <img
-                      src={`${BASE_URL}${data?.bookImage?.filename}`}
+                      src={`${BASE_URL}${e?.bookImage?.filename}`}
                       alt=""
                       className="student-product-view-box-img"
                     />
@@ -79,7 +83,7 @@ const navigate = useNavigate()
                     {/* {e?.description?.length > 15
                       ? e.description?.substring(0, 28) + "..."
                       : e.description}{" "} */}
-                      {e.author}
+                    {e.author}
                   </p>
                   <h5 className="mb-5">
                     {/* <FaRupeeSign />

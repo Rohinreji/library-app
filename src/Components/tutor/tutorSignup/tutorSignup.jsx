@@ -62,16 +62,17 @@ export const TutorSignUp = () => {
         "http://localhost:3005/tutorSignup",
         formData
       );
-      if (response?.status ===200) {
+      if (response?.status === 200) {
         toast.success(response.data.msg);
-        Navigate("/tutorLogin")
+        Navigate("/tutorLogin");
+      } else {
+        toast.error(response.data.msg);
       }
-      else
-      {
-        toast.error(response.data.msg)
-      }
-     console.log(response?.status);
+      console.log(response?.status);
     } catch (error) {
+      if (error.status === 409 || error.status == 408) {
+        toast.error(error.response.data.msg);
+      }
       console.log(error);
     }
   };

@@ -1,6 +1,8 @@
 import { Profiler, useEffect, useState } from "react";
 import axios from "axios";
 import "./tutorProfile.css";
+import { BASE_URL } from "../../../apis/baseURL";
+import toast from "react-hot-toast";
 // import { BASE_URL } from "../../../apis/BaseURL";
 export const TutorProfile = () => {
   const [data, setData] = useState({});
@@ -13,6 +15,7 @@ export const TutorProfile = () => {
         setData(response.data.data);
       }
     } catch (error) {
+     
       console.log(error);
     }
   };
@@ -22,11 +25,19 @@ export const TutorProfile = () => {
     getData();
   },[]);
 
-  // const profilePic = `${BASE_URL}${data?.profile?.filename}`
+  console.log(`${BASE_URL}${data?.profile?.filename}`);
   return (
     <div className="tutorProfile-body">
       <div className="tutorProfile-box shadow">
-        <div className="tutorProfile-viewImage"></div>
+        <div className="tutorProfile-viewImage">
+
+          <img 
+          src={`${BASE_URL}${data?.profile?.filename}`}
+           alt=""
+           className="tutorProfile-viewImage"
+            />
+        </div>
+        
 
         <table>
           <tbody>

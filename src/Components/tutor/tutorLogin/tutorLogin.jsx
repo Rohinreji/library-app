@@ -61,18 +61,18 @@ function TutorLogin() {
         toast.success(response.data.msg);
         navigate("/tutor-dashboard")
 
-      } else if (response.status === 500 || response.status === 505) {
-        toast.error(response.data.msg);
-      } else {
-        toast.error("login again");
-      }
+      }  
       console.log(response.status);
     } catch (error) {
+      if (error.status === 405 || error.status === 409) {
+        toast.error(error.response.data.msg);
+      } else {
+        toast.error("log in again");
+      }
       console.log(error);
     }
   };
-
- 
+console.log(data,"data");
 
   return (
     <div>

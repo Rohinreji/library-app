@@ -8,6 +8,7 @@ import bookImage from "../../../Assests/fantacyBooks1.jpg";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import toast from "react-hot-toast";
+import { BASE_URL } from "../../../apis/baseURL";
 export const TutorviewSingleProduct = () => {
   const [cartCount, setCartCount] = useState("");
   const [tutorId, setTutorId] = useState("");
@@ -61,11 +62,12 @@ export const TutorviewSingleProduct = () => {
     }
   };
 
+
   return (
     <div className="student-view-single-product shadow">
       <Row>
         <Col className=" student-view-single-product-left-box ">
-          <img src={bookImage} alt="" className="shadow" />
+          <img src={`${BASE_URL}${data?.bookImage?.filename}`} alt="" className="shadow" />
         </Col>
         <Col>
           <h3>{data.bookTitle}</h3>

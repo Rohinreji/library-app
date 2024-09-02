@@ -1,26 +1,33 @@
-import React, { Profiler, useState } from "react";
+import React, { useState } from "react";
 import { Row, Col } from "react-bootstrap";
-import adminImg from "../../../Assests/tutorImg.png";
+import forgotImg from "../../../Assests/ForgotPasswordImg.png";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import Button from "react-bootstrap/Button";
-import toast from "react-hot-toast";
 import axios from "axios";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-function TutorLogin() {
-  const [showPassword, SetShowPassword] = useState(true);
+
+function TutorForgotPassword() {
   const [data, setData] = useState({
     email: "",
-    pasword: "",
+    password: "",
+    confirmPassword: "",
   });
+  const navigate = useNavigate()
+  const [showPassword, SetShowPassword] = useState(true);
+  const [showPassword1, SetShowPassword1] = useState(true);
   const clickPassword = () => {
     SetShowPassword(!showPassword);
   };
+  const clickPassword1 = () => {
+    SetShowPassword1(!showPassword1);
+  };
 
   const validation = () => {
-    const { email, password } = data;
+    const { email, password, confirmPassword } = data;
     if (!email) {
       toast.error("email is required");
       return false;
@@ -29,59 +36,55 @@ function TutorLogin() {
       toast.error("password is required");
       return false;
     }
+    if (!confirmPassword) {
+      toast.error("confirm password is required");
+      return false;
+    }
+    if (password !== confirmPassword) {
+      toast.error("password mismatch");
+      return false;
+    }
     return true;
   };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });
   };
-  console.log(data, "data");
+  console.log(data);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    validation();
-    sendDataToServer();
-  };
-
-  const navigate = useNavigate();
-
-
-  const sendDataToServer = async () => {
+  const sendToServer = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3005/tutorLogin",
+        "http://localhost:3005/tutor-forgot-password",
         data
       );
       if (response.status === 200) {
-        const tutorId = response.data.data._id
-        if(tutorId)
-        {
-          localStorage.setItem("tutorId",tutorId)
-        }
         toast.success(response.data.msg);
-        navigate("/tutor-dashboard")
+        navigate("/tutorLogin")
 
-      } else if (response.status === 500 || response.status === 505) {
-        toast.error(response.data.msg);
       } else {
-        toast.error("login again");
+        toast.error(response.data.msg);
       }
-      console.log(response.status);
     } catch (error) {
       console.log(error);
     }
   };
 
- 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    validation();
+    sendToServer();
+  };
 
   return (
     <div>
       <div className="adminLogin-main">
         <div className="adminLogin-box">
           <Row className="adminLogin-content">
-            <h3>Educational Tutor Login</h3>
+            <h3>Reset Password</h3>
             <Col className="adminLogin-adminImg" md={5}>
-              <img src={adminImg} alt="" />
+              <img src={forgotImg} alt="" />
             </Col>
             <Col className="adminLogin-loginSection" md={7}>
               <Form onSubmit={handleSubmit}>
@@ -98,7 +101,7 @@ function TutorLogin() {
                   <Form.Label>Password</Form.Label>
                   <InputGroup className="mb-3">
                     <Form.Control
-                      placeholder="Password"
+                      placeholder="Enter New Password"
                       aria-label="Recipient's username"
                       aria-describedby="basic-addon2"
                       type={showPassword ? "password" : "text"}
@@ -115,22 +118,32 @@ function TutorLogin() {
                     </InputGroup.Text>
                   </InputGroup>
                 </Form.Group>
-                <span
-                 className="adminLogin-forgot"
-                 onClick={()=>{navigate("/tutor/forgot-password")}}
-                 >Forgot password?</span>
+                <Form.Group className="mb-3" controlId="formGroupPassword">
+                  <Form.Label>Confirm Password</Form.Label>
+                  <InputGroup className="mb-3">
+                    <Form.Control
+                      placeholder="Re Enter Password"
+                      aria-label="Recipient's username"
+                      aria-describedby="basic-addon2"
+                      type={showPassword1 ? "password" : "text"}
+                      name="confirmPassword"
+                      onChange={handleChange}
+                    />
+                    <InputGroup.Text id="basic-addonAdminLogin">
+                      <span
+                        style={{ cursor: "pointer" }}
+                        onClick={clickPassword1}
+                      >
+                        {showPassword1 ? <FaEyeSlash /> : <FaEye />}
+                      </span>
+                    </InputGroup.Text>
+                  </InputGroup>
+                </Form.Group>
                 <div className="adminLogin-submitBtn">
                   <Button variant="success" type="submit">
-                    Login
+                    Submit
                   </Button>{" "}
                 </div>
-                Don't have an account yet?{" "}
-                <span style={{ cursor: "pointer", fontWeight: "bold" }}
-                onClick={()=>{navigate("/tutorSignup")}}
-                >
-                  {" "}
-                  Register Now
-                </span>
               </Form>
             </Col>
           </Row>
@@ -140,4 +153,4 @@ function TutorLogin() {
   );
 }
 
-export default TutorLogin;
+export default TutorForgotPassword;

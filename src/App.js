@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -22,6 +21,14 @@ import { StudentDashboard } from "./Components/student/studentDashboard/studentD
 import { StudentviewSingleProduct } from "./Components/student/studentViewSingleProduct.js/studentViewSingleProduct";
 import AdminForgotPassword from "./Components/admin/adminForgotPassword/adminForgotPassword";
 import { Toaster } from "react-hot-toast";
+import { TutorSignUp } from "./Components/tutor/tutorSignup/tutorSignup";
+import { TutorSidebar } from "./Components/tutor/tutorSidebar/tutorSidebar";
+import { TutorDashboard } from "./Components/tutor/tutorDashboard/tutorDashboard";
+import { TutorViewBook } from "./Components/tutor/tutorViewBook/tutorViewBook";
+import { TutorProfile } from "./Components/tutor/tutorProfile/tutorProfile";
+import { AdminAddProduct } from "./Components/admin/adminAddProduct/adminAddProduct";
+import TutorForgotPassword from "./Components/tutor/tutorForgotPassword/tutorForgotPassword";
+import { TutorviewSingleProduct } from "./Components/tutor/tutorViewSingleProduct.jsx/tutorViewSingleProduct";
 
 function App() {
   return (
@@ -30,6 +37,8 @@ function App() {
       <BrowserRouter basename="open_library">
         <Routes>
           <Route path="/" element={<LandingPage />} />
+
+
           {/* student */}
           <Route path="/registration" element={<Loginpage />} />
           <Route path="/login" element={<Signin />} />
@@ -50,14 +59,26 @@ function App() {
           <Route path="/commonNavbar" element={<CommonNavbar />} />
           <Route path="/footer" element={<Footer />} />
           <Route path="/landingPage" element={<LandingPage />} />
+
           {/* admin */}
+
           <Route path="/adminLogin" element={<AdminLogin />} />
           <Route
             path="/adminForgotPassword"
             element={<AdminForgotPassword />}
           />
+          <Route path="/admin-add/products" element={<AdminAddProduct/>} />
+          
           {/* tutor */}
+
           <Route path="/tutorLogin" element={<TutorLogin />} />
+          <Route path="/tutorSignup" element={<TutorSignUp/>} />
+          <Route path="/tutor-sidebar" element={<TutorSidebar/>} />
+          <Route path="/tutor-dashboard" element={<TutorDashboard/>} />
+          <Route path="/tutor-viewBook" element={<TutorViewBook/>} />
+          <Route path="/tutor/profile" element={<TutorProfile/>} />
+          <Route path="/tutor/forgot-password" element={<TutorForgotPassword/>} />
+          <Route path="/tutor/view-single-product/:id" element={<TutorviewSingleProduct/>} />
           {/* 404 page */}
           <Route path="/*" element={<h1>The page not available</h1>} />
         </Routes>

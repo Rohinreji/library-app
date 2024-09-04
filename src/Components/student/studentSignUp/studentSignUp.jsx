@@ -38,11 +38,52 @@ export const StudentSignUp = () => {
       lastname,
       email,
       photo,
+      addNo,
       password,
       confirmPassword,
-      addNo,
     } = data;
-
+    const validateFields = () => {
+      if (!firstname) {
+        toast.error("Enter your firstname");
+        return false;
+      }
+      if (!lastname) {
+        toast.error("Enter your lastname");
+        return false;
+      }
+      if (!email) {
+        toast.error("Enter your email");
+        return false;
+      }
+      if (!photo) {
+        toast.error("Upload your photo");
+        return false;
+      }
+      if (!addNo) {
+        toast.error("Enter your addmission number");
+        return false;
+      }
+      if (!password) {
+        toast.error("Enter password");
+        return false;
+      }
+      if (password.length < 8) {
+        toast.error("Password needs minimum 8 charaters");
+        return false;
+      }
+      if (!confirmPassword) {
+        toast.error("Enter confirm password");
+        return false;
+      }
+      if (password !== confirmPassword) {
+        toast.error("entered password doesn't matches");
+        return false;
+      }
+      return true;
+    };
+    if (!validateFields()) {
+      return;
+    }
     const formdata = new FormData();
     formdata.append("firstname", firstname);
     formdata.append("lastname", lastname);
@@ -73,6 +114,7 @@ export const StudentSignUp = () => {
   const handleShow2 = () => {
     setshow2(!show2);
   };
+
   const sendToServer = async (data) => {
     try {
       const response = await axios.post(
@@ -83,7 +125,11 @@ export const StudentSignUp = () => {
         toast.success("Registration successfull");
       }
     } catch (error) {
-      console.log(error);
+     
+      if(error.status==409){
+        toast.error("Email already used.");
+      }else{
+      console.log(error);}
     }
   };
   return (

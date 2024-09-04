@@ -1,0 +1,45 @@
+.admin-approve-tutor-cross
+{
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    background-color: rgb(233, 144, 144);
+    color: white;
+}
+.admin-approve-tutor-check
+{
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    background-color: rgb(114, 221, 114);
+    color: white;
+}
+.admin-approvae-tutor-approval
+{
+    text-align: center;
+}
+@media(max-width:780px) {
+    .admin-approve-tutor-cross
+{
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background-color: rgb(233, 144, 144);
+    color: white;
+    font-size: 10px;
+}
+.admin-approve-tutor-check
+{
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background-color: rgb(114, 221, 114);
+    color: white;
+    font-size: 10px;
+}
+} 
+.adminApproveTutor-table
+{
+    width: 95%;
+    margin: auto;
+}

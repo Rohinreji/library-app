@@ -13,14 +13,14 @@ export const TutorSidebar = ({changeSelectedPage}) => {
             <li
               onClick={() => {
                 setDropCat(!dropCat)
-                changeSelectedPage("category")
+                changeSelectedPage("dashBoard")
               }}
             >
-              Category
+              DashBoard
             </li>
             <></>
 
-            <li>Active Rentals</li>
+            <li onClick={()=>{changeSelectedPage("activeRental")}}>Active Rentals</li>
             <li>Wishlist</li>
             <li>Notification</li>
             <li>Cart</li>

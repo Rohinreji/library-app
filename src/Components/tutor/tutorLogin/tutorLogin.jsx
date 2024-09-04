@@ -1,4 +1,4 @@
-import React, { Profiler, useState } from "react";
+import React, { useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import adminImg from "../../../Assests/tutorImg.png";
 import Form from "react-bootstrap/Form";
@@ -19,6 +19,12 @@ function TutorLogin() {
     SetShowPassword(!showPassword);
   };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setData({ ...data, [name]: value });
+  };
+  console.log(data, "data");
+
   const validation = () => {
     const { email, password } = data;
     if (!email) {
@@ -31,15 +37,15 @@ function TutorLogin() {
     }
     return true;
   };
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setData({ ...data, [name]: value });
-  };
-  console.log(data, "data");
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    validation();
+if(!validation())
+{
+  return;
+}
     sendDataToServer();
   };
 
@@ -64,7 +70,7 @@ function TutorLogin() {
       }  
       console.log(response.status);
     } catch (error) {
-      if (error.status === 405 || error.status === 409) {
+      if (error.status === 405 || error.status === 409 || error.status === 500) {
         toast.error(error.response.data.msg);
       } else {
         toast.error("log in again");

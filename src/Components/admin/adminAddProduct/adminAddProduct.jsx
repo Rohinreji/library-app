@@ -61,6 +61,9 @@ export const AdminAddProduct = () => {
         toast.success("sucess!!");
       }
     } catch (error) {
+      if (error.status === 500) {
+        toast.error(error?.response?.data?.msg);
+      }
       console.log(error);
     }
   };

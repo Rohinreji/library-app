@@ -48,12 +48,11 @@ export const TutorviewSingleProduct = () => {
   console.log(booksId, "bookid");
   console.log(tutorId, "tutorid");
 
+
+
   const handleRentNow = async () => {
     try {
-      const response = await axios.post("http://localhost:3005/rentBooks", {
-        tutorId,
-        booksId: booksId,
-      });
+      const response = await axios.post(`http://localhost:3005/rendBookByTutor`,{tutorId,booksId});
       if (response.status === 200) {
         toast.success("rent request sended");
       }
@@ -62,12 +61,15 @@ export const TutorviewSingleProduct = () => {
     }
   };
 
-
   return (
     <div className="student-view-single-product shadow">
       <Row>
         <Col className=" student-view-single-product-left-box ">
-          <img src={`${BASE_URL}${data?.bookImage?.filename}`} alt="" className="shadow" />
+          <img
+            src={`${BASE_URL}${data?.bookImage?.filename}`}
+            alt=""
+            className="shadow"
+          />
         </Col>
         <Col>
           <h3>{data.bookTitle}</h3>
@@ -113,11 +115,11 @@ export const TutorviewSingleProduct = () => {
             <button
               className="student-view-single-product-buyNow"
               onClick={() => {
-                handleRentNow();
+               
                 setBooksId(data._id);
+                handleRentNow();
               }}
             >
-              {" "}
               <AiFillThunderbolt /> Rent Now
             </button>
           </div>

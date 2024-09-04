@@ -125,8 +125,8 @@ export const StudentSignUp = () => {
         toast.success("Registration successfull");
       }
     } catch (error) {
-      const status=error.response?.status
-      if(status==409){
+     
+      if(error.status==409){
         toast.error("Email already used.");
       }else{
       console.log(error);}

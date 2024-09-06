@@ -4,30 +4,31 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { IoSearch } from "react-icons/io5";
 import { BASE_URL } from "../../../apis/baseURL";
+import { useNavigate } from "react-router-dom";
 
 export const TutorActiveRental = () => {
-  const [data, setdata] = useState()
+  const [data, setdata] = useState([]);
+  const navigate = useNavigate();
+  const tutorId = localStorage.getItem("tutorId");
 
-  const tutorId = localStorage.getItem("tutorId")
+  const getData = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3005/tutorViewRental",
+        { tutorId }
+      );
+      if (response.status === 200) {
+        setdata(response.data.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  const getData =async () =>
-  {
-try {
-  const response = await axios.post("http://localhost:3005/tutorViewRental",{tutorId})
-setdata(response.data.data.booksId)
-} catch (error) {
-  console.log(error);
-}
-  }
-
-useEffect(()=>
-{
-  getData()
-},[])
+  useEffect(() => {
+    getData();
+  }, []);
   console.log(data);
-
-
-  
 
   return (
     <div>
@@ -45,14 +46,31 @@ useEffect(()=>
         </InputGroup>
 
         <div className="d-flex flex-wrap gap-4 justify-content-between px-5 py-5 student-view-product-body">
-          <div className="student-product-view-box shadow">
-            <div className="">
-              <img src={`${BASE_URL}${data?.bookImage?.filename}`} alt="" className="student-product-view-box-img" />
-            </div>
-            <h5 className="py-1"></h5>
-            <p>{data?.bookTitle}</p>
-            <h5 className="mb-5">{data?.category}</h5>
-          </div>
+          {data.map((e, index) => {
+            const booksId = e?.booksId;
+            console.log(booksId._id,"manu");
+            return (
+              <div>
+                <div
+                  className="student-product-view-box shadow"
+                  onClick={() => {
+                    navigate(`/tutor/return-books/${e._id}`);
+                  }}
+                >
+                  <div className="">
+                    <img
+                      src={`${BASE_URL}${booksId?.bookImage?.filename}`}
+                      alt=""
+                      className="student-product-view-box-img"
+                    />
+                  </div>
+                  <h5 className="py-1"></h5>
+                  <p>{booksId?.bookTitle}</p>
+                  <h5 className="mb-5">{booksId?.category}</h5>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

@@ -32,6 +32,10 @@ import { TutorviewSingleProduct } from "./Components/tutor/tutorViewSingleProduc
 import { AdminApproveTutor } from "./Components/admin/adminApproveTutor.jsx/adminApproveTutotor";
 import { AdminViewApproveTutor } from "./Components/admin/adminViewApprovedTutor/adminViewApprovedTutor";
 import { TutorActiveRental } from "./Components/tutor/tutorActiveRental/tutorActiveRental";
+import { TutorCart } from "./Components/tutor/tutorcart/tutorCart";
+import { AdminViewAllRental } from "./Components/admin/adminViewAllRent/adminViewAllRent";
+import { TutorReturnBooks } from "./Components/tutor/tutorReturnBooks/tutorReturnBooks";
+import { AdminViewReturnReq } from "./Components/admin/adminViewReturnReq/adminViewReturnReq";
 
 function App() {
   return (
@@ -72,6 +76,9 @@ function App() {
           <Route path="/admin-add/products" element={<AdminAddProduct/>} />
           <Route path="/admin/approve-tutor" element={<AdminApproveTutor/>} />
           <Route path="/admin/view-approved-tutor" element={<AdminViewApproveTutor/>} />
+          <Route path="/admin/view-all-rental" element={<AdminViewAllRental/>} />
+          <Route path="/admin/view-retun-req" element={<AdminViewReturnReq/>} />
+
           
           {/* tutor */}
           <Route path="/tutorLogin" element={<TutorLogin />} />
@@ -83,6 +90,8 @@ function App() {
           <Route path="/tutor/forgot-password" element={<TutorForgotPassword/>} />
           <Route path="/tutor/view-single-product/:id" element={<TutorviewSingleProduct/>} />
           <Route path="/tutor/active-rental" element={<TutorActiveRental/>} />
+          <Route path="/tutor/cart" element={<TutorCart/>}/>
+          <Route path="/tutor/return-books/:id" element={<TutorReturnBooks/>} />
           {/* 404 page */}
           <Route path="/*" element={<h1>The page not available</h1>} />
         </Routes>

@@ -46,6 +46,8 @@ export const AdminApproveTutor = () => {
       toast.error("user not found")
     }
     console.log(error);
+   }finally{
+    getData()
    }
 
 
@@ -65,6 +67,8 @@ try {
   {
     toast.error("no user found")
   }
+}finally{
+  getData()
 }
   }
   

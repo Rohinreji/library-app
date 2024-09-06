@@ -1,0 +1,27 @@
+.admin-approve-tutor-cross
+{
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    background-color: rgb(233, 144, 144);
+    color: white;
+margin-left: 30%;
+}
+.admin-approve-tutor-check
+{
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    background-color: rgb(114, 221, 114);
+    color: white;
+    margin-left: 10%;
+}
+.adminViewRent
+{
+    width: 95%;
+    margin: auto;
+}
+.adminViewRental-approvel
+{
+    text-align: center;
+}

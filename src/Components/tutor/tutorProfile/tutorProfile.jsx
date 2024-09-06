@@ -12,7 +12,7 @@ export const TutorProfile = () => {
     try {
       const response = await axios.get(`http://localhost:3005/tutorViewProfile/${id}`);
       if (response.status == 200) {
-        setData(response.data.data);
+        setData(response?.data?.data);
       }
     } catch (error) {
      
@@ -44,17 +44,17 @@ export const TutorProfile = () => {
             <tr>
               <td>Name</td>
               <td>:</td>
-              <td>{data.firstName} {data.lastName}</td>
+              <td>{data?.firstName} {data?.lastName}</td>
             </tr>
             <tr>
               <td>Email</td>
               <td>:</td>
-              <td>{data.email}</td>{" "}
+              <td>{data?.email}</td>{" "}
             </tr>
             <tr>
               <td>Id Number</td>
               <td>:</td>
-              <td>{data.idNo}</td>
+              <td>{data?.idNo}</td>
             </tr>
           </tbody>
         </table>

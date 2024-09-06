@@ -12,16 +12,13 @@ import { BASE_URL } from "../../../apis/baseURL";
 export const TutorviewSingleProduct = () => {
   const [cartCount, setCartCount] = useState("");
   const [tutorId, setTutorId] = useState("");
-  const [booksId, setBooksId] = useState("");
-
-  //   const product = {
-  //     description:
-  //       " THE PHENOMENAL INTERNATIONAL BESTSELLER OVER 1O MILLION COPIES SOL      WORLDWIDE Transform your life with tiny changes in behaviour,          starting now. People think that when you want to change your life,          you need to think big. But world-renowned habits expert James Clear",
-  //     price: 750,
-  //   };
-
+  const[booksId,setBooksId]= useState("")
+ const[rentBookId,setRentBookId] = useState("")
   const [data, setData] = useState({});
   const { id } = useParams();
+
+// book details api call
+
   const getData = async () => {
     try {
       const response = await axios.get(
@@ -49,8 +46,9 @@ export const TutorviewSingleProduct = () => {
   console.log(tutorId, "tutorid");
 
 
+  // rent api call
 
-  const handleRentNow = async () => {
+  const handleRentNow = async (booksId) => {
     try {
       const response = await axios.post(`http://localhost:3005/rendBookByTutor`,{tutorId,booksId});
       if (response.status === 200) {
@@ -60,6 +58,23 @@ export const TutorviewSingleProduct = () => {
       console.log(error);
     }
   };
+
+// add to cart api call
+
+
+const handleAddToCart = async (booksId) =>
+{
+try {
+  const response = await axios.post("http://localhost:3005/tutorAddToCart",{tutorId,booksId})
+  console.log(response);
+  if(response.status === 200)
+  {
+    toast.success(response.data.msg)
+  }
+} catch (error) {
+  console.log(error);
+}
+}
 
   return (
     <div className="student-view-single-product shadow">
@@ -108,16 +123,25 @@ export const TutorviewSingleProduct = () => {
           </h6>
 
           <div className="d-flex my-5">
-            <button className="student-view-single-product-addToCart">
+            <button 
+            className="student-view-single-product-addToCart"
+            onClick={()=>
+            {
+              setBooksId(data._id)
+              handleAddToCart(data._id)
+              
+            }}
+            >
               {" "}
               <MdOutlineShoppingCart /> Add to cart
             </button>
+
             <button
               className="student-view-single-product-buyNow"
               onClick={() => {
                
                 setBooksId(data._id);
-                handleRentNow();
+                handleRentNow(data._id);
               }}
             >
               <AiFillThunderbolt /> Rent Now

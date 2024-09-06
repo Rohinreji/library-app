@@ -1,0 +1,23 @@
+.tutorCartBody
+{
+    height:8 50vh;
+    width: 98%;
+    margin-top: 3%;
+    
+}.tutorCartBody img{
+    height: 98%;
+    width: 90%;
+
+}
+.tutorCartBody table
+{
+    height: 80%;
+    width: 50%;
+}
+.tutorCartMainBox
+{
+    width: 100%;
+    height: 100vh;
+    overflow-y: scroll;
+
+}

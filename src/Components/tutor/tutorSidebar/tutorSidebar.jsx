@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { StudentNav } from "../../student/studentHome/studentNav/studentNav";
+import { useNavigate } from "react-router-dom";
 
 export const TutorSidebar = ({changeSelectedPage}) => {
   const [dropCat, setDropCat] = useState(false);
-
+const navigate = useNavigate()
   return (
     <div>
         <div>
@@ -23,11 +24,20 @@ export const TutorSidebar = ({changeSelectedPage}) => {
             <li onClick={()=>{changeSelectedPage("activeRental")}}>Active Rentals</li>
             <li>Wishlist</li>
             <li>Notification</li>
-            <li>Cart</li>
+            <li onClick={()=>{changeSelectedPage("cart")}}>Cart</li>
             <li>Request book</li>
             <li onClick={()=>{changeSelectedPage("profile")}}>profile</li>
 
-            <li className="text-danger fs-3 fw-bolder">Logout</li>
+            <li 
+            
+            className="text-danger fs-3 fw-bolder"
+            onClick={()=>{localStorage.removeItem("tutorId")
+              navigate("/tutorLogin")
+
+            }
+          }
+            
+            >Logout</li>
           </ul>
         </div>
       </div>

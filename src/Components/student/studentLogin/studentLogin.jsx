@@ -8,24 +8,26 @@ import Button from "react-bootstrap/Button";
 import stdImg from "../../../Assests/stdImg.png";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 function StudentLogin() {
+  const navigate = useNavigate();
   const [showPassword, SetShowPassword] = useState(true);
   const [data, setData] = useState({ email: "", password: "" });
   const handleChanges = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
-  console.log(data);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(data);
     const { email, password } = data;
     const validateFields = () => {
       if (!email) {
-        toast.error("Enter email");
+        toast.error("Email is requires");
         return false;
       }
       if (!password) {
-        toast.error("Enter password");
+        toast.error("password is required");
         return false;
       }
       return true;
@@ -37,11 +39,29 @@ function StudentLogin() {
   };
   const sentToServer = async () => {
     try {
-      const response = await axios.post("http://localhost:3005/studentLogin");
+      const response = await axios.post(
+        "http://localhost:3005/studentLogin",
+        data
+      );
       if (response.status === 200) {
+        const studentId = response.data.data._id;
+        if (studentId) {
+          localStorage.setItem("studentId", studentId);
+        }
         toast.success("Login Success");
+        navigate("/student-dashboard");
       }
+      console.log(response.status);
     } catch (error) {
+      if (
+        error.status === 401 ||
+        error.status === 405 ||
+        error.status === 402
+      ) {
+        toast.error(error?.response.data.msg);
+      } else {
+        toast.error("log in again");
+      }
       console.log(error);
     }
   };
@@ -89,17 +109,24 @@ function StudentLogin() {
                     </InputGroup.Text>
                   </InputGroup>
                 </Form.Group>
-                <span className="adminLogin-forgot">Forgot password?</span>
+                <span
+                  className="adminLogin-forgot"
+                  onClick={()=>{
+                    navigate("/studentForgotpassword")
+                  }}
+                >
+                  Forgot password?
+                </span>
                 <div className="adminLogin-submitBtn">
                   <Button variant="success" type="submit">
                     Login
                   </Button>{" "}
                 </div>
-              Don't have an account yet?{" "}
-              <span style={{ cursor: "pointer", fontWeight: "bold" }}>
-                {" "}
-                Register Now
-              </span>
+                Don't have an account yet?{" "}
+                <span style={{ cursor: "pointer", fontWeight: "bold" }}>
+                  {" "}
+                  Register Now
+                </span>
               </Form>
             </Col>
           </Row>

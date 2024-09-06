@@ -122,14 +122,18 @@ export const StudentSignUp = () => {
         data
       );
       if (response.status === 200) {
-        toast.success("Registration successfull");
+        toast.success(response.data.msg);
+      }else{
+        toast.error(response.data.msg)
       }
     } catch (error) {
-     
-      if(error.status==409){
-        toast.error("Email already used.");
+      const status = error.response?.status;
+      if(status===409){
+        toast.error(error?.response?.data?.msg)
       }else{
-      console.log(error);}
+        console.log(error);
+        
+      }
     }
   };
   return (

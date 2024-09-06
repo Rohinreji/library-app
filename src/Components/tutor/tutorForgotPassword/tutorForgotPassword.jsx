@@ -26,6 +26,12 @@ function TutorForgotPassword() {
     SetShowPassword1(!showPassword1);
   };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setData({ ...data, [name]: value });
+  };
+  console.log(data);
+
   const validation = () => {
     const { email, password, confirmPassword } = data;
     if (!email) {
@@ -47,11 +53,7 @@ function TutorForgotPassword() {
     return true;
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setData({ ...data, [name]: value });
-  };
-  console.log(data);
+ 
 
   const sendToServer = async () => {
     try {
@@ -63,17 +65,23 @@ function TutorForgotPassword() {
         toast.success(response.data.msg);
         navigate("/tutorLogin")
 
-      } else {
-        toast.error(response.data.msg);
       }
     } catch (error) {
+      if(error.status ===500)
+      {
+toast.error("email is not found")
+      }
+
       console.log(error);
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    validation();
+    if(!validation())
+    {
+      return;
+    }
     sendToServer();
   };
 
@@ -94,6 +102,7 @@ function TutorForgotPassword() {
                     type="email"
                     placeholder="Enter email"
                     name="email"
+                    value={data.email}
                     onChange={handleChange}
                   />
                 </Form.Group>
@@ -107,6 +116,7 @@ function TutorForgotPassword() {
                       type={showPassword ? "password" : "text"}
                       name="password"
                       onChange={handleChange}
+                      value={data.password}
                     />
                     <InputGroup.Text id="basic-addonAdminLogin">
                       <span

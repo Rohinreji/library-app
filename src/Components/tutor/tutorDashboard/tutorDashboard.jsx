@@ -1,22 +1,28 @@
-import { useState } from "react"
-import { TutorSidebar } from "../tutorSidebar/tutorSidebar"
-import { TutorViewBook } from "../tutorViewBook/tutorViewBook"
-import { TutorProfile } from "../tutorProfile/tutorProfile"
+import { useState } from "react";
+import { TutorSidebar } from "../tutorSidebar/tutorSidebar";
+import { TutorViewBook } from "../tutorViewBook/tutorViewBook";
+import { TutorProfile } from "../tutorProfile/tutorProfile";
+import { TutorActiveRental } from "../tutorActiveRental/tutorActiveRental";
+import { TutorCart } from "../tutorcart/tutorCart";
 
-export const TutorDashboard = () =>
-{
-    const[selectePage,setSelectedPage] = useState("tutorViewBook")
-    const changeSelectedPage = (value) =>
-    {
-setSelectedPage(value)
-    }
+export const TutorDashboard = () => {
+  const [selectePage, setSelectedPage] = useState("tutorViewBook");
+  const changeSelectedPage = (value) => {
+    setSelectedPage(value);
+  };
 
-    return(
-        <div className="d-flex">
-            <TutorSidebar changeSelectedPage={changeSelectedPage} />
-         { selectePage === "category" && <TutorViewBook/>} 
+  return (
+    <div className="row">
+      <div className="col-3">
+        <TutorSidebar changeSelectedPage={changeSelectedPage} />
+      </div>
+      <div className="col-9">
+        {selectePage === "dashBoard" && <TutorViewBook />}
+        {selectePage == "cart" && <TutorCart />}
 
-        {selectePage === "profile" &&  <TutorProfile/>}
-        </div>
-    )
-}
+        {selectePage === "profile" && <TutorProfile />}
+        {selectePage == "activeRental" && <TutorActiveRental />}
+      </div>
+    </div>
+  );
+};

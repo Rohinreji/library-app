@@ -11,8 +11,9 @@ import { BsEye } from "react-icons/bs";
 import { BsEyeSlash } from "react-icons/bs";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { Navigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 export const TutorSignUp = () => {
+  const navigate = useNavigate()
   const [data, setData] = useState({
     firstName: "",
     lastName: "",
@@ -64,13 +65,13 @@ export const TutorSignUp = () => {
       );
       if (response?.status === 200) {
         toast.success(response.data.msg);
-        Navigate("/tutorLogin");
+        navigate("/tutorLogin");
       } else {
         toast.error(response.data.msg);
       }
       console.log(response?.status);
     } catch (error) {
-      if (error.status === 409 || error.status == 408) {
+      if (error.status === 409 || error.status === 408) {
         toast.error(error.response.data.msg);
       }
       console.log(error);

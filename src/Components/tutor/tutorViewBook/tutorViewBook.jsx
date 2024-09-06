@@ -15,7 +15,7 @@ export const TutorViewBook = () => {
     try {
       const response = await axios.get("http://localhost:3005/viewAllBooks");
       if (response.status === 200) {
-        const books = response.data.data;
+        const books = response?.data?.data;
         setFixedData(books);
         setData(books);
       }
@@ -78,17 +78,17 @@ export const TutorViewBook = () => {
                       className="student-product-view-box-img"
                     />
                   </div>
-                  <h5 className="py-1">{e.bookTitle}</h5>
+                  <h5 className="py-1">{e?.bookTitle}</h5>
                   <p>
                     {/* {e?.description?.length > 15
                       ? e.description?.substring(0, 28) + "..."
                       : e.description}{" "} */}
-                    {e.author}
+                    {e?.author}
                   </p>
                   <h5 className="mb-5">
                     {/* <FaRupeeSign />
                     {e.price} */}
-                    {e.status}
+                    {e?.status}
                   </h5>
                 </div>
               );

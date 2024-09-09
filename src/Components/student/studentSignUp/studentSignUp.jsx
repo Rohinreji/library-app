@@ -13,9 +13,11 @@ import { BsEyeSlash } from "react-icons/bs";
 import "./studentSignUp.css";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 export const StudentSignUp = () => {
   const [validated, setValidated] = useState(false);
   const [profilePic, setProfilePic] = useState(null);
+  const navigate=useNavigate()
   const [data, setData] = useState({
     firstname: "",
     lastname: "",
@@ -118,18 +120,23 @@ export const StudentSignUp = () => {
   const sendToServer = async (data) => {
     try {
       const response = await axios.post(
-        "http://localhost:3005/student-signUp",
+        "http://localhost:3005/studentSignup",
         data
       );
-      if (response.status === 200) {
-        toast.success("Registration successfull");
-      }
-    } catch (error) {
-     
-      if(error.status==409){
-        toast.error("Email already used.");
+      if (response?.status === 200) {
+        toast.success(response.data.msg);
+        navigate("/studentLogin")
       }else{
-      console.log(error);}
+        toast.error(response.data.msg)
+      }
+      console.log(response?.status);
+    } catch (error) {
+      if(error?.status===409){
+        toast.error(error?.response?.data.msg)
+      }else{
+        console.log(error);
+        
+      }
     }
   };
   return (

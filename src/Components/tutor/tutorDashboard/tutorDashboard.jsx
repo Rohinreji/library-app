@@ -13,10 +13,10 @@ export const TutorDashboard = () => {
 
   return (
     <div className="row">
-      <div className="col-3">
+      <div className="col-2">
         <TutorSidebar changeSelectedPage={changeSelectedPage} />
       </div>
-      <div className="col-9">
+      <div className="col-10">
         {selectePage === "dashBoard" && <TutorViewBook />}
         {selectePage == "cart" && <TutorCart />}
 

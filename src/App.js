@@ -36,6 +36,9 @@ import { TutorCart } from "./Components/tutor/tutorcart/tutorCart";
 import { AdminViewAllRental } from "./Components/admin/adminViewAllRent/adminViewAllRent";
 import { TutorReturnBooks } from "./Components/tutor/tutorReturnBooks/tutorReturnBooks";
 import { AdminViewReturnReq } from "./Components/admin/adminViewReturnReq/adminViewReturnReq";
+import { TutorEditProfile } from "./Components/tutor/tutorEditProfile/tutorEditProfile";
+import { AdminSideBar } from "./Components/admin/adminSideBar/adminSidBar";
+import { AdminDashboard } from "./Components/admin/adminDashboard/adminDashboard";
 
 function App() {
   return (
@@ -78,8 +81,8 @@ function App() {
           <Route path="/admin/view-approved-tutor" element={<AdminViewApproveTutor/>} />
           <Route path="/admin/view-all-rental" element={<AdminViewAllRental/>} />
           <Route path="/admin/view-retun-req" element={<AdminViewReturnReq/>} />
-
-          
+          <Route  path="/admin/sidebar" element={<AdminSideBar/>} />
+          <Route path="/admin/dashBoard" element={<AdminDashboard/>} />
           {/* tutor */}
           <Route path="/tutorLogin" element={<TutorLogin />} />
           <Route path="/tutorSignup" element={<TutorSignUp/>} />
@@ -87,6 +90,7 @@ function App() {
           <Route path="/tutor-dashboard" element={<TutorDashboard/>} />
           <Route path="/tutor-viewBook" element={<TutorViewBook/>} />
           <Route path="/tutor/profile" element={<TutorProfile/>} />
+          <Route path ="/tutor/Edit-profile" element={<TutorEditProfile/>} />
           <Route path="/tutor/forgot-password" element={<TutorForgotPassword/>} />
           <Route path="/tutor/view-single-product/:id" element={<TutorviewSingleProduct/>} />
           <Route path="/tutor/active-rental" element={<TutorActiveRental/>} />

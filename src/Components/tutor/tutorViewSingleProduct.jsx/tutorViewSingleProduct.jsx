@@ -9,15 +9,17 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import { BASE_URL } from "../../../apis/baseURL";
+import axiosInstance from "../../../apis/axiosInstance";
 export const TutorviewSingleProduct = () => {
-  const [cartCount, setCartCount] = useState("");
+  const [cartCount, setCartCount] = useState(1);
   const [tutorId, setTutorId] = useState("");
-  const[booksId,setBooksId]= useState("")
- const[rentBookId,setRentBookId] = useState("")
+  const [booksId, setBooksId] = useState("");
+  const [rentBookId, setRentBookId] = useState("");
   const [data, setData] = useState({});
   const { id } = useParams();
+  const [rentNowApprove, setRentNowApprove] = useState(false);
 
-// book details api call
+  // book details api call
 
   const getData = async () => {
     try {
@@ -45,12 +47,14 @@ export const TutorviewSingleProduct = () => {
   console.log(booksId, "bookid");
   console.log(tutorId, "tutorid");
 
-
   // rent api call
 
-  const handleRentNow = async (booksId) => {
+  const bookRentNow = async (booksId) => {
     try {
-      const response = await axios.post(`http://localhost:3005/rendBookByTutor`,{tutorId,booksId});
+      const response = await axios.post(
+        `http://localhost:3005/rendBookByTutor`,
+        { tutorId, booksId,addedQuantity:cartCount }
+      );
       if (response.status === 200) {
         toast.success("rent request sended");
       }
@@ -59,22 +63,51 @@ export const TutorviewSingleProduct = () => {
     }
   };
 
-// add to cart api call
+  // add to cart api call
 
+  const handleAddToCart = async (booksId) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3005/tutorAddToCart",
+        { tutorId, booksId }
+      );
+      console.log(response);
+      if (response.status === 200) {
+        toast.success(response.data.msg);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-const handleAddToCart = async (booksId) =>
-{
-try {
-  const response = await axios.post("http://localhost:3005/tutorAddToCart",{tutorId,booksId})
-  console.log(response);
-  if(response.status === 200)
-  {
-    toast.success(response.data.msg)
-  }
-} catch (error) {
-  console.log(error);
-}
-}
+  // api call to update available copies
+
+  const updateQuantity = async (booksId,cartCount) => {
+    try {
+      console.log(cartCount,"cartCount");
+      const response = await axiosInstance.post(
+        `updateBookQuantity/${booksId}`,
+        {quantity:cartCount}
+      );
+      if (response.status === 200) {
+        console.log("available copies updated");
+        setRentNowApprove(true);
+      }
+    } catch (error) {
+      if (error.status === 408) {
+        toast.error("book is not available");
+        setRentNowApprove(false);
+      }
+      console.log(error);
+    }
+  };
+
+  const handleRentNow = (booksId) => {
+    updateQuantity(booksId,cartCount);
+    if (rentNowApprove) {
+      bookRentNow(booksId);
+    }
+  };
 
   return (
     <div className="student-view-single-product shadow">
@@ -102,6 +135,7 @@ try {
               <div
                 onClick={() => {
                   setCartCount(parseInt(cartCount + 1));
+
                 }}
               >
                 +
@@ -123,14 +157,12 @@ try {
           </h6>
 
           <div className="d-flex my-5">
-            <button 
-            className="student-view-single-product-addToCart"
-            onClick={()=>
-            {
-              setBooksId(data._id)
-              handleAddToCart(data._id)
-              
-            }}
+            <button
+              className="student-view-single-product-addToCart"
+              onClick={() => {
+                setBooksId(data._id);
+                handleAddToCart(data._id);
+              }}
             >
               {" "}
               <MdOutlineShoppingCart /> Add to cart
@@ -139,7 +171,6 @@ try {
             <button
               className="student-view-single-product-buyNow"
               onClick={() => {
-               
                 setBooksId(data._id);
                 handleRentNow(data._id);
               }}

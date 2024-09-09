@@ -10,7 +10,6 @@ import toast from "react-hot-toast";
 import { BASE_URL } from "../../../apis/baseURL";
 export const TutorCart = () => {
   const [data, setdata] = useState([]);
-  const[cartId,setCartId] = useState("")
   const tutorId = localStorage.getItem("tutorId");
 
   const getData = async () => {
@@ -50,6 +49,14 @@ export const TutorCart = () => {
   }
   }
 
+  const rentAllBooks = async () =>
+  {
+    try {
+      const response = await axiosInstance.post("/rendBookByTutor",{tutorId,})
+    } catch (error) {
+      
+    }
+  }
 
   return (
     <div className="tutorCartMainBox">
@@ -58,8 +65,9 @@ export const TutorCart = () => {
       data.map((e,index)=>
       {
        const booksId = e.booksId
+
         return(
-          <div className="tutorCartBody shadow">
+          <div key={index} className="tutorCartBody shadow">
         <Row>
           <Col
             className="d-flex justify-content-center align-items-center "
@@ -104,7 +112,6 @@ export const TutorCart = () => {
              variant="warning"
              onClick={()=>
              {
-              setCartId(e._id)
               handleRemove(e._id)
              }
              }
@@ -114,7 +121,8 @@ export const TutorCart = () => {
       </div>
         )
       })
-    }
+    }a
+ 
     </div>
   );
 };

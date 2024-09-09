@@ -39,15 +39,15 @@ import { AdminViewReturnReq } from "./Components/admin/adminViewReturnReq/adminV
 import { TutorEditProfile } from "./Components/tutor/tutorEditProfile/tutorEditProfile";
 import { AdminSideBar } from "./Components/admin/adminSideBar/adminSidBar";
 import { AdminDashboard } from "./Components/admin/adminDashboard/adminDashboard";
+import StudentForgotPassword from "./Components/student/studentForgotpassword/studentForgotpassword";
 
 function App() {
   return (
     <>
-    <Toaster/>
+      <Toaster />
       <BrowserRouter basename="open_library">
         <Routes>
           <Route path="/" element={<LandingPage />} />
-
 
           {/* student */}
           <Route path="/registration" element={<Loginpage />} />
@@ -60,11 +60,21 @@ function App() {
           />
           <Route path="/student/home" element={<StudentHome />} />
           <Route path="/student/signup" element={<StudentSignUp />} />
-          <Route path="studentLogin" element={<StudentLogin />} />
-          <Route path="/student/view-product" element={<StudentViewProduct/>}/>
-          <Route path="/student/sidebar" element={<StudentSidebar/>} />
-          <Route path="/student/dashboard" element={<StudentDashboard/>} />
-          <Route path="/student/view-single-product" element={<StudentviewSingleProduct/>}/>
+          <Route path="/studentLogin" element={<StudentLogin />} />
+          <Route
+            path="/student/view-product"
+            element={<StudentViewProduct />}
+          />
+          <Route path="/student/sidebar" element={<StudentSidebar />} />
+          <Route path="/student-dashboard" element={<StudentDashboard />} />
+          <Route
+            path="/student/view-single-product"
+            element={<StudentviewSingleProduct />}
+          />
+          <Route
+            path="/studentForgotpassword"
+            element={<StudentForgotPassword />}
+          />
           {/* common */}
           <Route path="/commonNavbar" element={<CommonNavbar />} />
           <Route path="/footer" element={<Footer />} />
@@ -76,6 +86,21 @@ function App() {
             path="/adminForgotPassword"
             element={<AdminForgotPassword />}
           />
+          <Route path="/admin-add/products" element={<AdminAddProduct />} />
+          <Route path="/admin/approve-tutor" element={<AdminApproveTutor />} />
+          <Route
+            path="/admin/view-approved-tutor"
+            element={<AdminViewApproveTutor />}
+          />
+          <Route
+            path="/admin/view-all-rental"
+            element={<AdminViewAllRental />}
+          />
+          <Route
+            path="/admin/view-retun-req"
+            element={<AdminViewReturnReq />}
+          />
+
           <Route path="/admin-add/products" element={<AdminAddProduct/>} />
           <Route path="/admin/approve-tutor" element={<AdminApproveTutor/>} />
           <Route path="/admin/view-approved-tutor" element={<AdminViewApproveTutor/>} />
@@ -85,6 +110,25 @@ function App() {
           <Route path="/admin/dashBoard" element={<AdminDashboard/>} />
           {/* tutor */}
           <Route path="/tutorLogin" element={<TutorLogin />} />
+          <Route path="/tutorSignup" element={<TutorSignUp />} />
+          <Route path="/tutor-sidebar" element={<TutorSidebar />} />
+          <Route path="/tutor-dashboard" element={<TutorDashboard />} />
+          <Route path="/tutor-viewBook" element={<TutorViewBook />} />
+          <Route path="/tutor/profile" element={<TutorProfile />} />
+          <Route
+            path="/tutor/forgot-password"
+            element={<TutorForgotPassword />}
+          />
+          <Route
+            path="/tutor/view-single-product/:id"
+            element={<TutorviewSingleProduct />}
+          />
+          <Route path="/tutor/active-rental" element={<TutorActiveRental />} />
+          <Route path="/tutor/cart" element={<TutorCart />} />
+          <Route
+            path="/tutor/return-books/:id"
+            element={<TutorReturnBooks />}
+          />
           <Route path="/tutorSignup" element={<TutorSignUp/>} />
           <Route path="/tutor-sidebar" element={<TutorSidebar/>} />
           <Route path="/tutor-dashboard" element={<TutorDashboard/>} />

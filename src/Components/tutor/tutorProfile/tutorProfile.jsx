@@ -3,6 +3,7 @@ import axios from "axios";
 import "./tutorProfile.css";
 import { BASE_URL } from "../../../apis/baseURL";
 import toast from "react-hot-toast";
+import { TutorEditProfile } from "../tutorEditProfile/tutorEditProfile";
 // import { BASE_URL } from "../../../apis/BaseURL";
 export const TutorProfile = () => {
   const [data, setData] = useState({});
@@ -59,8 +60,8 @@ export const TutorProfile = () => {
           </tbody>
         </table>
         <div className="tutorProfile-button-box">
-          <button>Edit</button>
-        </div>
+<TutorEditProfile/>
+    </div>
       </div>
     </div>
   );

@@ -40,6 +40,9 @@ const approveRent = async() =>
   } catch (error) {
     console.log(error);
   }
+  finally{
+    getData()
+  }
 }
 // api call for rent
 
@@ -54,6 +57,9 @@ const rejectRent = async () =>
       }
   } catch (error) {
     console.log(error);
+  }
+  finally{
+    getData()
   }
 }
 console.log(data);

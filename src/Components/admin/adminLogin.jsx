@@ -14,6 +14,11 @@ import Footer from "../common/footer/footer";
 function AdminLogin() {
   const navigate = useNavigate();
   const [showPassword, SetShowPassword] = useState(true);
+
+  const adminEmail = "admin@gmail.com"
+  const adminPassword = "admin@123"
+
+
   const [adminData, setAdminData] = useState({ email: "", password: "" });
   const handleChanges = (data) => {
     setAdminData({ ...adminData, [data.target.name]: data.target.value });
@@ -23,6 +28,9 @@ function AdminLogin() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+
+login()
+
     console.log("admin", adminData);
     const { email, password } = adminData;
     if (!email) {
@@ -34,6 +42,25 @@ function AdminLogin() {
       return;
     }
   };
+
+  const login = () =>
+  {
+    if(adminEmail !== adminData.email)
+    {
+      toast.error("email is incorrect")
+    }
+    else if(adminPassword !== adminData.password)
+    {
+      toast.error("password is incorrect")
+    }
+    else 
+    {
+toast.success("login successfully")
+
+    }
+  }
+
+
 
   return (
     <div>

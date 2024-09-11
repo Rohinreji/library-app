@@ -15,9 +15,8 @@ function AdminLogin() {
   const navigate = useNavigate();
   const [showPassword, SetShowPassword] = useState(true);
 
-  const adminEmail = "admin@gmail.com"
-  const adminPassword = "admin@123"
-
+  const adminEmail = "admin@gmail.com";
+  const adminPassword = "admin@123";
 
   const [adminData, setAdminData] = useState({ email: "", password: "" });
   const handleChanges = (data) => {
@@ -42,28 +41,20 @@ function AdminLogin() {
     }
   };
 
-  const login = () =>
-  {
-    if(adminEmail !== adminData.email)
-    {
-      toast.error("email is incorrect")
+  const login = () => {
+    if (adminEmail !== adminData.email) {
+      toast.error("email is incorrect");
+    } else if (adminPassword !== adminData.password) {
+      toast.error("password is incorrect");
+    } else {
+      toast.success("login successfully");
+      navigate("/admin/dashBoard")
     }
-    else if(adminPassword !== adminData.password)
-    {
-      toast.error("password is incorrect")
-    }
-    else 
-    {
-toast.success("login successfully")
-
-    }
-  }
-
-
+  };
 
   return (
     <div>
-      <CommonNavbar/>
+      <CommonNavbar />
       <div className="adminLogin-main">
         <div className="adminLogin-box">
           <Row className="adminLogin-content">
@@ -121,7 +112,7 @@ toast.success("login successfully")
           </Row>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

@@ -49,11 +49,11 @@ export const TutorviewSingleProduct = () => {
 
   // rent api call
 
-  const bookRentNow = async (booksId) => {
+  const bookRentNow = async (booksId, cartCount) => {
     try {
       const response = await axios.post(
         `http://localhost:3005/rendBookByTutor`,
-        { tutorId, booksId,addedQuantity:cartCount }
+        { tutorId, booksId, addedQuantity: cartCount }
       );
       if (response.status === 200) {
         toast.success("rent request sended");
@@ -65,11 +65,11 @@ export const TutorviewSingleProduct = () => {
 
   // add to cart api call
 
-  const handleAddToCart = async (booksId) => {
+  const addToCart = async (booksId, cartCount) => {
     try {
       const response = await axios.post(
         "http://localhost:3005/tutorAddToCart",
-        { tutorId, booksId }
+        { tutorId, booksId, addedQuantity: cartCount }
       );
       console.log(response);
       if (response.status === 200) {
@@ -80,14 +80,19 @@ export const TutorviewSingleProduct = () => {
     }
   };
 
+  const handleAddToCart = (booksId) => {
+    addToCart(booksId, cartCount);
+    updateQuantity(booksId, cartCount);
+  };
+
   // api call to update available copies
 
-  const updateQuantity = async (booksId,cartCount) => {
+  const updateQuantity = async (booksId, cartCount) => {
     try {
-      console.log(cartCount,"cartCount");
+      console.log(cartCount, "cartCount");
       const response = await axiosInstance.post(
-        `updateBookQuantity/${booksId}`,
-        {quantity:cartCount}
+        `removeBookQuantity/${booksId}`,
+        { quantity: cartCount }
       );
       if (response.status === 200) {
         console.log("available copies updated");
@@ -103,9 +108,9 @@ export const TutorviewSingleProduct = () => {
   };
 
   const handleRentNow = (booksId) => {
-    updateQuantity(booksId,cartCount);
+    updateQuantity(booksId, cartCount);
     if (rentNowApprove) {
-      bookRentNow(booksId);
+      bookRentNow(booksId, cartCount);
     }
   };
 
@@ -135,7 +140,6 @@ export const TutorviewSingleProduct = () => {
               <div
                 onClick={() => {
                   setCartCount(parseInt(cartCount + 1));
-
                 }}
               >
                 +
@@ -155,6 +159,29 @@ export const TutorviewSingleProduct = () => {
               ? product.description.substring(0, 220) + "..."
               : product.description} */}
           </h6>
+
+          <table className="tutorView-single-product-table">
+            <tr>
+              <td>Author</td>
+              <td>:</td>
+              <td>{data.author}</td>
+            </tr>
+            <tr>
+              <td>Category</td>
+              <td>:</td>
+              <td>{data.category}</td>
+            </tr>
+            <tr>
+              <td>Language</td>
+              <td>:</td>
+              <td>{data.language}</td>
+            </tr>
+            <tr>
+              <td>Available copies</td>
+              <td>:</td>
+              <td>{data.availableCopies}</td>
+            </tr>
+          </table>
 
           <div className="d-flex my-5">
             <button

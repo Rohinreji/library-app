@@ -77,7 +77,7 @@ toast.success(response.data.msg)
             <th>#</th>
             <th>Name/Title</th>
             <th>Email/Author</th>
-            <th>Id No/Available Copies</th>
+            <th>Rented/Available Copies</th>
             <th className="adminViewRental-approvel">Approvel</th>
           </tr>
         </thead>
@@ -93,7 +93,7 @@ toast.success(response.data.msg)
               <td>Tutor</td>
               <td>{tutorId.firstName} {tutorId.lastName} </td>
               <td>{tutorId.email}</td>
-              <td>{tutorId.idNo}</td>
+              <td>{e.addedQuantity}</td>
               <td rowSpan={2} className="">
                 <button className="admin-approve-tutor-cross "
                 onClick={()=>{adminRejectReq(e._id)}}

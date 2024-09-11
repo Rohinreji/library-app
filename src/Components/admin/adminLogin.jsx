@@ -28,8 +28,7 @@ function AdminLogin() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-
-login()
+    login()
 
     console.log("admin", adminData);
     const { email, password } = adminData;
@@ -115,7 +114,7 @@ toast.success("login successfully")
                 <div className="adminLogin-submitBtn">
                   <Button type="submit" variant="success">
                     Login
-                  </Button>{" "}
+                  </Button>
                 </div>
               </Form>
             </Col>

@@ -40,6 +40,8 @@ import { TutorEditProfile } from "./Components/tutor/tutorEditProfile/tutorEditP
 import { AdminSideBar } from "./Components/admin/adminSideBar/adminSidBar";
 import { AdminDashboard } from "./Components/admin/adminDashboard/adminDashboard";
 import StudentForgotPassword from "./Components/student/studentForgotpassword/studentForgotpassword";
+import { TutorHome } from "./Components/tutor/TutorHome/studentHome";
+import { TutorFilterByCat } from "./Components/tutor/tutorFilterByCat/tutorFilterByCat";
 
 function App() {
   return (
@@ -115,6 +117,8 @@ function App() {
           <Route path="/tutor-dashboard" element={<TutorDashboard />} />
           <Route path="/tutor-viewBook" element={<TutorViewBook />} />
           <Route path="/tutor/profile" element={<TutorProfile />} />
+
+          <Route path="/tutor/home" element={<TutorHome/>} />
           <Route
             path="/tutor/forgot-password"
             element={<TutorForgotPassword />}
@@ -140,6 +144,7 @@ function App() {
           <Route path="/tutor/active-rental" element={<TutorActiveRental/>} />
           <Route path="/tutor/cart" element={<TutorCart/>}/>
           <Route path="/tutor/return-books/:id" element={<TutorReturnBooks/>} />
+          <Route path="/tutor/filterByCat/:cat" element={<TutorFilterByCat/>}/>
           {/* 404 page */}
           <Route path="/*" element={<h1>The page not available</h1>} />
         </Routes>

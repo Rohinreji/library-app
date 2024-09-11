@@ -8,8 +8,11 @@ const navigate = useNavigate()
   return (
     <div>
         <div>
+
       <div className="d-flex ">
         <div className="student-sidebar">
+        <h2 className="openlibrary-heading">Open Library</h2>
+
           <ul>
             <li
               onClick={() => {
@@ -25,7 +28,7 @@ const navigate = useNavigate()
             <li>Wishlist</li>
             <li>Notification</li>
             <li onClick={()=>{changeSelectedPage("cart")}}>Cart</li>
-            <li>Request book</li>
+            {/* <li>Request book</li> */}
             <li onClick={()=>{changeSelectedPage("profile")}}>profile</li>
 
             <li 

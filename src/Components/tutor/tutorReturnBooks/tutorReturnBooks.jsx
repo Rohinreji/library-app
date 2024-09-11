@@ -12,7 +12,7 @@ export const TutorReturnBooks = () => {
   const [data, setData] = useState([]);
   const[rentData,setRentData] = useState("")
   const [rentId, setRentId] = useState("");
-
+  const [rentedCopies,setRentedCopies] = useState("")
   // api call for rented book
 
   const getData = async () => {
@@ -25,14 +25,17 @@ export const TutorReturnBooks = () => {
         
         setData(response.data.data.booksId);
         setRentData(response.data.data)
-      }
+  }
     } catch (error) {
       console.log(error);
     }
   };
 
 
+  console.log(rentedCopies,"renteddCoptis");
+
   useEffect(() => {
+    setRentedCopies(rentData.addedQuantity)     
     getData();
   }, []);
 
@@ -40,7 +43,7 @@ export const TutorReturnBooks = () => {
 
   console.log(rentId,"rentId");
 
-  const handleReturn = async (rentId) => {
+  const returnBook = async (rentId) => {
     try {
       const response = await axiosInstance.post(`tutorReturnReq/${rentId}`);
       if (response.status === 200) {
@@ -50,6 +53,30 @@ export const TutorReturnBooks = () => {
       console.log(error);
     }
   };
+
+// api call for add book Quantity
+
+
+const addBookQuantity =async () =>
+{
+try {
+  const respone = await axiosInstance.post(`/addBookQuantity/${data._id}`,{quantity:rentData.addedQuantity})
+  if(respone.status ===200)
+  {
+    console.log("book quantity added");
+  }
+} catch (error) {
+  console.log(error);
+}
+}
+
+// cartBtn
+const handleReturn = (rentId) =>
+{
+  returnBook(rentId)
+  addBookQuantity()
+}
+
 
   return (
     <div className="my-5">
@@ -83,9 +110,9 @@ export const TutorReturnBooks = () => {
                   <td>{data.language}</td>
                 </tr>
                 <tr>
-                  <td>status</td>
+                  <td>Rented copies</td>
                   <td>:</td>
-                  <td>{data.status}</td>
+                  <td>{rentData.addedQuantity}</td>
                 </tr>
               </tbody>
             </table>

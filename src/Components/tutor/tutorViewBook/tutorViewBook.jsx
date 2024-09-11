@@ -6,10 +6,12 @@ import { IoSearch } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../../../apis/baseURL";
-import { useNavigate } from "react-router-dom";
-export const TutorViewBook = () => {
+import { useNavigate, useParams } from "react-router-dom";
+import axiosInstance from "../../../apis/axiosInstance";
+export const TutorViewBook = ({reDirectToViewSingleBook}) => {
   const [fixedData, setFixedData] = useState([]);
   const [data, setData] = useState([]);
+  const {cat} = useParams()
   const navigate = useNavigate();
   const getData = async () => {
     try {
@@ -27,6 +29,11 @@ export const TutorViewBook = () => {
   useEffect(() => {
     getData();
   }, []);
+
+
+
+
+
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -68,7 +75,8 @@ export const TutorViewBook = () => {
                   className="student-product-view-box shadow"
                   key={e.id}
                   onClick={() => {
-                    navigate(`/tutor/view-single-product/${e._id}`);
+                    reDirectToViewSingleBook(e._id)
+                    // navigate(`/tutor/view-single-product/${e._id}`);
                   }}
                 >
                   <div className="">
@@ -88,7 +96,10 @@ export const TutorViewBook = () => {
                   <h5 className="mb-5">
                     {/* <FaRupeeSign />
                     {e.price} */}
-                    {e?.status}
+                    {/* {e?.status} */}
+
+                    {e.availableCopies < 0 ? (<div>Not Available</div> ):(<div>Available</div>) 
+                    }
                   </h5>
                 </div>
               );

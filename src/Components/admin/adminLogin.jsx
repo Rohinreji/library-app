@@ -27,8 +27,7 @@ function AdminLogin() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    login();
+    login()
 
     console.log("admin", adminData);
     const { email, password } = adminData;
@@ -106,7 +105,7 @@ function AdminLogin() {
                 <div className="adminLogin-submitBtn">
                   <Button type="submit" variant="success">
                     Login
-                  </Button>{" "}
+                  </Button>
                 </div>
               </Form>
             </Col>

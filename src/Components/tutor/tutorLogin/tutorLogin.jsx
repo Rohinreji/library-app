@@ -38,19 +38,15 @@ function TutorLogin() {
     return true;
   };
 
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
-if(!validation())
-{
-  return;
-}
+    if (!validation()) {
+      return;
+    }
     sendDataToServer();
   };
 
   const navigate = useNavigate();
-
 
   const sendDataToServer = async () => {
     try {
@@ -59,18 +55,20 @@ if(!validation())
         data
       );
       if (response.status === 200) {
-        const tutorId = response.data.data._id
-        if(tutorId)
-        {
-          localStorage.setItem("tutorId",tutorId)
+        const tutorId = response.data.data._id;
+        if (tutorId) {
+          localStorage.setItem("tutorId", tutorId);
         }
         toast.success(response.data.msg);
-        navigate("/tutor-dashboard")
-
-      }  
+        navigate("/tutor/home");
+      }
       console.log(response.status);
     } catch (error) {
-      if (error.status === 405 || error.status === 409 || error.status === 500) {
+      if (
+        error.status === 405 ||
+        error.status === 409 ||
+        error.status === 500
+      ) {
         toast.error(error.response.data.msg);
       } else {
         toast.error("log in again");
@@ -78,7 +76,7 @@ if(!validation())
       console.log(error);
     }
   };
-console.log(data,"data");
+  console.log(data, "data");
 
   return (
     <div>
@@ -122,17 +120,24 @@ console.log(data,"data");
                   </InputGroup>
                 </Form.Group>
                 <span
-                 className="adminLogin-forgot"
-                 onClick={()=>{navigate("/tutor/forgot-password")}}
-                 >Forgot password?</span>
+                  className="adminLogin-forgot"
+                  onClick={() => {
+                    navigate("/tutor/forgot-password");
+                  }}
+                >
+                  Forgot password?
+                </span>
                 <div className="adminLogin-submitBtn">
                   <Button variant="success" type="submit">
                     Login
                   </Button>{" "}
                 </div>
                 Don't have an account yet?{" "}
-                <span style={{ cursor: "pointer", fontWeight: "bold" }}
-                onClick={()=>{navigate("/tutorSignup")}}
+                <span
+                  style={{ cursor: "pointer", fontWeight: "bold" }}
+                  onClick={() => {
+                    navigate("/tutorSignup");
+                  }}
                 >
                   {" "}
                   Register Now

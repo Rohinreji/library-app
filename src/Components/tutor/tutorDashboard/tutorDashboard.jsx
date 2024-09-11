@@ -4,12 +4,19 @@ import { TutorViewBook } from "../tutorViewBook/tutorViewBook";
 import { TutorProfile } from "../tutorProfile/tutorProfile";
 import { TutorActiveRental } from "../tutorActiveRental/tutorActiveRental";
 import { TutorCart } from "../tutorcart/tutorCart";
+import { useNavigate } from "react-router-dom";
+import { StudentHome } from "../../student/studentHome/studentHome";
 
 export const TutorDashboard = () => {
+  const navigate = useNavigate()
   const [selectePage, setSelectedPage] = useState("tutorViewBook");
   const changeSelectedPage = (value) => {
     setSelectedPage(value);
   };
+  const reDirectToViewSingleBook = (value) =>
+  {
+navigate(`/tutor/view-single-product/${value}`)
+  }
 
   return (
     <div className="row">
@@ -17,8 +24,8 @@ export const TutorDashboard = () => {
         <TutorSidebar changeSelectedPage={changeSelectedPage} />
       </div>
       <div className="col-10">
-        {selectePage === "dashBoard" && <TutorViewBook />}
-        {selectePage == "cart" && <TutorCart />}
+        {selectePage === "dashBoard" && <TutorViewBook  reDirectToViewSingleBook={reDirectToViewSingleBook}/>}
+        {selectePage === "cart" && <TutorCart />}
 
         {selectePage === "profile" && <TutorProfile />}
         {selectePage == "activeRental" && <TutorActiveRental />}

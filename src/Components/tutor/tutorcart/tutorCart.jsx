@@ -1,6 +1,5 @@
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import img1 from "../../../Assests/adminAddBook.jpg";
 import Button from "react-bootstrap/Button";
 import "./tutorCart.css";
 import { useEffect, useState } from "react";
@@ -52,9 +51,13 @@ export const TutorCart = () => {
   const rentAllBooks = async () =>
   {
     try {
-      const response = await axiosInstance.post("/rendBookByTutor",{tutorId,})
+      const response = await axiosInstance.get(`/rentCartProductsByTutor/${tutorId}`)
+      if(response.status==200)
+      {
+        toast.success("rent request sended")
+      }
     } catch (error) {
-      
+      console.log(error);
     }
   }
 
@@ -121,8 +124,12 @@ export const TutorCart = () => {
       </div>
         )
       })
-    }a
- 
+    }
+      <button
+      className="tutorCart-rentAllBook"
+onClick={rentAllBooks}
+
+      >Rent all Books</button>
     </div>
   );
 };

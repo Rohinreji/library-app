@@ -31,7 +31,7 @@ export const AdminApproveTutor = () => {
   console.log(rejectId,"reject");
   console.log(approveId,"approve");
 
-  const handleApprove =async () =>
+  const handleApprove =async (approveId) =>
   {
 
    try {
@@ -53,7 +53,7 @@ export const AdminApproveTutor = () => {
 
   }
 
-  const handleReject = async() =>
+  const handleReject = async(rejectId) =>
   {
 try {
   const response = await axios.put(`http://localhost:3005/rejectTutor/${rejectId}`)
@@ -106,7 +106,7 @@ try {
                     onClick={()=>
                     {
                       setRejectId(e._id)
-                      handleReject()
+                      handleReject(e._id)
                     }
                     }
                   >
@@ -117,7 +117,7 @@ try {
                     onClick={()=>
                     {
                       setApproveId(e._id)
-                      handleApprove()
+                      handleApprove(e._id)
                     }
                     }
                   

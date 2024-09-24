@@ -26,7 +26,7 @@ const navigate = useNavigate()
 
             <li onClick={()=>{changeSelectedPage("activeRental")}}>Active Rentals</li>
             <li>Wishlist</li>
-            <li>Notification</li>
+            {/* <li>Notification</li> */}
             <li onClick={()=>{changeSelectedPage("cart")}}>Cart</li>
             {/* <li>Request book</li> */}
             <li onClick={()=>{changeSelectedPage("profile")}}>profile</li>

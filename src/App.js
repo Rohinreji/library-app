@@ -103,13 +103,22 @@ function App() {
             element={<AdminViewReturnReq />}
           />
 
-          <Route path="/admin-add/products" element={<AdminAddProduct/>} />
-          <Route path="/admin/approve-tutor" element={<AdminApproveTutor/>} />
-          <Route path="/admin/view-approved-tutor" element={<AdminViewApproveTutor/>} />
-          <Route path="/admin/view-all-rental" element={<AdminViewAllRental/>} />
-          <Route path="/admin/view-retun-req" element={<AdminViewReturnReq/>} />
-          <Route  path="/admin/sidebar" element={<AdminSideBar/>} />
-          <Route path="/admin/dashBoard" element={<AdminDashboard/>} />
+          <Route path="/admin-add/products" element={<AdminAddProduct />} />
+          <Route path="/admin/approve-tutor" element={<AdminApproveTutor />} />
+          <Route
+            path="/admin/view-approved-tutor"
+            element={<AdminViewApproveTutor />}
+          />
+          <Route
+            path="/admin/view-all-rental"
+            element={<AdminViewAllRental />}
+          />
+          <Route
+            path="/admin/view-retun-req"
+            element={<AdminViewReturnReq />}
+          />
+          <Route path="/admin/sidebar" element={<AdminSideBar />} />
+          <Route path="/admin/dashBoard" element={<AdminDashboard />} />
           {/* tutor */}
           <Route path="/tutorLogin" element={<TutorLogin />} />
           <Route path="/tutorSignup" element={<TutorSignUp />} />
@@ -118,7 +127,7 @@ function App() {
           <Route path="/tutor-viewBook" element={<TutorViewBook />} />
           <Route path="/tutor/profile" element={<TutorProfile />} />
 
-          <Route path="/tutor/home" element={<TutorHome/>} />
+          <Route path="/tutor/home" element={<TutorHome />} />
           <Route
             path="/tutor/forgot-password"
             element={<TutorForgotPassword />}
@@ -133,18 +142,30 @@ function App() {
             path="/tutor/return-books/:id"
             element={<TutorReturnBooks />}
           />
-          <Route path="/tutorSignup" element={<TutorSignUp/>} />
-          <Route path="/tutor-sidebar" element={<TutorSidebar/>} />
-          <Route path="/tutor-dashboard" element={<TutorDashboard/>} />
-          <Route path="/tutor-viewBook" element={<TutorViewBook/>} />
-          <Route path="/tutor/profile" element={<TutorProfile/>} />
-          <Route path ="/tutor/Edit-profile" element={<TutorEditProfile/>} />
-          <Route path="/tutor/forgot-password" element={<TutorForgotPassword/>} />
-          <Route path="/tutor/view-single-product/:id" element={<TutorviewSingleProduct/>} />
-          <Route path="/tutor/active-rental" element={<TutorActiveRental/>} />
-          <Route path="/tutor/cart" element={<TutorCart/>}/>
-          <Route path="/tutor/return-books/:id" element={<TutorReturnBooks/>} />
-          <Route path="/tutor/filterByCat/:cat" element={<TutorFilterByCat/>}/>
+          <Route path="/tutorSignup" element={<TutorSignUp />} />
+          <Route path="/tutor-sidebar" element={<TutorSidebar />} />
+          <Route path="/tutor-dashboard" element={<TutorDashboard />} />
+          <Route path="/tutor-viewBook" element={<TutorViewBook />} />
+          <Route path="/tutor/profile" element={<TutorProfile />} />
+          <Route path="/tutor/Edit-profile" element={<TutorEditProfile />} />
+          <Route
+            path="/tutor/forgot-password"
+            element={<TutorForgotPassword />}
+          />
+          <Route
+            path="/tutor/view-single-product/:id"
+            element={<TutorviewSingleProduct />}
+          />
+          <Route path="/tutor/active-rental" element={<TutorActiveRental />} />
+          <Route path="/tutor/cart" element={<TutorCart />} />
+          <Route
+            path="/tutor/return-books/:id"
+            element={<TutorReturnBooks />}
+          />
+          <Route
+            path="/tutor/filterByCat/:cat"
+            element={<TutorFilterByCat />}
+          />
           {/* 404 page */}
           <Route path="/*" element={<h1>The page not available</h1>} />
         </Routes>

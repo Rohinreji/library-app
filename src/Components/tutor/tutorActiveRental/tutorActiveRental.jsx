@@ -28,7 +28,8 @@ export const TutorActiveRental = () => {
   useEffect(() => {
     getData();
   }, []);
-  console.log(data);
+
+  // console.log("approved date",data);
 
   return (
     <div>
@@ -47,8 +48,21 @@ export const TutorActiveRental = () => {
 
         <div className="d-flex flex-wrap gap-4 justify-content-between px-5 py-5 student-view-product-body">
           {data.map((e, index) => {
+            const approvedDate = new Date(e.approvedDate);
+            console.log(approvedDate);
+
+            const lastSubmissionDate = new Date();
+            const date1 = new Date(lastSubmissionDate.getFullYear(), lastSubmissionDate.getMonth(), lastSubmissionDate.getDate());
+            const date2 = new Date(approvedDate.getFullYear(), approvedDate.getMonth(), approvedDate.getDate());
+
+            // const numberOfRendedDate = lastSubmissionDate - approvedDate;
+            const timeDifference = date1.getTime() - date2.getTime();
+            const numberOfRendedDate = timeDifference / (1000 * 3600 * 24); // 1000 ms/s, 3600 s/h, 24 h/day
+
+            console.log(numberOfRendedDate);
+
             const booksId = e?.booksId;
-            console.log(booksId._id,"manu");
+
             return (
               <div>
                 <div
@@ -67,6 +81,13 @@ export const TutorActiveRental = () => {
                   <h5 className="py-1"></h5>
                   <p>{booksId?.bookTitle}</p>
                   <h5 className="mb-5">{booksId?.category}</h5>
+                  <h5 className="tutorActiveRentalFine">
+                    {numberOfRendedDate > 15 ? (
+                      <p>fine:{numberOfRendedDate * 10}</p>
+                    ) : (
+                      <p></p>
+                    )}
+                  </h5>
                 </div>
               </div>
             );

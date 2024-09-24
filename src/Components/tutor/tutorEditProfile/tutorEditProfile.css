@@ -3,9 +3,11 @@
 
 width: 200px;
 height: 45px;
-margin: auto;
 margin-bottom: 30px;
-
+margin-left: 28%;
+background-color: #2fda93;
+color: white;
+font-size: 23px;
 }
 .tutorEditProfileInp
 {
@@ -16,4 +18,12 @@ margin-bottom: 30px;
 {
     margin: auto;
    
+}
+.tutorEditProfile-label
+{
+    margin-left:10%;
+}
+.tutorEditProfile-photo
+{
+margin: auto;
 }

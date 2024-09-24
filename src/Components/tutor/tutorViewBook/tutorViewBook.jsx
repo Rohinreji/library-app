@@ -98,7 +98,7 @@ export const TutorViewBook = ({reDirectToViewSingleBook}) => {
                     {e.price} */}
                     {/* {e?.status} */}
 
-                    {e.availableCopies < 0 ? (<div>Not Available</div> ):(<div>Available</div>) 
+                    {e.availableCopies <= 0 ? (<div>Not Available</div> ):(<div>Available</div>) 
                     }
                   </h5>
                 </div>

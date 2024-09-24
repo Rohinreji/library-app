@@ -42,6 +42,9 @@ import { AdminDashboard } from "./Components/admin/adminDashboard/adminDashboard
 import StudentForgotPassword from "./Components/student/studentForgotpassword/studentForgotpassword";
 import { TutorHome } from "./Components/tutor/TutorHome/studentHome";
 import { TutorFilterByCat } from "./Components/tutor/tutorFilterByCat/tutorFilterByCat";
+import { AdminViewStudentRequest } from "./Components/admin/adminViewStudentRequest/adminViewStudentRequest";
+import { AdminViewApprovedStudent } from "./Components/admin/adminViewApprovedStudent/adminViewApprovedStudent";
+import { StudentActiveRental } from "./Components/student/studentActiveRental/studentActiveRental";
 
 function App() {
   return (
@@ -77,6 +80,8 @@ function App() {
             path="/studentForgotpassword"
             element={<StudentForgotPassword />}
           />
+          <Route path="/studentActiveRental" element={<StudentActiveRental/>}/>
+         
           {/* common */}
           <Route path="/commonNavbar" element={<CommonNavbar />} />
           <Route path="/footer" element={<Footer />} />
@@ -110,6 +115,10 @@ function App() {
           <Route path="/admin/view-retun-req" element={<AdminViewReturnReq/>} />
           <Route  path="/admin/sidebar" element={<AdminSideBar/>} />
           <Route path="/admin/dashBoard" element={<AdminDashboard/>} />
+
+          {/* admin&student */}
+          <Route path="/adminViewStudentRequest" element={<AdminViewStudentRequest/>}/>
+          <Route path="/AdminViewApprovedStudent" element={<AdminViewApprovedStudent/>}/>
           {/* tutor */}
           <Route path="/tutorLogin" element={<TutorLogin />} />
           <Route path="/tutorSignup" element={<TutorSignUp />} />

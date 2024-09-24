@@ -6,6 +6,8 @@ import { AdminViewReturnReq } from "../adminViewReturnReq/adminViewReturnReq";
 import { AdminSideBar } from "../adminSideBar/adminSidBar";
 import { AdminAddProduct } from "../adminAddProduct/adminAddProduct";
 import { AdminViewRentedBooks } from "../adminViewRentedBook/adminViewRentedBooks";
+import { AdminViewStudentRequest } from "../adminViewStudentRequest/adminViewStudentRequest";
+import { AdminViewApprovedStudent } from "../adminViewApprovedStudent/adminViewApprovedStudent";
 
 export const AdminDashboard = () => {
   const [selectedpage, setSelectedPage] = useState();
@@ -13,18 +15,20 @@ export const AdminDashboard = () => {
     setSelectedPage(value);
   };
   return (
-  <div className="row">
+    <div className="row">
       <div className="col-2">
-        <AdminSideBar changeSelectedPage={changeSelectedPage}/>
-        </div>
-        <div className="col-10">
-            {selectedpage === "adminAddBook" && <AdminAddProduct/>}
-          {selectedpage === "approveTutor" && <AdminApproveTutor />}
-          {selectedpage === "viewAllTutor" && <AdminViewApproveTutor />}
-          {selectedpage === "approveRentOfTutor" && <AdminViewAllRental />}
-          {selectedpage === "viewRentedBooksByTutor"&& <AdminViewRentedBooks/>} 
-          {selectedpage === "tutorReturnReq" && <AdminViewReturnReq />}
-        </div>
-  </div>
+        <AdminSideBar changeSelectedPage={changeSelectedPage} />
+      </div>
+      <div className="col-10">
+        {selectedpage === "adminAddBook" && <AdminAddProduct />}
+        {selectedpage === "approveTutor" && <AdminApproveTutor />}
+        {selectedpage === "viewAllTutor" && <AdminViewApproveTutor />}
+        {selectedpage === "approveRentOfTutor" && <AdminViewAllRental />}
+        {selectedpage === "viewRentedBooksByTutor" && <AdminViewRentedBooks />}
+        {selectedpage === "tutorReturnReq" && <AdminViewReturnReq />}
+        {selectedpage === "approveStudent" && <AdminViewStudentRequest />}
+        {selectedpage === "approvedStudent" && <AdminViewApprovedStudent />}
+      </div>
+    </div>
   );
 };

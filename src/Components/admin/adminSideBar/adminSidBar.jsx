@@ -1,17 +1,24 @@
 import { useState } from "react";
 import "./adminSideBar.css";
-export const AdminSideBar = ({changeSelectedPage}) => {
+export const AdminSideBar = ({ changeSelectedPage }) => {
   const [viewTutorDD, setViewTutorDD] = useState(false);
   const [rentProductByTutor, setRentProductByTutor] = useState(false);
+  const [viewStudent, setViewStudent] = useState(false);
 
   const toggleViewTutor = () => {
     setViewTutorDD(!viewTutorDD);
     setRentProductByTutor(false);
+    setViewStudent(false);
   };
-
+  const toggleViewStudents = () => {
+    setViewStudent(!viewStudent);
+    setViewTutorDD(false);
+    setRentProductByTutor(false);
+  };
   const toggleTutorRentProduct = () => {
     setRentProductByTutor(!rentProductByTutor);
     setViewTutorDD(false);
+    setViewStudent(false);
   };
 
   return (
@@ -19,26 +26,48 @@ export const AdminSideBar = ({changeSelectedPage}) => {
       <div className="admin-sidebar">
         <h2 className="openlibrary-heading">Open Library</h2>
         <ul>
-    
           <li
-          onClick={()=>{changeSelectedPage("adminAddBook")}}
-          >Add books</li>
+            onClick={() => {
+              changeSelectedPage("adminAddBook");
+            }}
+          >
+            Add books
+          </li>
           <li onClick={toggleViewTutor}>View tutors</li>
           {viewTutorDD && (
             <div className="shadow mx-3">
               <li
                 onClick={() => {
-                    changeSelectedPage("approveTutor");
+                  changeSelectedPage("approveTutor");
                 }}
               >
                 approve tutor
               </li>
               <li
                 onClick={() => {
-                    changeSelectedPage("viewAllTutor");
+                  changeSelectedPage("viewAllTutor");
                 }}
               >
                 View all tutors
+              </li>
+            </div>
+          )}
+          <li onClick={toggleViewStudents}>View Students</li>
+          {viewStudent && (
+            <div className="shadow mx-3">
+              <li
+                onClick={() => {
+                  changeSelectedPage("approveStudent");
+                }}
+              >
+                Approve students
+              </li>
+              <li
+                onClick={() => {
+                  changeSelectedPage("approvedStudent ");
+                }}
+              >
+                View all Students
               </li>
             </div>
           )}
@@ -48,21 +77,25 @@ export const AdminSideBar = ({changeSelectedPage}) => {
             <div className="shadow mx-3">
               <li
                 onClick={() => {
-                    changeSelectedPage("approveRentOfTutor");
+                  changeSelectedPage("approveRentOfTutor");
                 }}
               >
                 approve rent
               </li>
               <li
                 onClick={() => {
-                    changeSelectedPage("viewRentedBooksByTutor");
+                  changeSelectedPage("viewRentedBooksByTutor");
                 }}
               >
                 view rented books
               </li>
             </div>
           )}
-             <li onClick={()=>{changeSelectedPage("tutorReturnReq")}}>
+          <li
+            onClick={() => {
+              changeSelectedPage("tutorReturnReq");
+            }}
+          >
             Tutor return request
           </li>
         </ul>

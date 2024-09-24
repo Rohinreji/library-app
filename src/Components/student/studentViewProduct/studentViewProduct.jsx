@@ -18,7 +18,7 @@ export const StudentViewProduct = () => {
     },
     {
       id: 2,
-      name: "black pierce2",
+      name: "black pierce2",  
       description:
         "Dummy Content is a Joomla system plugin  that helps you automatically place random dummy text into your Articles",
       price: 200,

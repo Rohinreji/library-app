@@ -1,13 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
-export const AdminViewApproveTutor = () => {
+export const AdminViewApprovedStudent = () => {
   const [data, setData] = useState([]);
 
   const getData = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:3005/viewAllApprovedTutors"
+      const response = await axios.post(
+        "http://localhost:3005/viewAllApprovedStudents"
       );
       setData(response.data.data);
     } catch (error) {
@@ -21,7 +21,7 @@ export const AdminViewApproveTutor = () => {
   }, []);
   return (
     <div>
-      <h2>Approved tutors</h2>
+      <h2>Approved Students</h2>
       <Table striped bordered hover className="adminApproveTutor-table">
         <thead>
           <tr>
@@ -37,10 +37,10 @@ export const AdminViewApproveTutor = () => {
             return (
               <tr>
                 <td>{i + 1}</td>
-                <td>{e.firstName}</td>
-                <td>{e.lastName}</td>
+                <td>{e.firstname}</td>
+                <td>{e.lastname}</td>
                 <td>{e.email}</td>
-                <td>{e.idNo}</td>
+                <td>{e.addNo}</td>
               </tr>
             );
           })}

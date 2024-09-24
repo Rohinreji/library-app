@@ -2,13 +2,14 @@ import { useState } from "react";
 
 import "./studentSidebar.css";
 import { useNavigate } from "react-router-dom";
-export const StudentSidebar = () => {
+export const StudentSidebar = ({changeSelectedPage}) => {
   const [dropCat, setDropCat] = useState(false);
   const navigate = useNavigate();
   const removeStudentId = () => {
     localStorage.removeItem("studentId", removeStudentId);
     navigate("/studentLogin");
   };
+
   return (
     <div>
       <div className="d-flex ">
@@ -16,12 +17,11 @@ export const StudentSidebar = () => {
           <h2 className="openlibrary-heading">Open library</h2>
           <ul>
             <li
-              onClick={() => {
-                setDropCat(!dropCat);
-              }}
+              onClick={changeSelectedPage("viewProduct")}
             >
-              Category
+              View Product
             </li>
+            
             <></>
 
             <li>Active Rentals</li>

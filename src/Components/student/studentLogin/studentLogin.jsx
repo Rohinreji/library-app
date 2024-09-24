@@ -111,8 +111,8 @@ function StudentLogin() {
                 </Form.Group>
                 <span
                   className="adminLogin-forgot"
-                  onClick={()=>{
-                    navigate("/studentForgotpassword")
+                  onClick={() => {
+                    navigate("/studentForgotpassword");
                   }}
                 >
                   Forgot password?
@@ -123,7 +123,12 @@ function StudentLogin() {
                   </Button>{" "}
                 </div>
                 Don't have an account yet?{" "}
-                <span style={{ cursor: "pointer", fontWeight: "bold" }}>
+                <span
+                  style={{ cursor: "pointer", fontWeight: "bold" }}
+                  onClick={() => {
+                    navigate("/student/signup");
+                  }}
+                >
                   {" "}
                   Register Now
                 </span>

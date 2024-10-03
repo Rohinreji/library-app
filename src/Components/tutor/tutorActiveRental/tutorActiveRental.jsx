@@ -17,8 +17,9 @@ export const TutorActiveRental = () => {
         "http://localhost:3005/tutorViewRental",
         { tutorId }
       );
+      console.log(response,"response");
       if (response.status === 200) {
-        setdata(response.data.data);
+        setdata(response?.data?.data);
       }
     } catch (error) {
       console.log(error);
@@ -48,12 +49,20 @@ export const TutorActiveRental = () => {
 
         <div className="d-flex flex-wrap gap-4 justify-content-between px-5 py-5 student-view-product-body">
           {data.map((e, index) => {
-            const approvedDate = new Date(e.approvedDate);
+            const approvedDate = new Date(e?.approvedDate);
             console.log(approvedDate);
-
+            
             const lastSubmissionDate = new Date();
-            const date1 = new Date(lastSubmissionDate.getFullYear(), lastSubmissionDate.getMonth(), lastSubmissionDate.getDate());
-            const date2 = new Date(approvedDate.getFullYear(), approvedDate.getMonth(), approvedDate.getDate());
+            const date1 = new Date(
+              lastSubmissionDate.getFullYear(),
+              lastSubmissionDate.getMonth(),
+              lastSubmissionDate.getDate()
+            );
+            const date2 = new Date(
+              approvedDate.getFullYear(),
+              approvedDate.getMonth(),
+              approvedDate.getDate()
+            );
 
             // const numberOfRendedDate = lastSubmissionDate - approvedDate;
             const timeDifference = date1.getTime() - date2.getTime();

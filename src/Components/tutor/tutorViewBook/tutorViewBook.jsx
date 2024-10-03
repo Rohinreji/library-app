@@ -13,6 +13,7 @@ export const TutorViewBook = ({reDirectToViewSingleBook}) => {
   const [data, setData] = useState([]);
   const {cat} = useParams()
   const navigate = useNavigate();
+
   const getData = async () => {
     try {
       const response = await axios.get("http://localhost:3005/viewAllBooks");
@@ -30,9 +31,20 @@ export const TutorViewBook = ({reDirectToViewSingleBook}) => {
     getData();
   }, []);
 
+// tutor wishslist
 
-
-
+const tutorWishlist = async()=>
+{
+  try {
+    const response = await axiosInstance.post("/tutorwishlist")
+    if(response.status == 200)
+    {
+      
+    }
+  } catch (error) {
+    
+  }
+}
 
 
   const handleSearch = (e) => {

@@ -1,13 +1,16 @@
 import React from "react";
 import "./commonNavbar.css";
+import Dropdown from "react-bootstrap/Dropdown";
+import { useNavigate } from "react-router-dom";
 function CommonNavbar() {
+  const navigate = useNavigate();
   return (
     <div>
       <nav className="navbar navbar-expand-lg commonNavbar-bg">
         <div className="container-fluid">
           <a
             className="navbar-brand fs-3"
-            style={{ fontWeight: "600" }}
+            style={{ fontWeight: "700" }}
             href="#"
           >
             Open Library
@@ -30,7 +33,9 @@ function CommonNavbar() {
                   className="nav-link active"
                   aria-current="page"
                   style={{ fontWeight: "300px" }}
-                  href="#"
+                onClick={()=>{
+                  navigate("/landingPage")
+                }}
                 >
                   Home
                 </a>
@@ -46,7 +51,29 @@ function CommonNavbar() {
               </li>
             </ul>
             <form className="commonNavbar-btn d-flex">
-              <button>Login</button>
+              {/* <button>Login</button> */}
+              <Dropdown>
+                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                  Login
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item
+                    onClick={() => {
+                      navigate("/studentLogin");
+                    }}
+                  >
+                    Student
+                  </Dropdown.Item>
+                  <Dropdown.Item
+                    onClick={() => {
+                      navigate("/tutorLogin");
+                    }}
+                  >
+                    Tutor
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             </form>
           </div>
         </div>

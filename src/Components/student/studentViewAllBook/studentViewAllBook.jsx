@@ -8,11 +8,22 @@ import axios from "axios";
 import { BASE_URL } from "../../../apis/baseURL";
 import { useNavigate, useParams } from "react-router-dom";
 import axiosInstance from "../../../apis/axiosInstance";
-export const StudentViewBook = ({reDirectToViewSingleBook}) => {
+import "./studentViewAllBook.css";
+import { FcLike } from "react-icons/fc";
+import { GrFavorite } from "react-icons/gr";
+export const StudentViewBook = () => {
   const [fixedData, setFixedData] = useState([]);
   const [data, setData] = useState([]);
-  const {cat} = useParams()
+  const { cat } = useParams();
   const navigate = useNavigate();
+  
+  const [favBtn, setFavBtn] = useState();
+  const reDirectToViewSingleBook = (id) => {
+    navigate(`/student/view-single-product/${id}`);
+  };
+  const favBtnClicked = () => {
+    setFavBtn(!favBtn);
+  };
   const getData = async () => {
     try {
       const response = await axios.get("http://localhost:3005/viewAllBooks");
@@ -30,11 +41,6 @@ export const StudentViewBook = ({reDirectToViewSingleBook}) => {
     getData();
   }, []);
 
-
-
-
-
-
   const handleSearch = (e) => {
     e.preventDefault();
     const value = e?.target?.value;
@@ -48,7 +54,7 @@ export const StudentViewBook = ({reDirectToViewSingleBook}) => {
     }
   };
   console.log(BASE_URL);
-  console.log(data,"data");
+  console.log(data, "data");
   return (
     <div>
       <div className="student-view-product">
@@ -75,8 +81,7 @@ export const StudentViewBook = ({reDirectToViewSingleBook}) => {
                   className="student-product-view-box shadow"
                   key={e.id}
                   onClick={() => {
-                    reDirectToViewSingleBook(e._id)
-                    // navigate(`/tutor/view-single-product/${e._id}`);
+                    reDirectToViewSingleBook(e._id);
                   }}
                 >
                   <div className="">
@@ -86,7 +91,15 @@ export const StudentViewBook = ({reDirectToViewSingleBook}) => {
                       className="student-product-view-box-img"
                     />
                   </div>
-                  <h5 className="py-1">{e?.bookTitle}</h5>
+                  <h5 className="py-1">
+                    {e?.bookTitle}{" "}
+                    {favBtn ? (
+                      <FcLike onClick={favBtnClicked} />
+                    ) : (
+                      <GrFavorite c onClick={favBtnClicked} />
+                    )}
+                  </h5>
+
                   <p>
                     {/* {e?.description?.length > 15
                       ? e.description?.substring(0, 28) + "..."
@@ -97,9 +110,11 @@ export const StudentViewBook = ({reDirectToViewSingleBook}) => {
                     {/* <FaRupeeSign />
                     {e.price} */}
                     {/* {e?.status} */}
-
-                    {e.availableCopies < 0 ? (<div>Not Available</div> ):(<div>Available</div>) 
-                    }
+                    {e.availableCopies < 0 ? (
+                      <div>Not Available</div>
+                    ) : (
+                      <div>Available</div>
+                    )}
                   </h5>
                 </div>
               );

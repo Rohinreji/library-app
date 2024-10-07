@@ -9,6 +9,8 @@ import stdImg from "../../../Assests/stdImg.png";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import CommonNavbar from "../../common/commonNavbar/commonNavbar";
+import Footer from "../../common/footer/footer";
 function StudentLogin() {
   const navigate = useNavigate();
   const [showPassword, SetShowPassword] = useState(true);
@@ -49,7 +51,7 @@ function StudentLogin() {
           localStorage.setItem("studentId", studentId);
         }
         toast.success("Login Success");
-        navigate("/student-dashboard");
+        navigate("/student/home");
       }
       console.log(response.status);
     } catch (error) {
@@ -70,6 +72,7 @@ function StudentLogin() {
   };
   return (
     <div>
+      <CommonNavbar/>
       <div className="adminLogin-main">
         <div className="adminLogin-box">
           <Row className="adminLogin-content">
@@ -137,6 +140,7 @@ function StudentLogin() {
           </Row>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }

@@ -55,8 +55,8 @@ function App() {
           <Route path="/" element={<LandingPage />} />
 
           {/* student */}
-          <Route path="/registration" element={<Loginpage />} />
-          <Route path="/login" element={<Signin />} />
+          {/* <Route path="/registration" element={<Loginpage />} />
+          <Route path="/login" element={<Signin />} /> */}
 
           <Route path="/student/navbar" element={<StudentNav />} />
           <Route
@@ -73,7 +73,7 @@ function App() {
           <Route path="/student/sidebar" element={<StudentSidebar />} />
           <Route path="/student-dashboard" element={<StudentDashboard />} />
           <Route
-            path="/student/view-single-product"
+            path="/student/view-single-product/:id"
             element={<StudentviewSingleProduct />}
           />
           <Route

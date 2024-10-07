@@ -14,6 +14,7 @@ import "./studentSignUp.css";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import CommonNavbar from "../../common/commonNavbar/commonNavbar";
 export const StudentSignUp = () => {
   const [validated, setValidated] = useState(false);
   const [profilePic, setProfilePic] = useState(null);
@@ -140,6 +141,8 @@ export const StudentSignUp = () => {
     }
   };
   return (
+    <div>
+      <CommonNavbar/>
     <div className="studentSignUp  ">
       <Row className="row">
         <Col className="col-sm-12 col-md-12 col-lg-6 d-flex justify-content-center align-item-center">
@@ -318,6 +321,7 @@ export const StudentSignUp = () => {
           </Form>
         </Col>
       </Row>
+    </div>
     </div>
   );
 };

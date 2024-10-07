@@ -8,7 +8,7 @@ import img1 from "../../../Assests/adminAddBook.jpg";
 import "./adminAddProduct.css";
 import axios from "axios";
 import toast from "react-hot-toast";
-export const AdminAddProduct = () => {
+export const AdminAddProduct = ({redirectToAdminViewAllBook}) => {
   const [data, setData] = useState({
     bookTitle: "",
     author: "",
@@ -59,6 +59,7 @@ export const AdminAddProduct = () => {
       );
       if (response.status === 200) {
         toast.success("sucess!!");
+        redirectToAdminViewAllBook()
       }
     } catch (error) {
       if (error.status === 500) {
@@ -214,7 +215,7 @@ export const AdminAddProduct = () => {
                     >
                       <option>Open this select menu</option>
                       <option value="Poetry">Poetry</option>
-                      <option value="Mystery">Mstery</option>
+                      <option value="Mystery">Mystery</option>
                       <option value="Text Books">Text Books</option>
                       <option value="Fantacy">Fantacy</option>
                       <option value="Thriller">Thriller</option>

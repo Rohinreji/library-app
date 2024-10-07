@@ -6,10 +6,11 @@ import { TutorActiveRental } from "../tutorActiveRental/tutorActiveRental";
 import { TutorCart } from "../tutorcart/tutorCart";
 import { useNavigate } from "react-router-dom";
 import { StudentHome } from "../../student/studentHome/studentHome";
+import { Tutorwishlist } from "../tutorWishlist/tutorwishlist";
 
 export const TutorDashboard = () => {
   const navigate = useNavigate()
-  const [selectePage, setSelectedPage] = useState("tutorViewBook");
+  const [selectePage, setSelectedPage] = useState("dashBoard");
   const changeSelectedPage = (value) => {
     setSelectedPage(value);
   };
@@ -29,6 +30,7 @@ navigate(`/tutor/view-single-product/${value}`)
 
         {selectePage === "profile" && <TutorProfile />}
         {selectePage == "activeRental" && <TutorActiveRental />}
+        {selectePage == "tutorWishlist" && <Tutorwishlist/>} 
       </div>
     </div>
   );

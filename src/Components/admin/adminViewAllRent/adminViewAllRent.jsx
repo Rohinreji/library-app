@@ -67,7 +67,7 @@ console.log(data);
   return (
     <div>
       <div>
-        <h2>Tutor rental request</h2>
+        <h2 className="mx-5 my-4">Tutor rental request</h2>
         <Table striped bordered hover className="adminViewRent">
           <thead>
             <tr>

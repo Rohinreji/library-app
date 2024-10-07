@@ -21,7 +21,7 @@ export const AdminViewRentedBooks = () => {
 
   return (
     <div>
-      <h2>Rented Books</h2>
+      <h2 className="mx-5 my-3">Rented Books</h2>
       <Table
       className="adminViewRentedBook-table"
       striped bordered hover>

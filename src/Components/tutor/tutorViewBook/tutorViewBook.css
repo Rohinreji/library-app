@@ -1,0 +1,36 @@
+.tutorWishlistBox
+{
+    height: 50px;
+    width: 50px;
+    background-color:azure;
+    z-index: 2;
+    position: relative;
+    bottom:220px;
+    left:170px;
+border-radius: 50%;
+}
+.tutor-wishlist-heart
+{
+    font-size: 40px;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    margin-left: 8%;
+    margin-top: 8%;
+    color: red;
+}
+.tutor-wishlist-filled-heart
+{
+    font-size: 32px;
+    color: red;
+    position: relative;
+    top: 8px;
+    margin-left:8px;
+}
+.tutorViewBooks-text
+{
+    /* background-color: bisque; */
+    position: relative;
+    bottom: 45px;
+    left: 20px;
+}

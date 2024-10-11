@@ -93,7 +93,7 @@ export const TutorViewBook = ({ reDirectToViewSingleBook }) => {
   };
   let existingWishlist = false;
   wishlist.filter((item) => {
-    if (item.booksId._id === booksId) {
+    if (item.booksId._id.includes(booksId)) {
       existingWishlist = true;
     }
   });

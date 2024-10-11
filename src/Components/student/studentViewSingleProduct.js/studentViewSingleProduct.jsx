@@ -12,10 +12,14 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { BASE_URL } from "../../../apis/baseURL";
 import toast from "react-hot-toast";
+import axiosInstance from "../../../apis/axiosInstance";
 export const StudentviewSingleProduct = () => {
-  const [cartCount, setCartCount] = useState("");
+  const [cartCount, setCartCount] = useState(1);
   const [data, SetData] = useState({});
+  const [studentId, SetStudentId] = useState();
   const { id } = useParams();
+  const [rentNowApprove, setRentNowApprove] = useState(false);
+
   const getData = async () => {
     try {
       const response = await axios.get(
@@ -29,13 +33,75 @@ export const StudentviewSingleProduct = () => {
     }
   };
   useEffect(() => {
-    const studentId = localStorage.getItem("studentId");
-    if (studentId) {
-      getData();
-    }else{
-      toast.error("login Again")
+    const id = localStorage.getItem("studentId");
+    if (id) {
+      SetStudentId(id);
+    } else {
+      toast.error("login Again");
     }
+    getData();
   }, []);
+  console.log("std", studentId);
+
+  const addToCart = async (booksId) => {
+    try {
+      console.log("bookid", booksId);
+      const response = await axios.post(
+        "http://localhost:3005/studentAddToCart",
+        { booksId, studentId, addedQuantity: cartCount }
+      );
+      if (response.status === 200) {
+        toast.success(response.data.msg);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      getData();
+    }
+  };
+  const clickToCart = (booksId) => {
+    addToCart(booksId);
+    updateQuantity(booksId, cartCount);
+  };
+
+  const rentBook = async (booksId) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3005/studentAddRentBook",
+        { booksId, studentId, addedQuantity: cartCount }
+      );
+      if (response.status == 200) {
+        toast.success(response.data.msg);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const clickToRent = (booksId) => {
+    updateQuantity(booksId, cartCount);
+    if (rentNowApprove) {
+      rentBook(booksId);
+    }
+  };
+  const updateQuantity = async (booksId, cartCount) => {
+    try {
+      console.log(cartCount, "cartCount");
+      const response = await axiosInstance.post(
+        `removeBookQuantity/${booksId}`,
+        { quantity: cartCount }
+      );
+      if (response.status === 200) {
+        console.log("available copies updated");
+        setRentNowApprove(true);
+      }
+    } catch (error) {
+      if (error.status === 408) {
+        toast.error("book is not available");
+        setRentNowApprove(false);
+      }
+      console.log(error);
+    }
+  };
   return (
     <div className="student-view-single-product shadow">
       <Row>
@@ -111,6 +177,9 @@ export const StudentviewSingleProduct = () => {
             <button
               className="student-view-single-product-addToCart"
               style={{ cursor: "pointer" }}
+              onClick={() => {
+                clickToCart(data._id);
+              }}
             >
               {" "}
               <MdOutlineShoppingCart /> Add to cart
@@ -118,6 +187,9 @@ export const StudentviewSingleProduct = () => {
             <button
               className="student-view-single-product-buyNow"
               style={{ cursor: "pointer" }}
+              onClick={() => {
+                clickToRent(data._id);
+              }}
             >
               {" "}
               <AiFillThunderbolt /> Rent Now

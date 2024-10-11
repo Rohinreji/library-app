@@ -11,18 +11,58 @@ import axiosInstance from "../../../apis/axiosInstance";
 import "./studentViewAllBook.css";
 import { FcLike } from "react-icons/fc";
 import { GrFavorite } from "react-icons/gr";
+import toast from "react-hot-toast";
+
+
 export const StudentViewBook = () => {
   const [fixedData, setFixedData] = useState([]);
   const [data, setData] = useState([]);
-  const { cat } = useParams();
   const navigate = useNavigate();
-  
   const [favBtn, setFavBtn] = useState();
+  const [studentId, setStudentId] = useState();
+  const [wishlist, setWishlist] = useState();
+
+
   const reDirectToViewSingleBook = (id) => {
     navigate(`/student/view-single-product/${id}`);
   };
-  const favBtnClicked = () => {
-    setFavBtn(!favBtn);
+
+
+  const addToWishlist = async (booksId) => {
+    try {
+      const response = await axios.post("http://localhost:3005/addToWishlist", {
+        booksId,
+        studentId,
+      });
+      if (response.status == 200) {
+        toast.success(response.data.msg);
+        setWishlist(response.data.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const clickToWishlist = (booksId) => {
+    addToWishlist(booksId);
+  };
+
+  const removeFromWishlist = async (booksId) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3005/removeFromWishlist",
+        { booksId, studentId }
+      );
+      if (response.status == 200) {
+        toast.error("remove from wishlist");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  console.log("wishId", wishlist);
+
+  const clickToRemoveWishlist = (id) => {
+    removeFromWishlist(id);
   };
   const getData = async () => {
     try {
@@ -37,9 +77,15 @@ export const StudentViewBook = () => {
     }
   };
 
+
   useEffect(() => {
+    const studentId = localStorage.getItem("studentId");
+    if (studentId) {
+      setStudentId(studentId);
+    }
     getData();
   }, []);
+  console.log("studentId", studentId);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -77,27 +123,38 @@ export const StudentViewBook = () => {
           <div className="d-flex flex-wrap gap-4 justify-content-between px-5 py-5 student-view-product-body">
             {data.map((e, index) => {
               return (
-                <div
-                  className="student-product-view-box shadow"
-                  key={e.id}
-                  onClick={() => {
-                    reDirectToViewSingleBook(e._id);
-                  }}
-                >
+                <div className="student-product-view-box shadow" key={e.id}>
                   <div className="">
                     <img
                       src={`${BASE_URL}${e?.bookImage?.filename}`}
                       alt=""
                       className="student-product-view-box-img"
+                      onClick={() => {
+                        reDirectToViewSingleBook(e._id);
+                      }}
                     />
                   </div>
                   <h5 className="py-1">
                     {e?.bookTitle}{" "}
-                    {favBtn ? (
-                      <FcLike onClick={favBtnClicked} />
-                    ) : (
-                      <GrFavorite c onClick={favBtnClicked} />
-                    )}
+                    
+                   {data._id?
+                    <button>
+                      {
+                        <FcLike
+                          style={{ cursor: "pointer" }}
+                          onClick={() => {
+                            clickToWishlist(e._id);
+                          }}
+                        />
+                      }
+                    </button>:
+                    <button>
+                      <GrFavorite
+                        onClick={() => {
+                          clickToRemoveWishlist(e._id);
+                        }}
+                      />
+                    </button>}
                   </h5>
 
                   <p>

@@ -9,26 +9,26 @@ import { useNavigate } from "react-router-dom";
 export const StudentActiveRental = () => {
   const [data, setdata] = useState([]);
   const navigate = useNavigate();
-  const tutorId = localStorage.getItem("tutorId");
+  const studentId = localStorage.getItem("studentId");
 
-//   const getData = async () => {
-//     try {
-//       const response = await axios.post(
-//         "http://localhost:3005/tutorViewRental",
-//         { tutorId }
-//       );
-//       if (response.status === 200) {
-//         setdata(response.data.data);
-//       }
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
+  const getData = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3005/studentViewApprovedRentals",
+        { studentId }
+      );
+      if (response.status === 200) {
+        setdata(response.data.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-//   useEffect(() => {
-//     getData();
-//   }, []);
-//   console.log(data);
+  useEffect(() => {
+    getData();
+  }, []);
+  console.log(data);
 
   return (
     <div>
@@ -48,14 +48,14 @@ export const StudentActiveRental = () => {
         <div className="d-flex flex-wrap gap-4 justify-content-between px-5 py-5 student-view-product-body">
           {data.map((e, index) => {
             const booksId = e?.booksId;
-            console.log(booksId._id,"manu");
+            console.log(booksId._id,"bookId");
             return (
               <div>
                 <div
                   className="student-product-view-box shadow"
-                  onClick={() => {
-                    navigate(`/tutor/return-books/${e._id}`);
-                  }}
+                  // onClick={() => {
+                  //   navigate(`/tutor/return-books/${e._id}`);
+                  // }}
                 >
                   <div className="">
                     <img

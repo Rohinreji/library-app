@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import "./studentSidebar.css";
 import { useNavigate } from "react-router-dom";
-export const StudentSidebar = ({changeSelectedPage}) => {
+export const  StudentSidebar = ({ changeSelectedPage }) => {
   const [dropCat, setDropCat] = useState(false);
   const navigate = useNavigate();
   const removeStudentId = () => {
@@ -17,16 +17,23 @@ export const StudentSidebar = ({changeSelectedPage}) => {
           <h2 className="openlibrary-heading">Open library</h2>
           <ul>
             <li
-              onClick={changeSelectedPage("viewProduct")}
+              onClick={() => {
+                changeSelectedPage("viewProduct");
+              }}
             >
               View Product
             </li>
-            
+
             <></>
 
-            <li>Active Rentals</li>
+            <li
+              onClick={() => {
+                changeSelectedPage("stdActiveRentals");
+              }}
+            >
+              Active Rentals
+            </li>
             <li>Wishlist</li>
-            <li>Notification</li>
             <li>Cart</li>
             <li>Request book</li>
 

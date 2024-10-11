@@ -45,6 +45,7 @@ import { TutorFilterByCat } from "./Components/tutor/tutorFilterByCat/tutorFilte
 import { AdminViewStudentRequest } from "./Components/admin/adminViewStudentRequest/adminViewStudentRequest";
 import { AdminViewApprovedStudent } from "./Components/admin/adminViewApprovedStudent/adminViewApprovedStudent";
 import { StudentActiveRental } from "./Components/student/studentActiveRental/studentActiveRental";
+import { StudentCart } from "./Components/student/studentCart/studentCart";
 
 function App() {
   return (
@@ -81,6 +82,7 @@ function App() {
             element={<StudentForgotPassword />}
           />
           <Route path="/studentActiveRental" element={<StudentActiveRental/>}/>
+          <Route path="/studentViewCart" element={<StudentCart/>}/>
          
           {/* common */}
           <Route path="/commonNavbar" element={<CommonNavbar />} />

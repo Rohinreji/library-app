@@ -187,7 +187,6 @@ export const TutorviewSingleProduct = () => {
             <button
               className="student-view-single-product-addToCart"
               onClick={() => {
-                setBooksId(data._id);
                 handleAddToCart(data._id);
               }}
             >

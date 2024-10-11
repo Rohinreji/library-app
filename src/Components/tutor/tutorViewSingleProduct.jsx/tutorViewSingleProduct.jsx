@@ -108,10 +108,11 @@ export const TutorviewSingleProduct = () => {
   };
 
   const handleRentNow = (booksId) => {
-    updateQuantity(booksId, cartCount);
     if (rentNowApprove) {
       bookRentNow(booksId, cartCount);
     }
+    updateQuantity(booksId, cartCount);
+
   };
 
   return (

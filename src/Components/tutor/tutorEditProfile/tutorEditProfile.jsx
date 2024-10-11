@@ -16,6 +16,7 @@ export const TutorEditProfile = () => {
     firstName: "",
     email: "",
     idNo: "",
+    lastName:"",
     profile: null,
   });
   const tutorId = localStorage.getItem("tutorId");
@@ -42,9 +43,9 @@ export const TutorEditProfile = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("name", data.name);
+    formData.append("firstName", data.firstName);
     formData.append("email", data.email);
-    formData.append("idNo", data.idNo);
+    formData.append("lastName", data.lastName);
     formData.append("profile", data.profile);
     sendDataToServer(formData);
   };
@@ -102,7 +103,7 @@ export const TutorEditProfile = () => {
                 className="mb-3"
                 controlId="exampleForm.ControlInput1"
               >
-                <Form.Label className="tutorEditProfile-label">Name</Form.Label>
+                <Form.Label className="tutorEditProfile-label">First name</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Enter your name"
@@ -112,6 +113,22 @@ export const TutorEditProfile = () => {
                   name="firstName"
                 />
               </Form.Group>
+
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Label  className="tutorEditProfile-label">Last name</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter your last name"
+                  autoFocus
+                  className="tutorEditProfileInp"
+                  onChange={handleChange}
+                  name="lastName"
+                />
+              </Form.Group>
+
               <Form.Group
                 className="mb-3"
                 controlId="exampleForm.ControlInput1"
@@ -126,20 +143,7 @@ export const TutorEditProfile = () => {
                   name="email"
                 />
               </Form.Group>
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlInput1"
-              >
-                <Form.Label  className="tutorEditProfile-label">Id Number</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter your Id number"
-                  autoFocus
-                  className="tutorEditProfileInp"
-                  onChange={handleChange}
-                  name="idNo"
-                />
-              </Form.Group>
+             
               <Button
                 variant="primary"
                 onClick={handleClose}

@@ -69,7 +69,7 @@ toast.success(response.data.msg)
 
   return (
     <div>
-        <h2>Return request</h2>
+        <h2 className="mx-5 my-3">Return request</h2>
       <Table striped bordered hover className="adminViewRent">
         <thead>
           <tr>

@@ -42,6 +42,8 @@ import { AdminDashboard } from "./Components/admin/adminDashboard/adminDashboard
 import StudentForgotPassword from "./Components/student/studentForgotpassword/studentForgotpassword";
 import { TutorHome } from "./Components/tutor/TutorHome/studentHome";
 import { TutorFilterByCat } from "./Components/tutor/tutorFilterByCat/tutorFilterByCat";
+import { Tutorwishlist } from "./Components/tutor/tutorWishlist/tutorwishlist";
+import { AdminViewAllBook } from "./Components/admin/adminViewAllBook/adminViewAllBooks";
 
 function App() {
   return (
@@ -119,6 +121,7 @@ function App() {
           />
           <Route path="/admin/sidebar" element={<AdminSideBar />} />
           <Route path="/admin/dashBoard" element={<AdminDashboard />} />
+          <Route path="/admin/viewAllBooks" element={<AdminViewAllBook/>} />
           {/* tutor */}
           <Route path="/tutorLogin" element={<TutorLogin />} />
           <Route path="/tutorSignup" element={<TutorSignUp />} />
@@ -166,6 +169,8 @@ function App() {
             path="/tutor/filterByCat/:cat"
             element={<TutorFilterByCat />}
           />
+<Route path="/tutor/wishlist" element={<Tutorwishlist/>} />
+
           {/* 404 page */}
           <Route path="/*" element={<h1>The page not available</h1>} />
         </Routes>

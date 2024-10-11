@@ -15,10 +15,10 @@ import("./tutorViewBook.css");
 export const TutorViewBook = ({ reDirectToViewSingleBook }) => {
   const [fixedData, setFixedData] = useState([]);
   const [data, setData] = useState([]);
-  const [heart, setHeart] = useState(false);
-  const { cat } = useParams();
+  const [wishlist, setWishlist] = useState([]);
   const navigate = useNavigate();
   const [wish, setWish] = useState([]);
+  const [booksId, setBookId] = useState();
 
   const tutorId = localStorage.getItem("tutorId");
 
@@ -50,15 +50,19 @@ export const TutorViewBook = ({ reDirectToViewSingleBook }) => {
       });
       if (response.status == 200) {
         toast.success("book added to wishlist");
-        
+        setWish(response.data.data);
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      getData();
     }
   };
 
   const removeFromWishlist = async (booksId) => {
     try {
+      console.log(booksId, "booksId");
+      console.log(tutorId, "tutorId");
       const response = await axiosInstance.post("/tutorRemoveFromWishlist", {
         booksId,
         tutorId,
@@ -68,8 +72,39 @@ export const TutorViewBook = ({ reDirectToViewSingleBook }) => {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      getData();
     }
   };
+
+
+
+
+  const viewAllWishlist = async () => {
+    try {
+      const response = await axiosInstance.get(`/viewAllWishlist/${tutorId}`);
+      console.log("res", response);
+      if (response.status === 200) {
+        setWishlist(response.data.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  let existingWishlist = false;
+  wishlist.filter((item) => {
+    if (item.booksId._id === booksId) {
+      existingWishlist = true;
+    }
+  });
+
+  useEffect(() => {
+    viewAllWishlist();
+  }, []);
+
+
+  
+
 
   // search functionality
 
@@ -85,8 +120,6 @@ export const TutorViewBook = ({ reDirectToViewSingleBook }) => {
       setData(fixedData);
     }
   };
- 
-
 
   return (
     <div>
@@ -109,6 +142,13 @@ export const TutorViewBook = ({ reDirectToViewSingleBook }) => {
         ) : (
           <div className="d-flex flex-wrap gap-4 justify-content-between px-5 py-5 student-view-product-body">
             {data.map((e, index) => {
+              const wishlistArr = e?.wishlistedUserId || [];
+              let isAlreadyWishlisted = false;
+
+              if (wishlistArr.includes(tutorId)) {
+                isAlreadyWishlisted = true;
+              }
+
               return (
                 <div className="student-product-view-box shadow" key={e.id}>
                   <div className="">
@@ -123,12 +163,12 @@ export const TutorViewBook = ({ reDirectToViewSingleBook }) => {
                     />
 
                     <div className="tutorWishlistBox">
-                      {heart == true ? (
+                      {isAlreadyWishlisted ? (
                         <FaHeart
                           className="tutor-wishlist-filled-heart"
                           onClick={() => {
-                            setHeart(!heart);
                             removeFromWishlist(e._id);
+                            setBookId(e._id);
                           }}
                         />
                       ) : (
@@ -136,6 +176,7 @@ export const TutorViewBook = ({ reDirectToViewSingleBook }) => {
                           className="tutor-wishlist-heart"
                           onClick={() => {
                             addTowislist(e._id);
+                            setBookId(e._id);
                           }}
                         />
                       )}

@@ -33,20 +33,42 @@ export const TutorCart = () => {
 
   console.log(data, "data ");
 
-  const handleRemove = async (cartId) => {
+
+
+
+
+
+  const addBookQuantity =async (id,quantity) =>
+    {
+
     try {
-      const response = await axiosInstance.post(
-        `tutorRemoveFromCart/${cartId}`
-      );
-      if (response.status === 200) {
-        toast.success("removed from cart");
+      const response = await axiosInstance.post(`/addBookQuantity/${id}`,{quantity})
+      if(response.status ===200)
+      {
+        console.log("book quantity added");
       }
     } catch (error) {
       console.log(error);
-    } finally {
-      getData();
     }
-  };
+    }
+
+
+    const handleRemove = async (cartId) => {
+      try {
+        const response = await axiosInstance.post(
+          `tutorRemoveFromCart/${cartId}`
+        );
+        if (response.status === 200) {
+          toast.success("removed from cart");
+        }
+      } catch (error) {
+        console.log(error);
+      } finally {
+        getData();
+      }
+    };
+
+    
 
   const rentAllBooks = async () => {
     try {
@@ -101,22 +123,22 @@ export const TutorCart = () => {
                         <tr>
                           <td> book title</td>
                           <td>:</td>
-                          <td>{booksId.bookTitle}</td>
+                          <td>{booksId?.bookTitle}</td>
                         </tr>
                         <tr>
                           <td>author</td>
                           <td>:</td>
-                          <td>{booksId.author}</td>
+                          <td>{booksId?.author}</td>
                         </tr>
                         <tr>
                           <td>language</td>
                           <td>:</td>
-                          <td>{booksId.language}</td>
+                          <td>{booksId?.language}</td>
                         </tr>
                         <tr>
-                          <td>status</td>
+                          <td>Quantity</td>
                           <td>:</td>
-                          <td>{booksId.status}</td>
+                          <td>{e.addedQuantity}</td>
                         </tr>
                       </tbody>
                     </table>
@@ -128,7 +150,10 @@ export const TutorCart = () => {
                     <Button
                       variant="warning"
                       onClick={() => {
+                        addBookQuantity(booksId._id,e.addedQuantity)
+
                         handleRemove(e._id);
+
                       }}
                     >
                       Remove

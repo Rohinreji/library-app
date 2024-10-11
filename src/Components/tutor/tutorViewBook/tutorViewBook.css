@@ -1,8 +1,7 @@
 .tutorWishlistBox
 {
-    height: 50px;
-    width: 50px;
-    background-color:azure;
+    height: 40px;
+    width: 40px;
     z-index: 2;
     position: relative;
     bottom:220px;

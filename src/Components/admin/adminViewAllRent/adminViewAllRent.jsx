@@ -99,7 +99,7 @@ console.log(data);
                     onClick={()=>
                     {
                       setRentId(e._id)
-                      rejectRent()
+                      rejectRent(e._id)
                     }
                     }
                     >
@@ -110,7 +110,7 @@ console.log(data);
                        onClick={()=>
                         {
                           setRentId(e._id)
-                          approveRent()
+                          approveRent(e._id)
                         }
                         }
                     >

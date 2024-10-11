@@ -11,7 +11,7 @@ export const Tutorwishlist = () => {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
   const tutorId = localStorage.getItem("tutorId");
-  const getData = async (tutorId) => {
+  const getData = async () => {
     try {
       const response = await axiosInstance.get(`/viewAllWishlist/${tutorId}`);
       if (response.status === 200) {
@@ -25,13 +25,14 @@ export const Tutorwishlist = () => {
   console.log(data);
 
   useEffect(() => {
-    const tutorId = localStorage.getItem("tutorId");
 
-    getData(tutorId);
+    getData();
   }, []);
 
   const removeFromWishlist = async (booksId) => {
     try {
+      console.log(booksId,"booksId");
+      console.log(tutorId,"tutorId");
       const response = await axiosInstance.post("/tutorRemoveFromWishlist", {
         booksId,
         tutorId,
@@ -41,8 +42,8 @@ export const Tutorwishlist = () => {
       }
     } catch (error) {
       console.log(error);
-    } finally {
-      getData();
+    } finally{
+      getData()
     }
   };
 

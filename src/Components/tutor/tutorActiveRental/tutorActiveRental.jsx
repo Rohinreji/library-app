@@ -57,7 +57,7 @@ export const TutorActiveRental = () => {
         >
           <div>
             <img src={img} alt="" style={{ height: "450px", width: "450px" }} />
-            <h2 className="px-5">vNo data found</h2>
+            <h2 className="px-5">No data found</h2>
           </div>{" "}
         </div>):(
   <div className="student-view-product">

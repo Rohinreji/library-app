@@ -13,7 +13,6 @@ import axiosInstance from "../../../apis/axiosInstance";
 export const TutorviewSingleProduct = () => {
   const [cartCount, setCartCount] = useState(1);
   const [tutorId, setTutorId] = useState("");
-  const [booksId, setBooksId] = useState("");
   const [rentBookId, setRentBookId] = useState("");
   const [data, setData] = useState({});
   const { id } = useParams();
@@ -44,8 +43,7 @@ export const TutorviewSingleProduct = () => {
     getData();
   }, []);
 
-  console.log(booksId, "bookid");
-  console.log(tutorId, "tutorid");
+ 
 
   // rent api call
 
@@ -60,6 +58,8 @@ export const TutorviewSingleProduct = () => {
       }
     } catch (error) {
       console.log(error);
+    }finally{
+      getData()
     }
   };
 
@@ -77,11 +77,17 @@ export const TutorviewSingleProduct = () => {
       }
     } catch (error) {
       console.log(error);
+    }finally{
+      getData()
     }
   };
 
   const handleAddToCart = (booksId) => {
-    addToCart(booksId, cartCount);
+    if(rentNowApprove || data.quantity > 0)
+    {
+      addToCart(booksId, cartCount);
+
+    }
     updateQuantity(booksId, cartCount);
   };
 
@@ -104,11 +110,13 @@ export const TutorviewSingleProduct = () => {
         setRentNowApprove(false);
       }
       console.log(error);
+    }finally{
+      getData()
     }
   };
 
   const handleRentNow = (booksId) => {
-    if (rentNowApprove) {
+    if (rentNowApprove || data.quantity > 0) {
       bookRentNow(booksId, cartCount);
     }
     updateQuantity(booksId, cartCount);
@@ -198,7 +206,6 @@ export const TutorviewSingleProduct = () => {
             <button
               className="student-view-single-product-buyNow"
               onClick={() => {
-                setBooksId(data._id);
                 handleRentNow(data._id);
               }}
             >

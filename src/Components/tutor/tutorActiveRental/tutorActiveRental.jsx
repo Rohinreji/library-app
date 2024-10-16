@@ -11,6 +11,7 @@ export const TutorActiveRental = () => {
   const [data, setData] = useState([]);
   const [fixedData, setFixedData] = useState([]);
   const navigate = useNavigate();
+  
   const tutorId = localStorage.getItem("tutorId");
 
   const getData = async () => {
@@ -50,8 +51,9 @@ export const TutorActiveRental = () => {
 
   return (
     <div>
-              <h2 className="px-5 pt-4">Active rentals</h2>
-{data.length <= 0 ? (<div
+      <h2 className="px-5 pt-4">Active rentals</h2>
+      {data.length <= 0 ? (
+        <div
           className="tuturWishlist-noData"
           style={{ height: "100vh", width: "100%" }}
         >
@@ -59,79 +61,79 @@ export const TutorActiveRental = () => {
             <img src={img} alt="" style={{ height: "450px", width: "450px" }} />
             <h2 className="px-5">No data found</h2>
           </div>{" "}
-        </div>):(
-  <div className="student-view-product">
-  <InputGroup className="mb-3 student-serach-box">
-    <Form.Control
-      placeholder="Search"
-      aria-label="search"
-      aria-describedby="basic-addon1"
-      onChange={handleSearch}
-    />
-    <InputGroup.Text id="basic-addon1">
-      <IoSearch />
-    </InputGroup.Text>
-  </InputGroup>
+        </div>
+      ) : (
+        <div className="student-view-product">
+          <InputGroup className="mb-3 student-serach-box">
+            <Form.Control
+              placeholder="Search"
+              aria-label="search"
+              aria-describedby="basic-addon1"
+              onChange={handleSearch}
+            />
+            <InputGroup.Text id="basic-addon1">
+              <IoSearch />
+            </InputGroup.Text>
+          </InputGroup>
 
-  <div className="d-flex flex-wrap gap-4 justify-content-between px-5 py-5 student-view-product-body">
-    {data.map((e, index) => {
-      const approvedDate = new Date(e?.approvedDate);
-      console.log(approvedDate);
+          <div className="d-flex flex-wrap gap-4 justify-content-between px-5 py-5 student-view-product-body">
+            {data.map((e, index) => {
+              const approvedDate = new Date(e?.approvedDate);
+              console.log(approvedDate);
 
-      const lastSubmissionDate = new Date();
-      const date1 = new Date(
-        lastSubmissionDate.getFullYear(),
-        lastSubmissionDate.getMonth(),
-        lastSubmissionDate.getDate()
-      );
-      const date2 = new Date(
-        approvedDate.getFullYear(),
-        approvedDate.getMonth(),
-        approvedDate.getDate()
-      );
+              const lastSubmissionDate = new Date();
+              const date1 = new Date(
+                lastSubmissionDate.getFullYear(),
+                lastSubmissionDate.getMonth(),
+                lastSubmissionDate.getDate()
+              );
+              const date2 = new Date(
+                approvedDate.getFullYear(),
+                approvedDate.getMonth(),
+                approvedDate.getDate()
+              );
 
-      // const numberOfRendedDate = lastSubmissionDate - approvedDate;
-      const timeDifference = date2.getTime() - date1.getTime();
-      const numberOfRendedDate = timeDifference / (1000 * 3600 * 24); // 1000 ms/s, 3600 s/h, 24 h/day
+              // const numberOfRendedDate = lastSubmissionDate - approvedDate;
+              const timeDifference = date2.getTime() - date1.getTime();
+              const numberOfRendedDate = timeDifference / (1000 * 3600 * 24); // 1000 ms/s, 3600 s/h, 24 h/day
 
-      console.log(numberOfRendedDate);
+              console.log(numberOfRendedDate);
 
-      const booksId = e?.booksId;
+              const booksId = e?.booksId;
 
-      return (
-        <div>
-          <div
-            className="student-product-view-box shadow"
-            onClick={() => {
-              navigate(`/tutor/return-books/${e._id}`);
-            }}
-          >
-            <div className="">
-              <img
-                src={`${BASE_URL}${booksId?.bookImage?.filename}`}
-                alt=""
-                className="student-product-view-box-img"
-              />
-            </div>
-            <div className="tutorActiveRental-text">
-              <h6>{booksId?.bookTitle}</h6>
-              <h5>{booksId?.category}</h5>
-              <h4 className="tutorActiveRentalFine">
-                {numberOfRendedDate > 15 ? (
-                  <p>fine:{numberOfRendedDate * 10}</p>
-                ) : (
-                  <p></p>
-                )}
-              </h4>
-            </div>
+              return (
+                <div>
+                  <div
+                    className="student-product-view-box shadow"
+                    onClick={() => {
+                      navigate(`/tutor/return-books/${e._id}`);
+                    }}
+                  >
+                    <div className="">
+                      <img
+                        src={`${BASE_URL}${booksId?.bookImage?.filename}`}
+                        alt=""
+                        className="student-product-view-box-img"
+                      />
+                    </div>
+                    <div className="tutorActiveRental-text">
+                      <h6>{booksId?.bookTitle}</h6>
+                      <h5>{booksId?.category}</h5>
+                      <h4 className="tutorActiveRentalFine">
+                        {numberOfRendedDate > 15 ? (
+                          <p>fine:{numberOfRendedDate * 10}</p>
+                        ) : (
+                          <p></p>
+                        )}
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
-      );
-    })}
-  </div>
-</div>
-        )}
-    
+      )}
     </div>
   );
 };

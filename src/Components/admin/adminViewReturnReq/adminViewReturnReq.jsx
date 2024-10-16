@@ -4,8 +4,12 @@ import Table from "react-bootstrap/Table";
 import { useEffect, useState } from "react";
 import axiosInstance from "../../../apis/axiosInstance";
 import toast from "react-hot-toast";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
+import { IoSearch } from "react-icons/io5";
 export const AdminViewReturnReq = () => {
     const[data,setData] = useState([])
+    const [fixedData, setFixedData] = useState([]);
 
     // api call for view tutor return req
 
@@ -15,6 +19,7 @@ try {
 if(response.status === 200)
 {
     setData(response.data.data)
+    setFixedData(response.data.data)
 }
 } catch (error) {
  console.log(error);   
@@ -66,10 +71,38 @@ toast.success(response.data.msg)
 }
 
 
+// serach functionality
+
+const handleSearch = (e) => {
+  const value = e.target.value;
+  if (value) {
+    const filterData = fixedData.filter((item) => {
+      return `${item.firstName}${item.lastName}`
+        .toLowerCase()
+        .includes(value.toLowerCase());
+    });
+    setData(filterData);
+  } else {
+    setData(fixedData);
+  }
+};
 
   return (
     <div>
         <h2 className="mx-5 my-3">Return request</h2>
+
+        <InputGroup className="mb-3 student-serach-box">
+        <Form.Control
+          placeholder="Search"
+          aria-label="search"
+          aria-describedby="basic-addon1"
+          onChange={handleSearch}
+        />
+        <InputGroup.Text id="basic-addon1">
+          <IoSearch />
+        </InputGroup.Text>
+      </InputGroup>
+
       <Table striped bordered hover className="adminViewRent">
         <thead>
           <tr>

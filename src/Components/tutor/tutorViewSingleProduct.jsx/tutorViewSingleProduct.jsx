@@ -43,8 +43,6 @@ export const TutorviewSingleProduct = () => {
     getData();
   }, []);
 
- 
-
   // rent api call
 
   const bookRentNow = async (booksId, cartCount) => {
@@ -58,8 +56,8 @@ export const TutorviewSingleProduct = () => {
       }
     } catch (error) {
       console.log(error);
-    }finally{
-      getData()
+    } finally {
+      getData();
     }
   };
 
@@ -77,16 +75,14 @@ export const TutorviewSingleProduct = () => {
       }
     } catch (error) {
       console.log(error);
-    }finally{
-      getData()
+    } finally {
+      getData();
     }
   };
 
   const handleAddToCart = (booksId) => {
-    if(rentNowApprove || data.quantity > 0)
-    {
+    if ( data.availableCopies > cartCount) {
       addToCart(booksId, cartCount);
-
     }
     updateQuantity(booksId, cartCount);
   };
@@ -110,17 +106,16 @@ export const TutorviewSingleProduct = () => {
         setRentNowApprove(false);
       }
       console.log(error);
-    }finally{
-      getData()
+    } finally {
+      getData();
     }
   };
 
   const handleRentNow = (booksId) => {
-    if (rentNowApprove || data.quantity > 0) {
+    if ( data.availableCopies > cartCount) {
       bookRentNow(booksId, cartCount);
     }
     updateQuantity(booksId, cartCount);
-
   };
 
   return (

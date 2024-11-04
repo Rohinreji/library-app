@@ -32,6 +32,11 @@ setSelectedPage("tutorViewSingleProduct")
     setSelectedPage("redirectToReturnBook")
   }
 
+  const redirectToCart = () =>
+  {
+    setSelectedPage("cart")
+  }
+
   return (
     <div className="row">
       <div className="col-2">
@@ -39,7 +44,7 @@ setSelectedPage("tutorViewSingleProduct")
       </div>
       <div className="col-10">
         {selectePage === "dashBoard" && <TutorViewBook  reDirectToViewSingleBook={reDirectToViewSingleBook}/>}
-        {selectePage ==="tutorViewSingleProduct" && <TutorviewSingleProduct productId={productId}/>}
+        {selectePage ==="tutorViewSingleProduct" && <TutorviewSingleProduct productId={productId} redirectToCart={redirectToCart}/>}
         {selectePage === "cart" && <TutorCart />}
 
         {selectePage === "profile" && <TutorProfile />}

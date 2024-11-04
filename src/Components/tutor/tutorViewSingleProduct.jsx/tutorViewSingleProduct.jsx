@@ -10,7 +10,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import { BASE_URL } from "../../../apis/baseURL";
 import axiosInstance from "../../../apis/axiosInstance";
-export const TutorviewSingleProduct = ({productId}) => {
+export const TutorviewSingleProduct = ({productId,redirectToCart}) => {
   const [cartCount, setCartCount] = useState(1);
   const [tutorId, setTutorId] = useState("");
   const [rentBookId, setRentBookId] = useState("");
@@ -240,7 +240,8 @@ if(data._id === value?.booksId._id)
                 <button
                   className="student-view-single-product-addToCart"
                   onClick={() => {
-                    navigate("/tutor/cart");
+                    // navigate("/tutor/cart");
+                    redirectToCart()
                   }}
                 >
                   {" "}

@@ -1,14 +1,17 @@
 import Table from "react-bootstrap/Table";
 import { ImCross } from "react-icons/im";
 import { FaCheck } from "react-icons/fa";
-import "./adminViewAllRent.css";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
+import { IoSearch } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import axiosInstance from "../../../apis/axiosInstance";
+import "./adminViewAllRent.css";
 export const AdminViewAllRental = () => {
   const [data, setdata] = useState([]);
-  const[rentId,setRentId] = useState("")
+  const[fixedData,setFixedData] = useState([])
   // get all tutor rent data
 
   const getData = async () => {
@@ -16,6 +19,7 @@ export const AdminViewAllRental = () => {
       const response = await axios.get("http://localhost:3005/adminViewPendingRental");
       if (response.status === 200) {
         setdata(response.data.data);
+        setFixedData(response.data.data)
       }
     } catch (error) {
       console.log(error);
@@ -25,11 +29,9 @@ export const AdminViewAllRental = () => {
     getData();
   }, []);
 
-  console.log(rentId);
-
   // api call for approve
 
-const approveRent = async() =>
+const approveRent = async(rentId) =>
 {
   try {
     const response = await axios.post(`http://localhost:3005/adminApproveRental/${rentId}`)
@@ -46,7 +48,7 @@ const approveRent = async() =>
 }
 // api call for rent
 
-const rejectRent = async () =>
+const rejectRent = async (rentId) =>
 {
   try {
     const response = await axiosInstance.post(`adminRejectRental/${rentId}`)
@@ -64,10 +66,42 @@ const rejectRent = async () =>
 }
 console.log(data);
 
+
+
+// search functionality
+
+const handleSearch = (e) => {
+  const value = e.target.value;
+  if (value) {
+    const filterData = fixedData.filter((item) => {
+      return `${item.tutorId.firstName} ${item.tutorId.lastName}`
+        .toLowerCase()
+        .includes(value.toLowerCase());
+    });
+    setdata(filterData);
+  } else {
+    setdata(fixedData);
+  }
+};
+
+
   return (
     <div>
       <div>
         <h2 className="mx-5 my-4">Tutor rental request</h2>
+
+        <InputGroup className="mb-3 student-serach-box">
+          <Form.Control
+            placeholder="Search"
+            aria-label="search"
+            aria-describedby="basic-addon1"
+            onChange={handleSearch}
+          />
+          <InputGroup.Text id="basic-addon1">
+            <IoSearch />
+          </InputGroup.Text>
+        </InputGroup>
+
         <Table striped bordered hover className="adminViewRent">
           <thead>
             <tr>
@@ -82,12 +116,11 @@ console.log(data);
           {data.map((e,index) => {
             const booksId = e?.booksId;
             const tutorId = e.tutorId;
-            console.log(tutorId);
-            console.log(booksId);
+            
             return (
               <tbody key={index}>
                 <tr>
-                  <td rowSpan={2}>1</td>
+                  <td rowSpan={2}>{index+1}</td>
                   <td>Tutor</td>
                   <td>
                     {tutorId.firstName} {tutorId.lastName}
@@ -98,7 +131,6 @@ console.log(data);
                     <button className="admin-approve-tutor-cross "
                     onClick={()=>
                     {
-                      setRentId(e._id)
                       rejectRent(e._id)
                     }
                     }
@@ -109,7 +141,6 @@ console.log(data);
                     className="admin-approve-tutor-check"
                        onClick={()=>
                         {
-                          setRentId(e._id)
                           approveRent(e._id)
                         }
                         }

@@ -7,7 +7,7 @@ import { BASE_URL } from "../../../apis/baseURL";
 import { useNavigate } from "react-router-dom";
 import img from "../../../Assests/noDataFound.jpg";
 import "./tutorActiveRental.css";
-export const TutorActiveRental = () => {
+export const TutorActiveRental = ({redirectToReturnBook}) => {
   const [data, setData] = useState([]);
   const [fixedData, setFixedData] = useState([]);
   const navigate = useNavigate();
@@ -76,7 +76,7 @@ export const TutorActiveRental = () => {
             </InputGroup.Text>
           </InputGroup>
 
-          <div className="d-flex flex-wrap gap-4 justify-content-between px-5 py-5 student-view-product-body">
+          <div className="d-flex flex-wrap gap-4  px-5 py-5 student-view-product-body">
             {data.map((e, index) => {
               const approvedDate = new Date(e?.approvedDate);
               console.log(approvedDate);
@@ -106,7 +106,8 @@ export const TutorActiveRental = () => {
                   <div
                     className="student-product-view-box shadow"
                     onClick={() => {
-                      navigate(`/tutor/return-books/${e._id}`);
+                      // navigate(`/tutor/return-books/${e._id}`);
+                      redirectToReturnBook(e._id)
                     }}
                   >
                     <div className="">

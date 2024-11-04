@@ -144,7 +144,7 @@ export const TutorViewBook = ({ reDirectToViewSingleBook }) => {
         {data.length === 0 ? (
           <h2 className="text-center">No data found </h2>
         ) : (
-          <div className="d-flex flex-wrap gap-4 justify-content-between px-5 py-5 student-view-product-body">
+          <div className="d-flex flex-wrap gap-5 px-5 py-5 student-view-product-body">
             {data.map((e, index) => {
 
 

@@ -6,24 +6,25 @@ import { AiFillThunderbolt } from "react-icons/ai";
 import axios from "axios";
 import bookImage from "../../../Assests/fantacyBooks1.jpg";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import { BASE_URL } from "../../../apis/baseURL";
 import axiosInstance from "../../../apis/axiosInstance";
-export const TutorviewSingleProduct = () => {
+export const TutorviewSingleProduct = ({productId}) => {
   const [cartCount, setCartCount] = useState(1);
   const [tutorId, setTutorId] = useState("");
   const [rentBookId, setRentBookId] = useState("");
   const [data, setData] = useState({});
   const { id } = useParams();
   const [rentNowApprove, setRentNowApprove] = useState(false);
-
+  const [cartData, setCartData] = useState([]);
+  const navigate = useNavigate();
   // book details api call
 
   const getData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3005/view-single-product/${id}`
+        `http://localhost:3005/view-single-product/${productId}`
       );
       if (response.status === 200) {
         setData(response.data.data);
@@ -74,14 +75,18 @@ export const TutorviewSingleProduct = () => {
         toast.success(response.data.msg);
       }
     } catch (error) {
-      console.log(error);
+      if (error.status === 505) {
+        toast.error("already added to cart");
+      } else {
+        console.log(error);
+      }
     } finally {
       getData();
     }
   };
 
   const handleAddToCart = (booksId) => {
-    if ( data.availableCopies > cartCount) {
+    if (data.availableCopies > cartCount) {
       addToCart(booksId, cartCount);
     }
     updateQuantity(booksId, cartCount);
@@ -112,11 +117,53 @@ export const TutorviewSingleProduct = () => {
   };
 
   const handleRentNow = (booksId) => {
-    if ( data.availableCopies > cartCount) {
+    if (data.availableCopies > cartCount) {
       bookRentNow(booksId, cartCount);
     }
     updateQuantity(booksId, cartCount);
   };
+
+
+
+  // view all cart product
+  // these two methords are used to change 'add cart' to "got to cart"
+
+
+  const viewCart = async (tutorId) => {
+    try {
+      const response = await axiosInstance.post("/tutorViewAddToCart", {
+        tutorId,
+      });
+
+      if (response.status === 200) {
+        const data = response.data.data;
+        setCartData(data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    finally{
+
+    }
+  };
+
+
+  useEffect(() => {
+
+    const id = localStorage.getItem("tutorId");
+    viewCart(id);
+
+  }, [cartData]);
+
+
+
+  const newArray = cartData.find((value) => {
+if(data._id === value?.booksId._id)
+    return true;
+  });
+
+
+  
 
   return (
     <div className="student-view-single-product shadow">
@@ -188,15 +235,29 @@ export const TutorviewSingleProduct = () => {
           </table>
 
           <div className="d-flex my-5">
-            <button
-              className="student-view-single-product-addToCart"
-              onClick={() => {
-                handleAddToCart(data._id);
-              }}
-            >
-              {" "}
-              <MdOutlineShoppingCart /> Add to cart
-            </button>
+            {
+              (newArray?.isActive ? (
+                <button
+                  className="student-view-single-product-addToCart"
+                  onClick={() => {
+                    navigate("/tutor/cart");
+                  }}
+                >
+                  {" "}
+                  <MdOutlineShoppingCart /> got to Cart
+                </button>
+              ) : (
+                <button
+                  className="student-view-single-product-addToCart"
+                  onClick={() => {
+                    handleAddToCart(data._id);
+                  }}
+                >
+                  {" "}
+                  <MdOutlineShoppingCart /> Add to cart
+                </button>
+              ))
+            }
 
             <button
               className="student-view-single-product-buyNow"

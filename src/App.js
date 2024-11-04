@@ -48,6 +48,7 @@ import { AdminViewStudentRequest } from "./Components/admin/adminViewStudentRequ
 import { AdminViewApprovedStudent } from "./Components/admin/adminViewApprovedStudent/adminViewApprovedStudent";
 import { StudentActiveRental } from "./Components/student/studentActiveRental/studentActiveRental";
 import { StudentCart } from "./Components/student/studentCart/studentCart";
+import { StudentReturnBooks } from "./Components/student/studentReturnBook/studentReturnBook";
 
 function App() {
   return (
@@ -56,11 +57,9 @@ function App() {
       <BrowserRouter basename="open_library">
         <Routes>
           <Route path="/" element={<LandingPage />} />
-
           {/* student */}
           {/* <Route path="/registration" element={<Loginpage />} />
           <Route path="/login" element={<Signin />} /> */}
-
           <Route path="/student/navbar" element={<StudentNav />} />
           <Route
             path="/student/home-details"
@@ -83,14 +82,19 @@ function App() {
             path="/studentForgotpassword"
             element={<StudentForgotPassword />}
           />
-          <Route path="/studentActiveRental" element={<StudentActiveRental/>}/>
-          <Route path="/studentViewCart" element={<StudentCart/>}/>
-         
+          <Route
+            path="/studentActiveRental"
+            element={<StudentActiveRental />}
+          />
+          <Route path="/studentViewCart" element={<StudentCart />} />
+          <Route
+            path="/studentReturnBook/:id"
+            element={<StudentReturnBooks />}
+          />
           {/* common */}
           <Route path="/commonNavbar" element={<CommonNavbar />} />
           <Route path="/footer" element={<Footer />} />
           <Route path="/landingPage" element={<LandingPage />} />
-
           {/* admin */}
           <Route path="/adminLogin" element={<AdminLogin />} />
           <Route
@@ -111,7 +115,6 @@ function App() {
             path="/admin/view-retun-req"
             element={<AdminViewReturnReq />}
           />
-
           <Route path="/admin-add/products" element={<AdminAddProduct />} />
           <Route path="/admin/approve-tutor" element={<AdminApproveTutor />} />
           <Route
@@ -128,7 +131,8 @@ function App() {
           />
           <Route path="/admin/sidebar" element={<AdminSideBar />} />
           <Route path="/admin/dashBoard" element={<AdminDashboard />} />
-          <Route path="/admin/viewAllBooks" element={<AdminViewAllBook/>} />
+          <Route path="/admin/viewAllBooks" element={<AdminViewAllBook />} />
+          
           {/* tutor */}
           <Route path="/tutorLogin" element={<TutorLogin />} />
           <Route path="/tutorSignup" element={<TutorSignUp />} />
@@ -136,7 +140,6 @@ function App() {
           <Route path="/tutor-dashboard" element={<TutorDashboard />} />
           <Route path="/tutor-viewBook" element={<TutorViewBook />} />
           <Route path="/tutor/profile" element={<TutorProfile />} />
-
           <Route path="/tutor/home" element={<TutorHome />} />
           <Route
             path="/tutor/forgot-password"
@@ -176,8 +179,7 @@ function App() {
             path="/tutor/filterByCat/:cat"
             element={<TutorFilterByCat />}
           />
-<Route path="/tutor/wishlist" element={<Tutorwishlist/>} />
-
+          <Route path="/tutor/wishlist" element={<Tutorwishlist />} />
           {/* 404 page */}
           <Route path="/*" element={<h1>The page not available</h1>} />
         </Routes>

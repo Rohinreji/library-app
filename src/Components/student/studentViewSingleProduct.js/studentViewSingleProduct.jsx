@@ -60,8 +60,12 @@ export const StudentviewSingleProduct = () => {
     }
   };
   const clickToCart = (booksId) => {
-    addToCart(booksId);
-    updateQuantity(booksId, cartCount);
+    if (data.availableCopies == 0) {
+      toast.error("Book not available");
+    } else {
+      addToCart(booksId);
+      updateQuantity(booksId, cartCount);
+    }
   };
 
   const rentBook = async (booksId) => {
@@ -78,9 +82,11 @@ export const StudentviewSingleProduct = () => {
     }
   };
   const clickToRent = (booksId) => {
-    updateQuantity(booksId, cartCount);
-    if (rentNowApprove) {
+    if (data.availableCopies == 0) {
+      toast.error("Book not available");
+    } else {
       rentBook(booksId);
+      updateQuantity(booksId, cartCount);
     }
   };
   const updateQuantity = async (booksId, cartCount) => {

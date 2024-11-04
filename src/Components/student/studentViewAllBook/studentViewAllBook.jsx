@@ -12,7 +12,8 @@ import "./studentViewAllBook.css";
 import { FcLike } from "react-icons/fc";
 import { GrFavorite } from "react-icons/gr";
 import toast from "react-hot-toast";
-
+import { CiHeart } from "react-icons/ci";
+import { FaHeart } from "react-icons/fa";
 
 export const StudentViewBook = () => {
   const [fixedData, setFixedData] = useState([]);
@@ -21,12 +22,11 @@ export const StudentViewBook = () => {
   const [favBtn, setFavBtn] = useState();
   const [studentId, setStudentId] = useState();
   const [wishlist, setWishlist] = useState();
-
+  const [booksId,setBookId]=useState()
 
   const reDirectToViewSingleBook = (id) => {
     navigate(`/student/view-single-product/${id}`);
   };
-
 
   const addToWishlist = async (booksId) => {
     try {
@@ -40,6 +40,8 @@ export const StudentViewBook = () => {
       }
     } catch (error) {
       console.log(error);
+    }finally{
+      getData()
     }
   };
   const clickToWishlist = (booksId) => {
@@ -57,6 +59,8 @@ export const StudentViewBook = () => {
       }
     } catch (error) {
       console.log(error);
+    }finally{
+      getData()
     }
   };
   console.log("wishId", wishlist);
@@ -76,7 +80,6 @@ export const StudentViewBook = () => {
       console.log(error);
     }
   };
-
 
   useEffect(() => {
     const studentId = localStorage.getItem("studentId");
@@ -122,6 +125,12 @@ export const StudentViewBook = () => {
         ) : (
           <div className="d-flex flex-wrap gap-4 justify-content-between px-5 py-5 student-view-product-body">
             {data.map((e, index) => {
+                const wishlistArr = e?.wishlistedUserId || [];
+                let isAlreadyWishlisted = false;
+  
+                if (wishlistArr.includes(studentId)) {
+                  isAlreadyWishlisted = true;
+                }
               return (
                 <div className="student-product-view-box shadow" key={e.id}>
                   <div className="">
@@ -133,30 +142,27 @@ export const StudentViewBook = () => {
                         reDirectToViewSingleBook(e._id);
                       }}
                     />
-                  </div>
-                  <h5 className="py-1">
-                    {e?.bookTitle}{" "}
-                    
-                   {data._id?
-                    <button>
-                      {
-                        <FcLike
-                          style={{ cursor: "pointer" }}
+                    <div className="tutorWishlistBox">
+                      {isAlreadyWishlisted ? (
+                        <FaHeart
+                          className="tutor-wishlist-filled-heart"
                           onClick={() => {
-                            clickToWishlist(e._id);
+                            clickToRemoveWishlist(e._id);
+                            setBookId(e._id);
                           }}
                         />
-                      }
-                    </button>:
-                    <button>
-                      <GrFavorite
-                        onClick={() => {
-                          clickToRemoveWishlist(e._id);
-                        }}
-                      />
-                    </button>}
-                  </h5>
-
+                      ) : (
+                        <CiHeart
+                          className="tutor-wishlist-heart"
+                          onClick={() => {
+                            clickToWishlist(e._id);
+                            setBookId(e._id);
+                          }}
+                        />
+                      )}
+                    </div>
+                  </div>
+                  <h5 className="py-1">{e?.bookTitle} </h5>
                   <p>
                     {/* {e?.description?.length > 15
                       ? e.description?.substring(0, 28) + "..."

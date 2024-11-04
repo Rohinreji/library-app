@@ -18,7 +18,7 @@ import CommonNavbar from "../../common/commonNavbar/commonNavbar";
 export const StudentSignUp = () => {
   const [validated, setValidated] = useState(false);
   const [profilePic, setProfilePic] = useState(null);
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const [data, setData] = useState({
     firstname: "",
     lastname: "",
@@ -126,202 +126,219 @@ export const StudentSignUp = () => {
       );
       if (response?.status === 200) {
         toast.success(response.data.msg);
-        navigate("/studentLogin")
-      }else{
-        toast.error(response.data.msg)
+        navigate("/studentLogin");
+      } else {
+        toast.error(response.data.msg);
       }
       console.log(response?.status);
     } catch (error) {
-      if(error?.status===409){
-        toast.error(error?.response?.data.msg)
-      }else{
+      if (error?.status === 409) {
+        toast.error(error?.response?.data.msg);
+      } else {
         console.log(error);
-        
       }
     }
   };
   return (
     <div>
-      <CommonNavbar/>
-    <div className="studentSignUp  ">
-      <Row className="row">
-        <Col className="col-sm-12 col-md-12 col-lg-6 d-flex justify-content-center align-item-center">
-          <img
-            src={studentSignupImg}
-            alt=""
-            className="img-fluid my-5"
-            style={{ width: "630px", height: "330px" }}
-          />
-        </Col>
-        <Col className="col-sm-12 col-md-12 col-lg-6 d-flex justify-content-center align-item-center">
-          <Form
-            noValidate
-            validated={validated}
-            style={{ width: "650px" }}
-            className="shadow px-5 py-3"
-            onSubmit={handleSubmit}
-          >
-            <Row>
-              <Col>
-                <Form.Group
-                  as={Col}
-                  md="6"
-                  controlId="validationCustom03"
-                  style={{ width: "95%" }}
-                >
-                  <Form.Label> First name</Form.Label>
+      <CommonNavbar />
+      <div className="studentSignUp  ">
+        <Row className="row">
+          <Col className="col-sm-12 col-md-12 col-lg-6 d-flex justify-content-center align-item-center">
+            <img
+              src={studentSignupImg}
+              alt=""
+              className="img-fluid my-5"
+              style={{ width: "630px", height: "330px" }}
+            />
+          </Col>
+          <Col className="col-sm-12 col-md-12 col-lg-6 d-flex justify-content-center align-item-center">
+            <Form
+              noValidate
+              validated={validated}
+              style={{ width: "650px" }}
+              className="shadow px-5 py-3"
+              onSubmit={handleSubmit}
+            >
+              <Row>
+                <Col>
+                  <Form.Group
+                    as={Col}
+                    md="6"
+                    controlId="validationCustom03"
+                    style={{ width: "95%" }}
+                  >
+                    <Form.Label> First name</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="firstname"
+                      placeholder="Enter first name"
+                      required
+                      onChange={handleChange}
+                    />
+                    <Form.Control.Feedback type="invalid" className="">
+                      first name is required.
+                    </Form.Control.Feedback>
+                  </Form.Group>
+
+                  <Form.Group
+                    as={Col}
+                    md="6"
+                    controlId="validationCustom03"
+                    style={{ width: "95%" }}
+                  >
+                    <Form.Label> Last name</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="lastname"
+                      placeholder="Enter last name"
+                      required
+                      onChange={handleChange}
+                    />
+                    <Form.Control.Feedback type="invalid" className="">
+                      Last name is required.
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </Col>
+                <Col className="d-flex justify-content-center align-item-center">
+                  <div className="student-signup-profile">
+                    {profilePic ? (
+                      <img src={profilePic} alt="" />
+                    ) : (
+                      <FaRegImages
+                        color="grey"
+                        className="student-signup-fake-image"
+                      />
+                    )}
+
+                    <label className="student-signup-upload-icon">
+                      <BiCloudUpload color="" />
+                      <input
+                        type="file"
+                        style={{ display: "none" }}
+                        name="photo"
+                        onChange={handleFileChange}
+                      />
+                    </label>
+                  </div>
+                </Col>
+              </Row>
+
+              <Row className="mb-3 my-2">
+                <Form.Group as={Col} md="6" controlId="validationCustom03">
+                  <Form.Label> Enter email</Form.Label>
                   <Form.Control
-                    type="text"
-                    name="firstname"
-                    placeholder="Enter first name"
-                    required
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email"
                     onChange={handleChange}
+                    required
                   />
                   <Form.Control.Feedback type="invalid" className="">
-                    first name is required.
+                    please provide email.
                   </Form.Control.Feedback>
                 </Form.Group>
 
-                <Form.Group
-                  as={Col}
-                  md="6"
-                  controlId="validationCustom03"
-                  style={{ width: "95%" }}
-                >
-                  <Form.Label> Last name</Form.Label>
+                <Form.Group as={Col} md="6">
+                  <Form.Label>Admission number</Form.Label>
                   <Form.Control
-                    type="text"
-                    name="lastname"
-                    placeholder="Enter last name"
+                    as="input"
+                    name="addNo"
+                    placeholder="Enter admission number"
                     required
+                    min="0"
+                    max="100000000"
+                    type="number"
                     onChange={handleChange}
                   />
                   <Form.Control.Feedback type="invalid" className="">
-                    Last name is required.
+                    Please provide admission number.
                   </Form.Control.Feedback>
                 </Form.Group>
-              </Col>
-              <Col className="d-flex justify-content-center align-item-center">
-                <div className="student-signup-profile">
-                  {profilePic ? (
-                    <img src={profilePic} alt="" />
-                  ) : (
-                    <FaRegImages
-                      color="grey"
-                      className="student-signup-fake-image"
+              </Row>
+              <Row className="mb-3">
+                <Form.Group as={Col} md="6" controlId="validationCustom03">
+                  <Form.Label> Password</Form.Label>
+                  <InputGroup className="mb-3">
+                    <Form.Control
+                      as="input"
+                      name="password"
+                      placeholder="Enter your password"
+                      required
+                      min="0"
+                      max="100000000"
+                      onChange={handleChange}
+                      type={show1 ? "text" : "password"}
                     />
-                  )}
+                    <InputGroup.Text id="basic-addon1">
+                      {show1 ? (
+                        <BsEye onClick={handleShow1} />
+                      ) : (
+                        <BsEyeSlash onClick={handleShow1} />
+                      )}
+                    </InputGroup.Text>
+                  </InputGroup>
+                  <Form.Control.Feedback type="invalid" className="">
+                    Please provide a valid password.
+                  </Form.Control.Feedback>
+                </Form.Group>
 
-                  <label className="student-signup-upload-icon">
-                    <BiCloudUpload color="" />
-                    <input
-                      type="file"
-                      style={{ display: "none" }}
-                      name="photo"
-                      onChange={handleFileChange}
+                <Form.Group as={Col} md="6">
+                  <Form.Label>Confirm password</Form.Label>
+                  <InputGroup className="mb-3">
+                    <Form.Control
+                      as="input"
+                      name="confirmPassword"
+                      placeholder="Enter confirm password"
+                      required
+                      onChange={handleChange}
+                      min="0"
+                      max="100000000"
+                      type={show2 ? "text" : "password"}
                     />
-                  </label>
-                </div>
-              </Col>
-            </Row>
-
-            <Row className="mb-3 my-2">
-              <Form.Group as={Col} md="6" controlId="validationCustom03">
-                <Form.Label> Enter email</Form.Label>
-                <Form.Control
-                  type="email"
-                  name="email"
-                  placeholder="Enter your email"
-                  onChange={handleChange}
-                  required
-                />
-                <Form.Control.Feedback type="invalid" className="">
-                  please provide email.
-                </Form.Control.Feedback>
-              </Form.Group>
-
-              <Form.Group as={Col} md="6">
-                <Form.Label>Admission number</Form.Label>
-                <Form.Control
-                  as="input"
-                  name="addNo"
-                  placeholder="Enter admission number"
-                  required
-                  min="0"
-                  max="100000000"
-                  type="number"
-                  onChange={handleChange}
-                />
-                <Form.Control.Feedback type="invalid" className="">
-                  Please provide admission number.
-                </Form.Control.Feedback>
-              </Form.Group>
-            </Row>
-            <Row className="mb-3">
-              <Form.Group as={Col} md="6" controlId="validationCustom03">
-                <Form.Label> Password</Form.Label>
-                <InputGroup className="mb-3">
-                  <Form.Control
-                    as="input"
-                    name="password"
-                    placeholder="Enter your password"
-                    required
-                    min="0"
-                    max="100000000"
-                    onChange={handleChange}
-                    type={show1 ? "text" : "password"}
-                  />
-                  <InputGroup.Text id="basic-addon1">
-                    {show1 ? (
-                      <BsEye onClick={handleShow1} />
-                    ) : (
-                      <BsEyeSlash onClick={handleShow1} />
-                    )}
-                  </InputGroup.Text>
-                </InputGroup>
-                <Form.Control.Feedback type="invalid" className="">
-                  Please provide a valid password.
-                </Form.Control.Feedback>
-              </Form.Group>
-
-              <Form.Group as={Col} md="6">
-                <Form.Label>Confirm password</Form.Label>
-                <InputGroup className="mb-3">
-                  <Form.Control
-                    as="input"
-                    name="confirmPassword"
-                    placeholder="Enter confirm password"
-                    required
-                    onChange={handleChange}
-                    min="0"
-                    max="100000000"
-                    type={show2 ? "text" : "password"}
-                  />
-                  <InputGroup.Text id="basic-addon1">
-                    {show2 ? (
-                      <BsEye onClick={handleShow2} />
-                    ) : (
-                      <BsEyeSlash onClick={handleShow2} />
-                    )}
-                  </InputGroup.Text>
-                </InputGroup>
-                <Form.Control.Feedback type="invalid" className="">
-                  Please provide password.
-                </Form.Control.Feedback>
-              </Form.Group>
-            </Row>
-            <div className=" d-flex justify-content-center align-item-center">
-              <Button
-                className="mx-auto w-25 my-4 student-signup-btn"
-                type="submit"
-              >
-                Upload
-              </Button>
-            </div>
-          </Form>
-        </Col>
-      </Row>
-    </div>
+                    <InputGroup.Text id="basic-addon1">
+                      {show2 ? (
+                        <BsEye onClick={handleShow2} />
+                      ) : (
+                        <BsEyeSlash onClick={handleShow2} />
+                      )}
+                    </InputGroup.Text>
+                  </InputGroup>
+                  <Form.Control.Feedback type="invalid" className="">
+                    Please provide password.
+                  </Form.Control.Feedback>
+                </Form.Group>
+              </Row>
+              <div className="studentSignup-login">
+                <p>
+                  Have an account?{" "}
+                  <span
+                    style={{
+                      color: "blue",
+                      fontSize: "18px",
+                      cursor: "pointer",
+                      fontWeight:"500"
+                    }}
+                    onClick={()=>{
+                      navigate("/studentLogin")
+                    }}
+                  >
+                    Login
+                  </span>
+                </p>
+              </div>
+              <div className=" d-flex justify-content-center align-item-center">
+                <Button
+                  className="mx-auto w-25 my-4 student-signup-btn"
+                  type="submit"
+                >
+                  Upload
+                </Button>
+              </div>
+            </Form>
+          </Col>
+        </Row>
+      </div>
     </div>
   );
 };

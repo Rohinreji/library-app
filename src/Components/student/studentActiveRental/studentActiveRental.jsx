@@ -12,6 +12,8 @@ export const StudentActiveRental = () => {
   const studentId = localStorage.getItem("studentId");
 
   const getData = async () => {
+    console.log("std",studentId);
+    
     try {
       const response = await axios.post(
         "http://localhost:3005/studentViewApprovedRentals",
@@ -47,15 +49,32 @@ export const StudentActiveRental = () => {
 
         <div className="d-flex flex-wrap gap-4 justify-content-between px-5 py-5 student-view-product-body">
           {data.map((e, index) => {
+            const approvedDate = new Date(e?.approvedDate);
+
+            const lastSubmissionDate = new Date();
+            const date1 = new Date(
+              lastSubmissionDate.getFullYear(),
+              lastSubmissionDate.getMonth(),
+              lastSubmissionDate.getDate()
+            );
+
+            const date2 = new Date(
+              approvedDate.getFullYear(),
+              approvedDate.getMonth(),
+              approvedDate.getDate()
+            );
+
+            const timeDifference = date2.getTime() - date1.getTime();
+            const numberOfRendedDate = timeDifference / (1000 * 3600 * 24);
             const booksId = e?.booksId;
-            console.log(booksId._id,"bookId");
+            console.log(booksId._id, "bookId");
             return (
               <div>
                 <div
                   className="student-product-view-box shadow"
-                  // onClick={() => {
-                  //   navigate(`/tutor/return-books/${e._id}`);
-                  // }}
+                  onClick={() => {
+                    navigate(`/studentReturnBook/${e._id}`);
+                  }}
                 >
                   <div className="">
                     <img
@@ -67,6 +86,13 @@ export const StudentActiveRental = () => {
                   <h5 className="py-1"></h5>
                   <p>{booksId?.bookTitle}</p>
                   <h5 className="mb-5">{booksId?.category}</h5>
+                  <h4 className="tutorActiveRentalFine">
+                    {numberOfRendedDate > 15 ? (
+                      <p>fine:{numberOfRendedDate * 10}</p>
+                    ) : (
+                      <p></p>
+                    )}
+                  </h4>
                 </div>
               </div>
             );

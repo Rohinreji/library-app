@@ -98,6 +98,9 @@ export const AdminSideBar = ({ changeSelectedPage }) => {
           >
             Tutor return request
           </li>
+          <li className="text-danger fs-3" onClick={()=>{
+            localStorage.removeItem("adminId")
+          }}>Logout</li>
         </ul>
       </div>
     </div>

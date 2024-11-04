@@ -12,36 +12,40 @@ import { AdminViewApprovedStudent } from "../adminViewApprovedStudent/adminViewA
 
 import { AdminViewAllBook } from "../adminViewAllBook/adminViewAllBooks";
 
-
 export const AdminDashboard = () => {
   const [selectedpage, setSelectedPage] = useState("adminViewBooks");
   const changeSelectedPage = (value) => {
     setSelectedPage(value);
   };
 
-const redirectToAdminViewAllBook = () =>
-{
-setSelectedPage("adminViewBooks")
-}
+  const redirectToAdminViewAllBook = () => {
+    setSelectedPage("adminViewBooks");
+  };
+  let adminId = localStorage.getItem("adminId");
 
   return (
-    <div className="row">
-      <div className="col-2">
-
-        <AdminSideBar changeSelectedPage={changeSelectedPage} />
-      </div>
-      <div className="col-10">
-        {selectedpage === "adminAddBook" && <AdminAddProduct />}
-        {selectedpage === "approveTutor" && <AdminApproveTutor />}
-        {selectedpage === "viewAllTutor" && <AdminViewApproveTutor />}
-        {selectedpage === "approveRentOfTutor" && <AdminViewAllRental />}
-        {selectedpage === "viewRentedBooksByTutor" && <AdminViewRentedBooks />}
-        {selectedpage === "tutorReturnReq" && <AdminViewReturnReq />}
-        {selectedpage === "approveStudent" && <AdminViewStudentRequest />}
-        {selectedpage === "approvedStudent" && <AdminViewApprovedStudent />}
-      </div>
+    <div>
+      {adminId ? (
+        <div className="row">
+          <div className="col-2">
+            <AdminSideBar changeSelectedPage={changeSelectedPage} />
+          </div>
+          <div className="col-10">
+            {selectedpage === "adminAddBook" && <AdminAddProduct />}
+            {selectedpage === "approveTutor" && <AdminApproveTutor />}
+            {selectedpage === "viewAllTutor" && <AdminViewApproveTutor />}
+            {selectedpage === "approveRentOfTutor" && <AdminViewAllRental />}
+            {selectedpage === "viewRentedBooksByTutor" && (
+              <AdminViewRentedBooks />
+            )}
+            {selectedpage === "tutorReturnReq" && <AdminViewReturnReq />}
+            {selectedpage === "approveStudent" && <AdminViewStudentRequest />}
+            {selectedpage === "approvedStudent" && <AdminViewApprovedStudent />}
+          </div>
+        </div>
+      ) : (
+        <p>Please login </p>
+      )}
     </div>
-
-   
   );
 };

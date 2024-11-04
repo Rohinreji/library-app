@@ -22,12 +22,13 @@ function AdminLogin() {
   const handleChanges = (data) => {
     setAdminData({ ...adminData, [data.target.name]: data.target.value });
   };
+
   const clickPassword = () => {
     SetShowPassword(!showPassword);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    login()
+    login();
 
     console.log("admin", adminData);
     const { email, password } = adminData;
@@ -48,7 +49,9 @@ function AdminLogin() {
       toast.error("password is incorrect");
     } else {
       toast.success("login successfully");
-      navigate("/admin/dashBoard")
+     let adminId = 1;
+      localStorage.setItem("adminId", adminId);
+      navigate("/admin/dashBoard");
     }
   };
 

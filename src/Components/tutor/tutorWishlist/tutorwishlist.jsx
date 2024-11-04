@@ -6,7 +6,7 @@ import img from "../../../Assests/noDataFound.jpg";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import "./tutorWishlist.css";
-export const Tutorwishlist = () => {
+export const Tutorwishlist = ({reDirectToViewSingleBook}) => {
   const [heart, setHeart] = useState(false);
   const [data, setData] = useState([]);
   const navigate = useNavigate();
@@ -63,7 +63,7 @@ export const Tutorwishlist = () => {
           </div>{" "}
         </div>
       ) : (
-        <div className="d-flex flex-wrap gap-4 justify-content-between px-5 py-5">
+        <div className="d-flex flex-wrap gap-5 px-5 py-5">
           {data.map((e) => {
             const booksId = e?.booksId;
             return (
@@ -75,7 +75,8 @@ export const Tutorwishlist = () => {
                       alt=""
                       className="student-product-view-box-img "
                       onClick={() => {
-                        navigate(`/tutor/view-single-product/${booksId._id}`);
+                        // navigate(`/tutor/view-single-product/${booksId._id}`);
+                        reDirectToViewSingleBook(booksId._id)
                       }}
                     />
 

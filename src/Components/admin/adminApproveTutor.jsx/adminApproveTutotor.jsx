@@ -71,7 +71,7 @@ export const AdminApproveTutor = () => {
   };
 
   const handleSearch = (e) => {
-    const value = e.target.value;
+    const value = e.target.value; 
     if (value) {
       const filterData = fixedData.filter((item) => {
         return `${item.firstName}${item.lastName}`

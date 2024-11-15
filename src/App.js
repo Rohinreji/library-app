@@ -49,6 +49,8 @@ import { AdminViewApprovedStudent } from "./Components/admin/adminViewApprovedSt
 import { StudentActiveRental } from "./Components/student/studentActiveRental/studentActiveRental";
 import { StudentCart } from "./Components/student/studentCart/studentCart";
 import { StudentReturnBooks } from "./Components/student/studentReturnBook/studentReturnBook";
+import { MyVerticallyCenteredModal } from "./Components/admin/adminLoginModal/adminLoginModal";
+import { Studentwishlist } from "./Components/student/studentWishlist/studentWishlist";
 
 function App() {
   return (
@@ -91,6 +93,7 @@ function App() {
             path="/studentReturnBook/:id"
             element={<StudentReturnBooks />}
           />
+          <Route path="/studentViewWishlist" element={<Studentwishlist />} />
           {/* common */}
           <Route path="/commonNavbar" element={<CommonNavbar />} />
           <Route path="/footer" element={<Footer />} />
@@ -132,7 +135,7 @@ function App() {
           <Route path="/admin/sidebar" element={<AdminSideBar />} />
           <Route path="/admin/dashBoard" element={<AdminDashboard />} />
           <Route path="/admin/viewAllBooks" element={<AdminViewAllBook />} />
-          
+
           {/* tutor */}
           <Route path="/tutorLogin" element={<TutorLogin />} />
           <Route path="/tutorSignup" element={<TutorSignUp />} />
@@ -182,6 +185,8 @@ function App() {
           <Route path="/tutor/wishlist" element={<Tutorwishlist />} />
           {/* 404 page */}
           <Route path="/*" element={<h1>The page not available</h1>} />
+
+          <Route path="/adminModal" element={<MyVerticallyCenteredModal />} />
         </Routes>
       </BrowserRouter>
     </>

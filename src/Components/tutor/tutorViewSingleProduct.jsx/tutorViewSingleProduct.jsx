@@ -10,7 +10,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import { BASE_URL } from "../../../apis/baseURL";
 import axiosInstance from "../../../apis/axiosInstance";
-export const TutorviewSingleProduct = ({productId,redirectToCart}) => {
+export const TutorviewSingleProduct = ({ productId, redirectToCart }) => {
   const [cartCount, setCartCount] = useState(1);
   const [tutorId, setTutorId] = useState("");
   const [rentBookId, setRentBookId] = useState("");
@@ -123,11 +123,8 @@ export const TutorviewSingleProduct = ({productId,redirectToCart}) => {
     updateQuantity(booksId, cartCount);
   };
 
-
-
   // view all cart product
   // these two methords are used to change 'add cart' to "got to cart"
-
 
   const viewCart = async (tutorId) => {
     try {
@@ -141,29 +138,18 @@ export const TutorviewSingleProduct = ({productId,redirectToCart}) => {
       }
     } catch (error) {
       console.log(error);
-    }
-    finally{
-
+    } finally {
     }
   };
 
-
   useEffect(() => {
-
     const id = localStorage.getItem("tutorId");
     viewCart(id);
-
   }, [cartData]);
 
-
-
   const newArray = cartData.find((value) => {
-if(data._id === value?.booksId._id)
-    return true;
+    if (data._id === value?.booksId._id) return true;
   });
-
-
-  
 
   return (
     <div className="student-view-single-product shadow">
@@ -235,30 +221,28 @@ if(data._id === value?.booksId._id)
           </table>
 
           <div className="d-flex my-5">
-            {
-              (newArray?.isActive ? (
-                <button
-                  className="student-view-single-product-addToCart"
-                  onClick={() => {
-                    // navigate("/tutor/cart");
-                    redirectToCart()
-                  }}
-                >
-                  {" "}
-                  <MdOutlineShoppingCart /> got to Cart
-                </button>
-              ) : (
-                <button
-                  className="student-view-single-product-addToCart"
-                  onClick={() => {
-                    handleAddToCart(data._id);
-                  }}
-                >
-                  {" "}
-                  <MdOutlineShoppingCart /> Add to cart
-                </button>
-              ))
-            }
+            {newArray?.isActive ? (
+              <button
+                className="student-view-single-product-addToCart"
+                onClick={() => {
+                  // navigate("/tutor/cart");
+                  redirectToCart();
+                }}
+              >
+                {" "}
+                <MdOutlineShoppingCart /> got to Cart
+              </button>
+            ) : (
+              <button
+                className="student-view-single-product-addToCart"
+                onClick={() => {
+                  handleAddToCart(data._id);
+                }}
+              >
+                {" "}
+                <MdOutlineShoppingCart /> Add to cart
+              </button>
+            )}
 
             <button
               className="student-view-single-product-buyNow"

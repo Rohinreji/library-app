@@ -33,42 +33,33 @@ export const TutorCart = () => {
 
   console.log(data, "data ");
 
-
-
-
-
-
-  const addBookQuantity =async (id,quantity) =>
-    {
-
+  const addBookQuantity = async (id, quantity) => {
     try {
-      const response = await axiosInstance.post(`/addBookQuantity/${id}`,{quantity})
-      if(response.status ===200)
-      {
+      const response = await axiosInstance.post(`/addBookQuantity/${id}`, {
+        quantity,
+      });
+      if (response.status === 200) {
         console.log("book quantity added");
       }
     } catch (error) {
       console.log(error);
     }
-    }
+  };
 
-
-    const handleRemove = async (cartId) => {
-      try {
-        const response = await axiosInstance.post(
-          `tutorRemoveFromCart/${cartId}`
-        );
-        if (response.status === 200) {
-          toast.success("removed from cart");
-        }
-      } catch (error) {
-        console.log(error);
-      } finally {
-        getData();
+  const handleRemove = async (cartId) => {
+    try {
+      const response = await axiosInstance.post(
+        `tutorRemoveFromCart/${cartId}`
+      );
+      if (response.status === 200) {
+        toast.success("removed from cart");
       }
-    };
-
-    
+    } catch (error) {
+      console.log(error);
+    } finally {
+      getData();
+    }
+  };
 
   const rentAllBooks = async () => {
     try {
@@ -82,9 +73,6 @@ export const TutorCart = () => {
       console.log(error);
     }
   };
-
-
-  
 
   return (
     <div>
@@ -153,10 +141,9 @@ export const TutorCart = () => {
                     <Button
                       variant="warning"
                       onClick={() => {
-                        addBookQuantity(booksId._id,e.addedQuantity)
+                        addBookQuantity(booksId._id, e.addedQuantity);
 
                         handleRemove(e._id);
-
                       }}
                     >
                       Remove

@@ -45,17 +45,45 @@ export const StudentCart = () => {
       getData();
     }
   };
-  const clickToRemove = (cartId) => {
-    removeBookFromCart(cartId);
-    console.log("cartid", cartId);
+  const updateQuantity = async (id, quantity) => {
+    console.log("id", id);
+    console.log("qua", quantity);
+
+    try {
+      const response = await axiosInstance.post(`/addBookQuantity/${id}`, {
+        quantity,
+      });
+      if (response.status === 200) {
+        console.log("quantity added");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
+  const clickToRemove = (Id) => {
+    removeBookFromCart(Id);
+    console.log("cartid", Id);
+  };
+
+  const rentAllBook = async () => {
+    try {
+      const response = await axiosInstance.post("/rentAllBookFromCart", {
+        studentId,
+      });
+      if (response.status === 200) {
+        toast.success(response.data.msg);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong!!");
+    }
+  };
   return (
     <div className="tutorCartMainBox">
       <h2>Cart</h2>
       {data.map((e, index) => {
         const booksId = e?.booksId;
-
         return (
           <div key={index} className="tutorCartBody shadow">
             <Row>
@@ -105,6 +133,7 @@ export const StudentCart = () => {
                   variant="warning"
                   onClick={() => {
                     clickToRemove(e._id);
+                    updateQuantity(booksId._id, e.addedQuantity);
                   }}
                 >
                   Remove
@@ -114,10 +143,7 @@ export const StudentCart = () => {
           </div>
         );
       })}
-      <button
-        className="tutorCart-rentAllBook"
-        // onClick={rentAllBooks}
-      >
+      <button className="tutorCart-rentAllBook" onClick={rentAllBook}>
         Rent all Books
       </button>
     </div>

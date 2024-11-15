@@ -5,15 +5,16 @@ import { BASE_URL } from "../../../apis/baseURL";
 import img from "../../../Assests/noDataFound.jpg";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import "./tutorWishlist.css";
-export const Tutorwishlist = ({ reDirectToViewSingleBook }) => {
+export const Studentwishlist = ({ reDirectToViewSingleBook }) => {
   const [heart, setHeart] = useState(false);
   const [data, setData] = useState([]);
   const navigate = useNavigate();
-  const tutorId = localStorage.getItem("tutorId");
+  const studentId = localStorage.getItem("studentId");
   const getData = async () => {
     try {
-      const response = await axiosInstance.get(`/viewAllWishlist/${tutorId}`);
+      const response = await axiosInstance.get(
+        `/studentViewAllWishlist/${studentId}`
+      );
       if (response.status === 200) {
         setData(response.data.data);
       }
@@ -31,10 +32,10 @@ export const Tutorwishlist = ({ reDirectToViewSingleBook }) => {
   const removeFromWishlist = async (booksId) => {
     try {
       console.log(booksId, "booksId");
-      console.log(tutorId, "tutorId");
-      const response = await axiosInstance.post("/tutorRemoveFromWishlist", {
+      
+      const response = await axiosInstance.post("/removeFromWishlist", {
         booksId,
-        tutorId,
+        studentId,
       });
       if (response.status === 200) {
         toast.success("removed from wishlist");

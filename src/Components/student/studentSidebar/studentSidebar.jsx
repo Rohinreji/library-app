@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import "./studentSidebar.css";
 import { useNavigate } from "react-router-dom";
-export const  StudentSidebar = ({ changeSelectedPage }) => {
+export const StudentSidebar = ({ changeSelectedPage }) => {
   const [dropCat, setDropCat] = useState(false);
   const navigate = useNavigate();
   const removeStudentId = () => {
@@ -33,9 +33,21 @@ export const  StudentSidebar = ({ changeSelectedPage }) => {
             >
               Active Rentals
             </li>
-            <li>Wishlist</li>
-            <li>Cart</li>
-            <li>Request book</li>
+            <li
+              onClick={() => {
+                changeSelectedPage("studentWishlist");
+              }}
+            >
+              Wishlist
+            </li>
+            <li
+              onClick={() => {
+                changeSelectedPage("studentCart");
+              }}
+            >
+              Cart
+            </li>
+            <li>Profile</li>
 
             <li
               className="text-danger fs-3 fw-bolder"

@@ -6,14 +6,14 @@ import { IoSearch } from "react-icons/io5";
 import { BASE_URL } from "../../../apis/baseURL";
 import { useNavigate } from "react-router-dom";
 
-export const StudentActiveRental = () => {
+export const StudentActiveRental = ({redirectToReturnBook}) => {
   const [data, setdata] = useState([]);
   const navigate = useNavigate();
   const studentId = localStorage.getItem("studentId");
 
   const getData = async () => {
-    console.log("std",studentId);
-    
+    console.log("std", studentId);
+
     try {
       const response = await axios.post(
         "http://localhost:3005/studentViewApprovedRentals",
@@ -73,7 +73,8 @@ export const StudentActiveRental = () => {
                 <div
                   className="student-product-view-box shadow"
                   onClick={() => {
-                    navigate(`/studentReturnBook/${e._id}`);
+                    // navigate(`/studentReturnBook/${e._id}`);
+                    redirectToReturnBook(e._id);
                   }}
                 >
                   <div className="">
@@ -88,7 +89,7 @@ export const StudentActiveRental = () => {
                   <h5 className="mb-5">{booksId?.category}</h5>
                   <h4 className="tutorActiveRentalFine">
                     {numberOfRendedDate > 15 ? (
-                      <p>fine:{numberOfRendedDate * 10}</p>
+                      <p>fine:{numberOfRendedDate * 10 - 150}</p>
                     ) : (
                       <p></p>
                     )}

@@ -15,18 +15,18 @@ import toast from "react-hot-toast";
 import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
 
-export const StudentViewBook = () => {
+export const StudentViewBook = ({ reDirectToViewSingleBook }) => {
   const [fixedData, setFixedData] = useState([]);
   const [data, setData] = useState([]);
   const navigate = useNavigate();
   const [favBtn, setFavBtn] = useState();
   const [studentId, setStudentId] = useState();
   const [wishlist, setWishlist] = useState();
-  const [booksId,setBookId]=useState()
+  const [booksId, setBookId] = useState();
 
-  const reDirectToViewSingleBook = (id) => {
-    navigate(`/student/view-single-product/${id}`);
-  };
+  // const reDirectToViewSingleBook = (id) => {
+  //   navigate(`/student/view-single-product/${id}`);
+  // };
 
   const addToWishlist = async (booksId) => {
     try {
@@ -40,8 +40,8 @@ export const StudentViewBook = () => {
       }
     } catch (error) {
       console.log(error);
-    }finally{
-      getData()
+    } finally {
+      getData();
     }
   };
   const clickToWishlist = (booksId) => {
@@ -59,8 +59,8 @@ export const StudentViewBook = () => {
       }
     } catch (error) {
       console.log(error);
-    }finally{
-      getData()
+    } finally {
+      getData();
     }
   };
   console.log("wishId", wishlist);
@@ -123,14 +123,13 @@ export const StudentViewBook = () => {
         {data.length === 0 ? (
           <h2 className="text-center">no data found </h2>
         ) : (
-          <div className="d-flex flex-wrap gap-4 justify-content-between px-5 py-5 student-view-product-body">
+          <div className="d-flex flex-wrap gap-4  px-5 py-5 student-view-product-body">
             {data.map((e, index) => {
-                const wishlistArr = e?.wishlistedUserId || [];
-                let isAlreadyWishlisted = false;
-  
-                if (wishlistArr.includes(studentId)) {
-                  isAlreadyWishlisted = true;
-                }
+              const wishlistArr = e?.wishlistedUserId || [];
+              let isAlreadyWishlisted = false;
+              if (wishlistArr.includes(studentId)) {
+                isAlreadyWishlisted = true;
+              }
               return (
                 <div className="student-product-view-box shadow" key={e.id}>
                   <div className="">

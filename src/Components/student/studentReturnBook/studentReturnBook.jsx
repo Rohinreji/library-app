@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { BASE_URL } from "../../../apis/baseURL";
 import toast from "react-hot-toast";
 
-export const StudentReturnBooks = () => {
+export const StudentReturnBooks = ({productId}) => {
   const { id } = useParams();
   const [data, setData] = useState([]);
   const [rentData, setRentData] = useState("");
@@ -18,7 +18,7 @@ export const StudentReturnBooks = () => {
   const getData = async () => {
     try {     
       const response = await axiosInstance.post(
-        `/approveStdRentalSingleBook/${id}`
+        `/approveStdRentalSingleBook/${productId}`
       );
       console.log(response);
       if (response.status === 200) {
@@ -32,7 +32,7 @@ export const StudentReturnBooks = () => {
   console.log(rentedCopies, "renteddCoptis");
   
   useEffect(() => {
-    setRentedCopies(rentData.addedQuantity);
+    setRentedCopies(rentData?.addedQuantity);
     getData();
   }, []);
 
@@ -56,7 +56,7 @@ export const StudentReturnBooks = () => {
   const addBookQuantity = async () => {
     try {
       const respone = await axiosInstance.post(`/addBookQuantity/${data._id}`, {
-        quantity: rentData.addedQuantity,
+        quantity: rentData?.addedQuantity,
       });
       if (respone.status === 200) {
         console.log("book quantity added");
@@ -91,22 +91,22 @@ export const StudentReturnBooks = () => {
                 <tr>
                   <td> book title</td>
                   <td>:</td>
-                  <td>{data.bookTitle}</td>
+                  <td>{data?.bookTitle}</td>
                 </tr>
                 <tr>
                   <td>author</td>
                   <td>:</td>
-                  <td>{data.author}</td>
+                  <td>{data?.author}</td>
                 </tr>
                 <tr>
                   <td>language</td>
                   <td>:</td>
-                  <td>{data.language}</td>
+                  <td>{data?.language}</td>
                 </tr>
                 <tr>
                   <td>Rented copies</td>
                   <td>:</td>
-                  <td>{rentData.addedQuantity}</td>
+                  <td>{rentData?.addedQuantity}</td>
                 </tr>
               </tbody>
             </table>

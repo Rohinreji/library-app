@@ -21,6 +21,7 @@ export const TutorviewSingleProduct = ({ productId, redirectToCart }) => {
   const navigate = useNavigate();
   // book details api call
 
+
   const getData = async () => {
     try {
       const response = await axios.get(
@@ -145,7 +146,10 @@ export const TutorviewSingleProduct = ({ productId, redirectToCart }) => {
   useEffect(() => {
     const id = localStorage.getItem("tutorId");
     viewCart(id);
-  }, [cartData]);
+
+  }, [data]);
+
+
 
   const newArray = cartData.find((value) => {
     if (data._id === value?.booksId._id) return true;

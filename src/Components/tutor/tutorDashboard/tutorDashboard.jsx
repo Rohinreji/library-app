@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { Tutorwishlist } from "../tutorWishlist/tutorwishlist";
 import { TutorviewSingleProduct } from "../tutorViewSingleProduct.jsx/tutorViewSingleProduct";
 import { TutorReturnBooks } from "../tutorReturnBooks/tutorReturnBooks";
+import { BiLogIn } from "react-icons/bi";
 
 export const TutorDashboard = () => {
   const navigate = useNavigate();
@@ -16,23 +17,31 @@ export const TutorDashboard = () => {
   const changeSelectedPage = (value) => {
     setSelectedPage(value);
   };
+  const [fine,setFine] = useState("")
 
-  const reDirectToViewSingleBook = (value) => {
-    // navigate(`/tutor/view-single-product/${value}`)
-    setProductId(() => value);
-    setSelectedPage("tutorViewSingleProduct");
-  };
+  const reDirectToViewSingleBook = (value) =>
+  {
+    
+// navigate(`/tutor/view-single-product/${value}`)
+setProductId(()=>value)
+setSelectedPage("tutorViewSingleProduct")
+  }
 
   const redirectToReturnBook = (id) => {
     setProductId(() => id);
     setSelectedPage("redirectToReturnBook");
   };
 
-  const redirectToCart = () => {
-    setSelectedPage("cart");
-  };
-
+  const redirectToCart = () =>
+  {
+    setSelectedPage("cart")
+  }
   
+  const getFine = (value) =>
+  {
+setFine(value)
+  }
+
   return (
     <div className="row">
       <div className="col-2">
@@ -50,6 +59,9 @@ export const TutorDashboard = () => {
         )}
         {selectePage === "cart" && <TutorCart />}
         {selectePage === "profile" && <TutorProfile />}
+        {selectePage === "activeRental" && <TutorActiveRental redirectToReturnBook={redirectToReturnBook} getFine={getFine} />}
+        {selectePage ==="redirectToReturnBook" && <TutorReturnBooks productId={productId} fine={fine}/>}
+        {selectePage === "tutorWishlist" && <Tutorwishlist reDirectToViewSingleBook={reDirectToViewSingleBook}/>} 
         {selectePage === "activeRental" && (
           <TutorActiveRental redirectToReturnBook={redirectToReturnBook} />
         )}

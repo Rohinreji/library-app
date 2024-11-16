@@ -7,7 +7,7 @@ import { BASE_URL } from "../../../apis/baseURL";
 import { useNavigate } from "react-router-dom";
 import img from "../../../Assests/noDataFound.jpg";
 import "./tutorActiveRental.css";
-export const TutorActiveRental = ({redirectToReturnBook}) => {
+export const TutorActiveRental = ({redirectToReturnBook,getFine}) => {
   const [data, setData] = useState([]);
   const [fixedData, setFixedData] = useState([]);
   const navigate = useNavigate();
@@ -94,10 +94,12 @@ export const TutorActiveRental = ({redirectToReturnBook}) => {
               );
 
               // const numberOfRendedDate = lastSubmissionDate - approvedDate;
-              const timeDifference = date2.getTime() - date1.getTime();
+              const timeDifference = date1.getTime() - date2.getTime();
+              
               const numberOfRendedDate = timeDifference / (1000 * 3600 * 24); // 1000 ms/s, 3600 s/h, 24 h/day
 
               console.log(numberOfRendedDate);
+              // getFine(numberOfRendedDate*10)
 
               const booksId = e?.booksId;
 
@@ -122,7 +124,8 @@ export const TutorActiveRental = ({redirectToReturnBook}) => {
                       <h5>{booksId?.category}</h5>
                       <h4 className="tutorActiveRentalFine">
                         {numberOfRendedDate > 15 ? (
-                          <p>fine:{numberOfRendedDate * 10}</p>
+                          <p>fine:{numberOfRendedDate * 10 - (150)}</p>
+                          
                         ) : (
                           <p></p>
                         )}

@@ -1,0 +1,78 @@
+.adminChatinterface-body
+{
+    margin-top: 10%;
+    height:65vh;
+    width:80%;
+    position: relative;
+    overflow-y: scroll;
+}
+
+.adminChatinterface-body::-webkit-scrollbar {
+    display: none;
+}
+
+.adminChatinterface-chat
+{
+    height: 15vh;
+    width: 80%;
+    background-color: rgba(0, 255, 255, 0.201);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.adminChatinterface-text
+{
+    padding-left: 20px;
+    width:600px;
+    height: 40px;
+    border-radius: 10px;
+}
+.adminChatinterface-btn
+{
+    height:40px;
+    width: 10%;
+    background-color: blue;
+    color: whitesmoke;
+    font-size: 20px;
+    border-radius: 10px;
+
+}
+.adminChatBox-1
+{
+    width: fit-content;
+    max-width: 90%;
+    min-height: 47px;
+    border-radius: 9px;
+    text-align: left;
+    color: black;
+    background-color: #e4daec;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 8px 8px 0px 8px;
+    position: relative;
+    left: 5px;
+    display: block;
+    clear: both;
+    word-break: break-all;
+
+}
+.adminChatBox-2
+{
+    width: fit-content;
+    max-width: 90%;
+    min-height: 47px;
+    border-radius: 9px;
+    text-align: left;
+    color: black;
+    background-color: #d375dcef;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 8px 8px 0px 8px;
+    position: relative;
+    left: 5px;
+    display: block;
+    clear: both; 
+    word-break: break-all;
+
+}

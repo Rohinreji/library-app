@@ -11,6 +11,8 @@ import { AdminViewStudentRequest } from "../adminViewStudentRequest/adminViewStu
 import { AdminViewApprovedStudent } from "../adminViewApprovedStudent/adminViewApprovedStudent";
 
 import { AdminViewAllBook } from "../adminViewAllBook/adminViewAllBooks";
+import { AdminChatDashBoard } from "../adminChatDashboard/adminChatDashBoard";
+import { AdminPleaseLogin } from "../adminPleaseLogin/adminPleaseLogin";
 import { MyVerticallyCenteredModal } from "../adminLoginModal/adminLoginModal";
 import { AdminViewAllStdRental } from "../adminViewStdRental/adminViewStdRental";
 import { AdminViewStdRented } from "../adminViewStdRented/adminViewStdRented";
@@ -35,6 +37,7 @@ export const AdminDashboard = () => {
             <AdminSideBar changeSelectedPage={changeSelectedPage} />
           </div>
           <div className="col-10">
+            {selectedpage ==="adminViewBooks" && <AdminViewAllBook/>}
             {selectedpage === "adminAddBook" && <AdminAddProduct />}
             {selectedpage === "approveTutor" && <AdminApproveTutor />}
             {selectedpage === "viewAllTutor" && <AdminViewApproveTutor />}
@@ -45,6 +48,7 @@ export const AdminDashboard = () => {
             {selectedpage === "tutorReturnReq" && <AdminViewReturnReq />}
             {selectedpage === "studentReq" && <AdminViewStudentRequest />}
             {selectedpage === "approvedStudent" && <AdminViewApprovedStudent />}
+            {selectedpage === "chat" && <AdminChatDashBoard/>}
             {selectedpage === "viewStdRentals" && <AdminViewAllStdRental />}
             {selectedpage === "viewStdRentedBooks" && <AdminViewStdRented />}
             {selectedpage === "studentReturnRequest" && (
@@ -53,7 +57,7 @@ export const AdminDashboard = () => {
           </div>
         </div>
       ) : (
-        <p> Please login</p>
+        <AdminPleaseLogin/>
       )}
     </div>
   );

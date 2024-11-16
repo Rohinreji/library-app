@@ -42,6 +42,13 @@ export const AdminSideBar = ({ changeSelectedPage }) => {
           >
             Add books
           </li>
+          <li
+            onClick={() => {
+              changeSelectedPage("chat");
+            }}
+          >
+            chat with tutor
+          </li>
           <li onClick={toggleViewTutor}>View tutors</li>
           {viewTutorDD && (
             <div className="shadow mx-3">

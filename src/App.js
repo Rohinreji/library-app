@@ -49,6 +49,11 @@ import { StudentCart } from "./Components/student/studentCart/studentCart";
 import { StudentReturnBooks } from "./Components/student/studentReturnBook/studentReturnBook";
 import { MyVerticallyCenteredModal } from "./Components/admin/adminLoginModal/adminLoginModal";
 import { Studentwishlist } from "./Components/student/studentWishlist/studentWishlist";
+import TutorFinePayment from "./Components/tutor/tutorFinePayment/tutorFinePayment";
+import { TutorChatBox } from "./Components/tutor/tutorChatBox/tutorChatBox";
+import { AdminchatSideBar } from "./Components/admin/adminChatSideBar/adminChatSideBar";
+import { AdminChatDashBoard } from "./Components/admin/adminChatDashboard/adminChatDashBoard";
+import { AdminChatWelcomePage } from "./Components/admin/adminChatWelcome/adminChatWelcome";
 
 function App() {
   return (
@@ -134,6 +139,7 @@ function App() {
           <Route path="/admin/dashBoard" element={<AdminDashboard />} />
           <Route path="/admin/viewAllBooks" element={<AdminViewAllBook />} />
 
+
           {/* tutor */}
           <Route path="/tutorLogin" element={<TutorLogin />} />
           <Route path="/tutorSignup" element={<TutorSignUp />} />
@@ -181,6 +187,13 @@ function App() {
             element={<TutorFilterByCat />}
           />
           <Route path="/tutor/wishlist" element={<Tutorwishlist />} />
+          <Route path="/fine" element={<TutorFinePayment />} />
+
+          {/* chat ui */}
+          <Route path="/tutor/helpDesk" element={<TutorChatBox />} />
+          <Route path="/admin/chatSidebar" element={<AdminchatSideBar />} />
+          <Route path = "/admin/chatDashBoard" element={<AdminChatDashBoard/>} />
+          <Route path="/adminChatWelcomePage" element={<AdminChatWelcomePage/>} />
           {/* 404 page */}
           <Route path="/*" element={<h1>The page not available</h1>} />
 

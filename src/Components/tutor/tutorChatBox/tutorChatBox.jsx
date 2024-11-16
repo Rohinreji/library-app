@@ -57,7 +57,7 @@ export const TutorChatBox = () => {
     console.log(tutorId,"sfds54");
 
     getMessage(tutorId);
-  }, [state]);
+  }, []);
 
   useLayoutEffect(() => {
     scrollToBottom();

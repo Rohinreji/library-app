@@ -99,7 +99,7 @@ export const TutorActiveRental = ({redirectToReturnBook,getFine}) => {
               const numberOfRendedDate = timeDifference / (1000 * 3600 * 24); // 1000 ms/s, 3600 s/h, 24 h/day
 
               console.log(numberOfRendedDate);
-              getFine(numberOfRendedDate*10)
+              // getFine(numberOfRendedDate*10)
 
               const booksId = e?.booksId;
 

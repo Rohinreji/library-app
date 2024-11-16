@@ -21,6 +21,7 @@ export const TutorviewSingleProduct = ({ productId, redirectToCart }) => {
   const navigate = useNavigate();
   // book details api call
 
+
   const getData = async () => {
     try {
       const response = await axios.get(

@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { Tutorwishlist } from "../tutorWishlist/tutorwishlist";
 import { TutorviewSingleProduct } from "../tutorViewSingleProduct.jsx/tutorViewSingleProduct";
 import { TutorReturnBooks } from "../tutorReturnBooks/tutorReturnBooks";
+import { BiLogIn } from "react-icons/bi";
 
 export const TutorDashboard = () => {
   const navigate = useNavigate();
@@ -17,8 +18,10 @@ export const TutorDashboard = () => {
     setSelectedPage(value);
   };
   const [fine,setFine] = useState("")
+
   const reDirectToViewSingleBook = (value) =>
   {
+    
 // navigate(`/tutor/view-single-product/${value}`)
 setProductId(()=>value)
 setSelectedPage("tutorViewSingleProduct")

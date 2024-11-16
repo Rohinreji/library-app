@@ -9,24 +9,27 @@ import { BASE_URL } from "../../../apis/baseURL";
 import { useNavigate, useParams } from "react-router-dom";
 import axiosInstance from "../../../apis/axiosInstance";
 import "./studentViewAllBook.css";
-import { FcLike } from "react-icons/fc";
-import { GrFavorite } from "react-icons/gr";
 import toast from "react-hot-toast";
 import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
+import { SiBookstack } from "react-icons/si";
+import { GiBlackBook } from "react-icons/gi";
+import { FaPenFancy } from "react-icons/fa";
+import { FcApproval } from "react-icons/fc";
+import { FcHighPriority } from "react-icons/fc";
 
-export const StudentViewBook = () => {
+export const StudentViewBook = ({ reDirectToViewSingleBook }) => {
   const [fixedData, setFixedData] = useState([]);
   const [data, setData] = useState([]);
   const navigate = useNavigate();
   const [favBtn, setFavBtn] = useState();
   const [studentId, setStudentId] = useState();
   const [wishlist, setWishlist] = useState();
-  const [booksId,setBookId]=useState()
+  const [booksId, setBookId] = useState();
 
-  const reDirectToViewSingleBook = (id) => {
-    navigate(`/student/view-single-product/${id}`);
-  };
+  // const reDirectToViewSingleBook = (id) => {
+  //   navigate(`/student/view-single-product/${id}`);
+  // };
 
   const addToWishlist = async (booksId) => {
     try {
@@ -40,8 +43,8 @@ export const StudentViewBook = () => {
       }
     } catch (error) {
       console.log(error);
-    }finally{
-      getData()
+    } finally {
+      getData();
     }
   };
   const clickToWishlist = (booksId) => {
@@ -59,8 +62,8 @@ export const StudentViewBook = () => {
       }
     } catch (error) {
       console.log(error);
-    }finally{
-      getData()
+    } finally {
+      getData();
     }
   };
   console.log("wishId", wishlist);
@@ -107,8 +110,14 @@ export const StudentViewBook = () => {
   return (
     <div>
       <div className="student-view-product">
-        <h2 className="px-5 pt-4">view products</h2>
-        <InputGroup className="mb-3 student-serach-box">
+        <div className="student_viewBooks">
+          <h2>
+            {" "}
+            <SiBookstack />
+            Books
+          </h2>
+        </div>
+        <InputGroup className="mb-2 student-serach-box">
           <Form.Control
             placeholder="Search"
             aria-label="search"
@@ -123,17 +132,16 @@ export const StudentViewBook = () => {
         {data.length === 0 ? (
           <h2 className="text-center">no data found </h2>
         ) : (
-          <div className="d-flex flex-wrap gap-4 justify-content-between px-5 py-5 student-view-product-body">
+          <div className="d-flex flex-wrap gap-5  px-5 py-5 student-view-product-body">
             {data.map((e, index) => {
-                const wishlistArr = e?.wishlistedUserId || [];
-                let isAlreadyWishlisted = false;
-  
-                if (wishlistArr.includes(studentId)) {
-                  isAlreadyWishlisted = true;
-                }
+              const wishlistArr = e?.wishlistedUserId || [];
+              let isAlreadyWishlisted = false;
+              if (wishlistArr.includes(studentId)) {
+                isAlreadyWishlisted = true;
+              }
               return (
-                <div className="student-product-view-box shadow" key={e.id}>
-                  <div className="">
+                <div className="student-product-view-box " key={e.id}>
+                  <div className="student-product-viewer">
                     <img
                       src={`${BASE_URL}${e?.bookImage?.filename}`}
                       alt=""
@@ -162,21 +170,17 @@ export const StudentViewBook = () => {
                       )}
                     </div>
                   </div>
-                  <h5 className="py-1">{e?.bookTitle} </h5>
-                  <p>
-                    {/* {e?.description?.length > 15
-                      ? e.description?.substring(0, 28) + "..."
-                      : e.description}{" "} */}
-                    {e?.author}
+                  <h5 className="student_viewBookTitle">
+                    <GiBlackBook /> {e?.bookTitle}{" "}
+                  </h5>
+                  <p style={{ height: "20px" ,marginLeft:"8px" }}>
+                    <FaPenFancy  style={{fontSize:"15px"}}/> {e?.author}
                   </p>
-                  <h5 className="mb-5">
-                    {/* <FaRupeeSign />
-                    {e.price} */}
-                    {/* {e?.status} */}
+                  <h5 className="student_viewBookAvailable">
                     {e.availableCopies < 0 ? (
-                      <div>Not Available</div>
+                      <div> <FcHighPriority />Not Available</div>
                     ) : (
-                      <div>Available</div>
+                      <div> <FcApproval /> Available</div>
                     )}
                   </h5>
                 </div>

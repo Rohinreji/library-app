@@ -5,15 +5,21 @@ import { BASE_URL } from "../../../apis/baseURL";
 import img from "../../../Assests/noDataFound.jpg";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import "./tutorWishlist.css";
-export const Tutorwishlist = ({ reDirectToViewSingleBook }) => {
+import { GiBlackBook } from "react-icons/gi";
+import { BiCategory } from "react-icons/bi";
+import { FcApproval } from "react-icons/fc";
+import { FcHighPriority } from "react-icons/fc";
+
+export const Studentwishlist = ({ reDirectToViewSingleBook }) => {
   const [heart, setHeart] = useState(false);
   const [data, setData] = useState([]);
   const navigate = useNavigate();
-  const tutorId = localStorage.getItem("tutorId");
+  const studentId = localStorage.getItem("studentId");
   const getData = async () => {
     try {
-      const response = await axiosInstance.get(`/viewAllWishlist/${tutorId}`);
+      const response = await axiosInstance.get(
+        `/studentViewAllWishlist/${studentId}`
+      );
       if (response.status === 200) {
         setData(response.data.data);
       }
@@ -31,10 +37,10 @@ export const Tutorwishlist = ({ reDirectToViewSingleBook }) => {
   const removeFromWishlist = async (booksId) => {
     try {
       console.log(booksId, "booksId");
-      console.log(tutorId, "tutorId");
-      const response = await axiosInstance.post("/tutorRemoveFromWishlist", {
+
+      const response = await axiosInstance.post("/removeFromWishlist", {
         booksId,
-        tutorId,
+        studentId,
       });
       if (response.status === 200) {
         toast.success("removed from wishlist");
@@ -48,7 +54,11 @@ export const Tutorwishlist = ({ reDirectToViewSingleBook }) => {
 
   return (
     <div className="tutorWishlist">
-      <h2 className="my-3">wishlist</h2>
+      <div className="student_viewBooks d-flex">
+        <FaHeart style={{ fontSize: "25px", marginRight: "2px" }} />
+        <h2>Wishlist</h2>
+      </div>
+
       {data.length <= 0 ? (
         <div
           className="tuturWishlist-noData"
@@ -65,7 +75,7 @@ export const Tutorwishlist = ({ reDirectToViewSingleBook }) => {
             const booksId = e?.booksId;
             return (
               <div>
-                <div className="student-product-view-box shadow">
+                <div className="student-product-view-box ">
                   <div className="">
                     <img
                       src={`${BASE_URL}${booksId?.bookImage?.filename}`}
@@ -88,9 +98,29 @@ export const Tutorwishlist = ({ reDirectToViewSingleBook }) => {
                     </div>
                   </div>
                   <div className="tutorWishlist-text">
-                    <h5 className="py-1">{booksId.bookTitle}</h5>
-                    <p>{booksId.category}</p>
-                    <h5 className="mb-5">{booksId?.status}</h5>
+                    <h5 className="student_viewBookTitle">
+                      {" "}
+                      <GiBlackBook />
+                      {booksId.bookTitle}
+                    </h5>
+                    <p className="std_wishlistCategory">
+                      <BiCategory />
+                      {booksId.category}
+                    </p>
+                    <h5 className="student_viewBookAvailable">
+                      {e.availableCopies < !0 ? (
+                        <div>
+                          {" "}
+                          <FcHighPriority />
+                          Not Available
+                        </div>
+                      ) : (
+                        <div>
+                          {" "}
+                          <FcApproval /> Available
+                        </div>
+                      )}
+                    </h5>
                   </div>
                 </div>
               </div>

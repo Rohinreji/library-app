@@ -1,7 +1,9 @@
 .tutorCartBody {
   height: 8 50vh;
-  width: 98%;
-  margin-top: 3%;
+  width: 90%;
+  margin: 4%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 5px;
 }
 .tutorCartBody img {
   height: 98%;
@@ -19,11 +21,12 @@
 .tutorCart-rentAllBook {
   height: 45px;
   width: 250px;
-  background-color: #2fda93;
+  background-color: #1fbf7c;
   color: white;
   font-size: 25px;
   font-weight: 600;
-  border-radius: 5px;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  border-radius: 10px;
+  border: 1px;
+  margin: 30px 40%;
+  font-family: poppins;
 }

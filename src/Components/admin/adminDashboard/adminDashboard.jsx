@@ -13,6 +13,10 @@ import { AdminViewApprovedStudent } from "../adminViewApprovedStudent/adminViewA
 import { AdminViewAllBook } from "../adminViewAllBook/adminViewAllBooks";
 import { AdminChatDashBoard } from "../adminChatDashboard/adminChatDashBoard";
 import { AdminPleaseLogin } from "../adminPleaseLogin/adminPleaseLogin";
+import { MyVerticallyCenteredModal } from "../adminLoginModal/adminLoginModal";
+import { AdminViewAllStdRental } from "../adminViewStdRental/adminViewStdRental";
+import { AdminViewStdRented } from "../adminViewStdRented/adminViewStdRented";
+import { AdminViewReturnStdReq } from "../adminViewReturnStdReq/AdminViewReturnStdReq";
 
 export const AdminDashboard = () => {
   const [selectedpage, setSelectedPage] = useState("adminViewBooks");
@@ -42,9 +46,14 @@ export const AdminDashboard = () => {
               <AdminViewRentedBooks />
             )}
             {selectedpage === "tutorReturnReq" && <AdminViewReturnReq />}
-            {selectedpage === "approveStudent" && <AdminViewStudentRequest />}
+            {selectedpage === "studentReq" && <AdminViewStudentRequest />}
             {selectedpage === "approvedStudent" && <AdminViewApprovedStudent />}
             {selectedpage === "chat" && <AdminChatDashBoard/>}
+            {selectedpage === "viewStdRentals" && <AdminViewAllStdRental />}
+            {selectedpage === "viewStdRentedBooks" && <AdminViewStdRented />}
+            {selectedpage === "studentReturnRequest" && (
+              <AdminViewReturnStdReq />
+            )}
           </div>
         </div>
       ) : (

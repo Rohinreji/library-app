@@ -13,19 +13,20 @@ import { useParams } from "react-router-dom";
 import { BASE_URL } from "../../../apis/baseURL";
 import toast from "react-hot-toast";
 import axiosInstance from "../../../apis/axiosInstance";
-export const StudentviewSingleProduct = () => {
+export const StudentviewSingleProduct = ({ productId, reDirectToCart }) => {
   const [cartCount, setCartCount] = useState(1);
   const [data, SetData] = useState({});
   const [studentId, SetStudentId] = useState();
-  const { id } = useParams();
+  const [cartData, setCartData] = useState([]);
   const [rentNowApprove, setRentNowApprove] = useState(false);
 
   const getData = async () => {
+    console.log(productId, "or");
     try {
       const response = await axios.get(
-        `http://localhost:3005/view-single-product/${id}`
+        `http://localhost:3005/view-single-product/${productId}`
       );
-      if (response.status == 200) {
+      if (response.status === 200) {
         SetData(response.data.data);
       }
     } catch (error) {
@@ -41,7 +42,6 @@ export const StudentviewSingleProduct = () => {
     }
     getData();
   }, []);
-  console.log("std", studentId);
 
   const addToCart = async (booksId) => {
     try {
@@ -108,6 +108,27 @@ export const StudentviewSingleProduct = () => {
       console.log(error);
     }
   };
+  const ViewCart = async (studentId) => {
+    try {
+      const response = await axiosInstance.post("/studentViewCart", {
+        studentId,
+      });
+      if (response.status === 200) {
+        setCartData(response.data.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    const studentId = localStorage.getItem("studentId");
+    ViewCart(studentId);
+  }, [data]);
+  console.log("cart", cartData);
+  const newArray = cartData.find((value) => {
+    if (data._id === value?.booksId._id) return true;
+  });
+
   return (
     <div className="student-view-single-product shadow">
       <Row>
@@ -180,7 +201,7 @@ export const StudentviewSingleProduct = () => {
             </tr>
           </table>
           <div className="d-flex my-5">
-            <button
+            {/* <button
               className="student-view-single-product-addToCart"
               style={{ cursor: "pointer" }}
               onClick={() => {
@@ -189,7 +210,30 @@ export const StudentviewSingleProduct = () => {
             >
               {" "}
               <MdOutlineShoppingCart /> Add to cart
-            </button>
+            </button> */}
+
+            {newArray?.isActive ? (
+              <button
+                className="student-view-single-product-addToCart"
+                onClick={() => {
+                  // navigate("/tutor/cart");
+                  reDirectToCart();
+                }}
+              >
+                {" "}
+                <MdOutlineShoppingCart /> Go to Cart
+              </button>
+            ) : (
+              <button
+                className="student-view-single-product-addToCart"
+                onClick={() => {
+                  clickToCart(data._id);
+                }}
+              >
+                {" "}
+                <MdOutlineShoppingCart /> Add to cart
+              </button>
+            )}
             <button
               className="student-view-single-product-buyNow"
               style={{ cursor: "pointer" }}

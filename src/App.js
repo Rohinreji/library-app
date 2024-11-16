@@ -44,11 +44,11 @@ import { TutorHome } from "./Components/tutor/TutorHome/studentHome";
 import { TutorFilterByCat } from "./Components/tutor/tutorFilterByCat/tutorFilterByCat";
 import { Tutorwishlist } from "./Components/tutor/tutorWishlist/tutorwishlist";
 import { AdminViewAllBook } from "./Components/admin/adminViewAllBook/adminViewAllBooks";
-import { AdminViewStudentRequest } from "./Components/admin/adminViewStudentRequest/adminViewStudentRequest";
-import { AdminViewApprovedStudent } from "./Components/admin/adminViewApprovedStudent/adminViewApprovedStudent";
 import { StudentActiveRental } from "./Components/student/studentActiveRental/studentActiveRental";
 import { StudentCart } from "./Components/student/studentCart/studentCart";
 import { StudentReturnBooks } from "./Components/student/studentReturnBook/studentReturnBook";
+import { MyVerticallyCenteredModal } from "./Components/admin/adminLoginModal/adminLoginModal";
+import { Studentwishlist } from "./Components/student/studentWishlist/studentWishlist";
 import TutorFinePayment from "./Components/tutor/tutorFinePayment/tutorFinePayment";
 import { TutorChatBox } from "./Components/tutor/tutorChatBox/tutorChatBox";
 import { AdminchatSideBar } from "./Components/admin/adminChatSideBar/adminChatSideBar";
@@ -96,6 +96,7 @@ function App() {
             path="/studentReturnBook/:id"
             element={<StudentReturnBooks />}
           />
+          <Route path="/studentViewWishlist" element={<Studentwishlist />} />
           {/* common */}
           <Route path="/commonNavbar" element={<CommonNavbar />} />
           <Route path="/footer" element={<Footer />} />
@@ -137,6 +138,7 @@ function App() {
           <Route path="/admin/sidebar" element={<AdminSideBar />} />
           <Route path="/admin/dashBoard" element={<AdminDashboard />} />
           <Route path="/admin/viewAllBooks" element={<AdminViewAllBook />} />
+
 
           {/* tutor */}
           <Route path="/tutorLogin" element={<TutorLogin />} />
@@ -194,6 +196,8 @@ function App() {
           <Route path="/adminChatWelcomePage" element={<AdminChatWelcomePage/>} />
           {/* 404 page */}
           <Route path="/*" element={<h1>The page not available</h1>} />
+
+          <Route path="/adminModal" element={<MyVerticallyCenteredModal />} />
         </Routes>
       </BrowserRouter>
     </>

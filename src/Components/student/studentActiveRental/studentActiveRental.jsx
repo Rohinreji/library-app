@@ -5,15 +5,17 @@ import InputGroup from "react-bootstrap/InputGroup";
 import { IoSearch } from "react-icons/io5";
 import { BASE_URL } from "../../../apis/baseURL";
 import { useNavigate } from "react-router-dom";
+import { VscFolderActive } from "react-icons/vsc";
+import { GiBlackBook } from "react-icons/gi";
 
-export const StudentActiveRental = () => {
+export const StudentActiveRental = ({redirectToReturnBook}) => {
   const [data, setdata] = useState([]);
   const navigate = useNavigate();
   const studentId = localStorage.getItem("studentId");
 
   const getData = async () => {
-    console.log("std",studentId);
-    
+    console.log("std", studentId);
+
     try {
       const response = await axios.post(
         "http://localhost:3005/studentViewApprovedRentals",
@@ -35,7 +37,12 @@ export const StudentActiveRental = () => {
   return (
     <div>
       <div className="student-view-product">
-        <h2 className="px-5 pt-4">Active rentals</h2>
+      <div className="student_viewBooksActive">
+          <VscFolderActive  className="fs-4"/>
+          <h2>
+           Active Rentals
+          </h2>
+        </div>
         <InputGroup className="mb-3 student-serach-box">
           <Form.Control
             placeholder="Search"
@@ -47,7 +54,7 @@ export const StudentActiveRental = () => {
           </InputGroup.Text>
         </InputGroup>
 
-        <div className="d-flex flex-wrap gap-4 justify-content-between px-5 py-5 student-view-product-body">
+        <div className="d-flex flex-wrap gap-5 justify-content-between px-5 py-5 student-view-product-body">
           {data.map((e, index) => {
             const approvedDate = new Date(e?.approvedDate);
 
@@ -71,9 +78,10 @@ export const StudentActiveRental = () => {
             return (
               <div>
                 <div
-                  className="student-product-view-box shadow"
+                  className="student-product-view-box "
                   onClick={() => {
-                    navigate(`/studentReturnBook/${e._id}`);
+                    // navigate(`/studentReturnBook/${e._id}`);
+                    redirectToReturnBook(e._id);
                   }}
                 >
                   <div className="">
@@ -83,12 +91,13 @@ export const StudentActiveRental = () => {
                       className="student-product-view-box-img"
                     />
                   </div>
-                  <h5 className="py-1"></h5>
-                  <p>{booksId?.bookTitle}</p>
+                  <h5 className="student_viewBookTitle">
+                  <GiBlackBook />{booksId?.bookTitle}
+                  </h5>
                   <h5 className="mb-5">{booksId?.category}</h5>
                   <h4 className="tutorActiveRentalFine">
                     {numberOfRendedDate > 15 ? (
-                      <p>fine:{numberOfRendedDate * 10}</p>
+                      <p>fine:{numberOfRendedDate * 10 - 150}</p>
                     ) : (
                       <p></p>
                     )}

@@ -1,0 +1,62 @@
+.student_viewBooks {
+  width: 200px;
+  height: 50px;
+  border: 1px;
+  border-radius: 6px;
+  padding-top: 10px;
+  padding-left: 2%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin: 4% 0 2% 4%;
+  text-align: left;
+  background-color: aliceblue;
+}
+.student_viewBooks h2 {
+  font-family: poppins;
+  font-size: 25px;
+}
+.student-serach-box {
+  margin-left: 4%;
+}
+.student-product-view-box {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: aliceblue;
+}
+.student-product-viewer {
+  height: 300px;
+}
+.student_viewBookAvailable {
+  font-size: 16px;
+  text-align: left;
+  margin-left: 5px;
+}
+.student_viewBookTitle {
+  font-family: poppins;
+  font-weight: bold;
+  height: 19px;
+  margin-left: 2%;
+}
+.tutorWishlist-text {
+  padding-left: 5px !important;
+  margin: 20px 10px;
+}
+.std_wishlistCategory {
+  margin-left: 10px;
+}
+/* std Active Rentals */
+.student_viewBooksActive{
+    width: 250px;
+    height: 50px;
+    border: 1px;
+    border-radius: 6px;
+    padding-top: 10px;
+    padding-left: 2%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin: 4% 0 2% 4%;
+    text-align: left;
+    background-color: aliceblue;
+    display: flex;
+}
+.student_viewBooksActive h2 {
+    font-family: poppins;
+    font-size: 25px;
+  }

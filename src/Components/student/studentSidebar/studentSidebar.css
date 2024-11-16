@@ -1,35 +1,41 @@
-.student-sidebar
-{
-    height: 100vh;
-    background-color:#2fea9c;
-    width: 278px;
+.student-sidebar {
+  height: 100vh;
+  background-color: #2fea9c;
+  width: 278px;
 }
-.student-sidebar ul
-{
-    list-style: none;
+.student-sidebar ul {
+  list-style: none;
 }
-.student-sidebar li
-{
-    font-size: 21px;
-    font-weight: 700;
-    display: block;
-    padding-top: 6%;
-    padding-bottom: 6%;
-    padding-left: 5%;
-    cursor: pointer;
-    margin-top: 7%;
+.student-sidebar li {
+  font-size: 21px;
+  font-weight: 700;
+  display: block;
+  padding-top: 6%;
+  padding-bottom: 6%;
+  padding-left: 5%;
+  cursor: pointer;
+  margin-top: 7%;
 }
-.student-sidebar li:hover
-{
-    color: black;
+.student-sidebar li:hover {
+  color: black;
 }
 
-.openlibrary-heading
-{
-    font-size: 27px;
-    font-weight: 700;
-    font-family: noto sans;
-    padding-left: 15%;
-    padding-top: 8%;
-    padding-bottom: 10%;
+.openlibrary-heading {
+  font-size: 27px;
+  width: 250px;
+  height: 50px;
+  text-decoration: underline;
+  margin-top: 5%;
+  font-family: poppins;
+}
+.openlibrary-heading h3 {
+  font-size: 28px;
+  font-weight: bolder;
+}
+.wishlist_icon {
+  font-size: 25px;
+  margin-right: 2px;
+}
+.studentSidebar_logout {
+  color: red;
 }

@@ -14,6 +14,7 @@ import { AdminViewAllBook } from "../adminViewAllBook/adminViewAllBooks";
 import { MyVerticallyCenteredModal } from "../adminLoginModal/adminLoginModal";
 import { AdminViewAllStdRental } from "../adminViewStdRental/adminViewStdRental";
 import { AdminViewStdRented } from "../adminViewStdRented/adminViewStdRented";
+import { AdminViewReturnStdReq } from "../adminViewReturnStdReq/AdminViewReturnStdReq";
 
 export const AdminDashboard = () => {
   const [selectedpage, setSelectedPage] = useState("adminViewBooks");
@@ -46,7 +47,9 @@ export const AdminDashboard = () => {
             {selectedpage === "approvedStudent" && <AdminViewApprovedStudent />}
             {selectedpage === "viewStdRentals" && <AdminViewAllStdRental />}
             {selectedpage === "viewStdRentedBooks" && <AdminViewStdRented />}
-            {/* {selectedpage=== "studentReturnRequest"&& } */}
+            {selectedpage === "studentReturnRequest" && (
+              <AdminViewReturnStdReq />
+            )}
           </div>
         </div>
       ) : (

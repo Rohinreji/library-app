@@ -15,7 +15,7 @@ export const AdminViewReturnStdReq = () => {
 
   const getData = async () => {
     try {
-      const response = await axiosInstance.get("adminViewReturnReq");
+      const response = await axiosInstance.post("adminViewReturnStdReq");
       if (response.status === 200) {
         setData(response.data.data);
         setFixedData(response.data.data);
@@ -35,7 +35,7 @@ export const AdminViewReturnStdReq = () => {
 
   const adminApproveReq = async (id) => {
     try {
-      const response = await axiosInstance.post("/adminApproveReturnReq", {
+      const response = await axiosInstance.post("/approveStdBookReturnReq", {
         id,
       });
       if (response.status === 200) {
@@ -52,7 +52,7 @@ export const AdminViewReturnStdReq = () => {
 
   const adminRejectReq = async (id) => {
     try {
-      const response = await axiosInstance.post("adminRejectReturnReq", { id });
+      const response = await axiosInstance.post("/rejectStdBookReturnReq", { id });
       if (response.status === 200) {
         toast.success(response.data.msg);
       }
@@ -69,7 +69,7 @@ export const AdminViewReturnStdReq = () => {
     const value = e.target.value;
     if (value) {
       const filterData = fixedData.filter((item) => {
-        return `${item.firstName}${item.lastName}`
+        return `${item?.firstname}${item?.lastname}`
           .toLowerCase()
           .includes(value.toLowerCase());
       });
@@ -106,16 +106,16 @@ export const AdminViewReturnStdReq = () => {
         </thead>
         {data.map((e, index) => {
           const booksId = e.booksId;
-          const tutorId = e.tutorId;
+          const studentId = e?.studentId;
           return (
             <tbody key={index}>
               <tr>
                 <td rowSpan={2}>{index + 1}</td>
                 <td>Tutor</td>
                 <td>
-                  {tutorId.firstName} {tutorId.lastName}{" "}
+                  {studentId.firstname} {studentId.lastname}{" "}
                 </td>
-                <td>{tutorId.email}</td>
+                <td>{studentId.email}</td>
                 <td>{e.addedQuantity}</td>
                 <td rowSpan={2} className="">
                   <button

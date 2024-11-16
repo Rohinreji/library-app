@@ -1,0 +1,14 @@
+.adminChatWelcomePage-body{
+    height: 93vh;
+    width: 80%;
+    background-color: #2fea9c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.adminChatWelcomePage-body h1
+{
+    font-size: 100px;
+    font-weight: 700;
+    color: white;
+}

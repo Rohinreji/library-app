@@ -11,6 +11,8 @@ import { AdminViewStudentRequest } from "../adminViewStudentRequest/adminViewStu
 import { AdminViewApprovedStudent } from "../adminViewApprovedStudent/adminViewApprovedStudent";
 
 import { AdminViewAllBook } from "../adminViewAllBook/adminViewAllBooks";
+import { AdminChatDashBoard } from "../adminChatDashboard/adminChatDashBoard";
+import { AdminPleaseLogin } from "../adminPleaseLogin/adminPleaseLogin";
 
 export const AdminDashboard = () => {
   const [selectedpage, setSelectedPage] = useState("adminViewBooks");
@@ -31,6 +33,7 @@ export const AdminDashboard = () => {
             <AdminSideBar changeSelectedPage={changeSelectedPage} />
           </div>
           <div className="col-10">
+            {selectedpage ==="adminViewBooks" && <AdminViewAllBook/>}
             {selectedpage === "adminAddBook" && <AdminAddProduct />}
             {selectedpage === "approveTutor" && <AdminApproveTutor />}
             {selectedpage === "viewAllTutor" && <AdminViewApproveTutor />}
@@ -41,10 +44,11 @@ export const AdminDashboard = () => {
             {selectedpage === "tutorReturnReq" && <AdminViewReturnReq />}
             {selectedpage === "approveStudent" && <AdminViewStudentRequest />}
             {selectedpage === "approvedStudent" && <AdminViewApprovedStudent />}
+            {selectedpage === "chat" && <AdminChatDashBoard/>}
           </div>
         </div>
       ) : (
-        <p>Please login </p>
+        <AdminPleaseLogin/>
       )}
     </div>
   );

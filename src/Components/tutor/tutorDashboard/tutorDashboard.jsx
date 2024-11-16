@@ -18,7 +18,7 @@ export const TutorDashboard = () => {
     setSelectedPage(value);
   };
   const[productId,setProductId] = useState("")
-  
+  const [fine,setFine] = useState("")
   const reDirectToViewSingleBook = (value) =>
   {
 // navigate(`/tutor/view-single-product/${value}`)
@@ -36,6 +36,11 @@ setSelectedPage("tutorViewSingleProduct")
   {
     setSelectedPage("cart")
   }
+  
+  const getFine = (value) =>
+  {
+setFine(value)
+  }
 
   return (
     <div className="row">
@@ -48,8 +53,8 @@ setSelectedPage("tutorViewSingleProduct")
         {selectePage === "cart" && <TutorCart />}
 
         {selectePage === "profile" && <TutorProfile />}
-        {selectePage === "activeRental" && <TutorActiveRental redirectToReturnBook={redirectToReturnBook} />}
-        {selectePage ==="redirectToReturnBook" && <TutorReturnBooks productId={productId}/>}
+        {selectePage === "activeRental" && <TutorActiveRental redirectToReturnBook={redirectToReturnBook} getFine={getFine} />}
+        {selectePage ==="redirectToReturnBook" && <TutorReturnBooks productId={productId} fine={fine}/>}
         {selectePage === "tutorWishlist" && <Tutorwishlist reDirectToViewSingleBook={reDirectToViewSingleBook}/>} 
       </div>
     </div>

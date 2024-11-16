@@ -6,8 +6,9 @@ import axiosInstance from "../../../apis/axiosInstance";
 import { useEffect, useState } from "react";
 import { BASE_URL } from "../../../apis/baseURL";
 import toast from "react-hot-toast";
+import TutorFinePayment from "../tutorFinePayment/tutorFinePayment";
 
-export const TutorReturnBooks = ({productId}) => {
+export const TutorReturnBooks = ({productId,fine}) => {
   const { id } = useParams();
   const [data, setData] = useState([]);
   const [rentData, setRentData] = useState("");
@@ -48,7 +49,7 @@ console.log(rentData,"rent data 111111");
     try {
       const response = await axiosInstance.post(`tutorReturnReq/${rentId}`);
       if (response.status === 200) {
-        toast.success("request send successfully");
+        toast.success("request sended successfully");
       }
     } catch (error) {
       console.log(error);
@@ -110,7 +111,7 @@ console.log(rentData,"rent data 111111");
                 <tr>
                   <td>Fine</td>
                   <td>:</td>
-                  <td>{rentData.fine}</td>
+                  <td>{fine}</td>
                 </tr>
               </tbody>
             </table>
@@ -119,7 +120,9 @@ console.log(rentData,"rent data 111111");
             className="d-flex justify-content-center align-items-center"
             style={{ height: "70vh" }}
           >
-            <Button
+
+
+            {fine ? <TutorFinePayment fine={fine} rentId={rentData._id} quantity ={rentData.addedQuantity} booksId={data._id}/> : <Button
               variant="warning"
               onClick={() => {
                 setRentId(rentData._id);
@@ -127,7 +130,8 @@ console.log(rentData,"rent data 111111");
               }}
             >
               Return Book
-            </Button>
+            </Button> }
+            
           </Col>
         </Row>
       </div>

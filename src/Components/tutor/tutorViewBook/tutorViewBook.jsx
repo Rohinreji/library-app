@@ -11,6 +11,7 @@ import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
 import axiosInstance from "../../../apis/axiosInstance";
 import toast from "react-hot-toast";
+import { TutorChatBox } from "../tutorChatBox/tutorChatBox";
 import("./tutorViewBook.css");
 export const TutorViewBook = ({ reDirectToViewSingleBook }) => {
   const [fixedData, setFixedData] = useState([]);
@@ -127,6 +128,10 @@ export const TutorViewBook = ({ reDirectToViewSingleBook }) => {
 
   return (
     <div>
+      <div>
+      <TutorChatBox/>
+
+      </div>
       <div className="student-view-product">
         <h2 className="px-5 pt-4">view products</h2>
         <InputGroup className="mb-3 student-serach-box">

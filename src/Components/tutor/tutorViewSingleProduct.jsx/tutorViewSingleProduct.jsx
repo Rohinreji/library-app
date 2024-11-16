@@ -153,7 +153,7 @@ export const TutorviewSingleProduct = ({productId,redirectToCart}) => {
     const id = localStorage.getItem("tutorId");
     viewCart(id);
 
-  }, [cartData]);
+  }, [data]);
 
 
 

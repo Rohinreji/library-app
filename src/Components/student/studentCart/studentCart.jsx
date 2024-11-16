@@ -6,10 +6,12 @@ import axios from "axios";
 import axiosInstance from "../../../apis/axiosInstance";
 import toast from "react-hot-toast";
 import { BASE_URL } from "../../../apis/baseURL";
+import { FaCartShopping } from "react-icons/fa6";
+
 export const StudentCart = () => {
   const [data, setdata] = useState([]);
-
   const studentId = localStorage.getItem("studentId");
+
   useEffect(() => {
     getData();
   }, []);
@@ -32,7 +34,6 @@ export const StudentCart = () => {
   const removeBookFromCart = async (cartId) => {
     try {
       console.log("cart", cartId);
-
       const response = await axios.post(
         `http://localhost:3005/removeBookFromCart/${cartId}`
       );
@@ -81,11 +82,14 @@ export const StudentCart = () => {
   };
   return (
     <div className="tutorCartMainBox">
-      <h2>Cart</h2>
+        <div className="student_viewBooks">
+        <h2> <FaCartShopping />Cart</h2>
+        </div>
+     
       {data.map((e, index) => {
         const booksId = e?.booksId;
         return (
-          <div key={index} className="tutorCartBody shadow">
+          <div key={index} className="tutorCartBody">
             <Row>
               <Col
                 className="d-flex justify-content-center align-items-center "
@@ -103,22 +107,27 @@ export const StudentCart = () => {
                 <table>
                   <tbody>
                     <tr>
-                      <td> book title</td>
+                      <td> BookTitle</td>
                       <td>:</td>
                       <td>{booksId.bookTitle}</td>
                     </tr>
                     <tr>
-                      <td>author</td>
+                      <td>Author</td>
                       <td>:</td>
                       <td>{booksId.author}</td>
                     </tr>
                     <tr>
-                      <td>language</td>
+                      <td>Category</td>
+                      <td>:</td>
+                      <td>{booksId.category}</td>
+                    </tr>
+                    <tr>
+                      <td>Language</td>
                       <td>:</td>
                       <td>{booksId.language}</td>
                     </tr>
                     <tr>
-                      <td>status</td>
+                      <td>Status</td>
                       <td>:</td>
                       <td>{booksId.status}</td>
                     </tr>
@@ -144,7 +153,7 @@ export const StudentCart = () => {
         );
       })}
       <button className="tutorCart-rentAllBook" onClick={rentAllBook}>
-        Rent all Books
+      <FaCartShopping />  Rent All Books
       </button>
     </div>
   );

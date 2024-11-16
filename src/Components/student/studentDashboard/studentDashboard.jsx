@@ -8,6 +8,8 @@ import { Studentwishlist } from "../studentWishlist/studentWishlist";
 import { StudentviewSingleProduct } from "../studentViewSingleProduct.js/studentViewSingleProduct";
 import { StudentCart } from "../studentCart/studentCart";
 import { StudentReturnBooks } from "../studentReturnBook/studentReturnBook";
+import { StudentNav } from "../studentHome/studentNav/studentNav";
+import Footer from "../../common/footer/footer";
 
 export const StudentDashboard = () => {
   const [selectedpage, setSelectedPage] = useState("viewProduct");
@@ -28,6 +30,7 @@ export const StudentDashboard = () => {
   };
   return (
     <div>
+      <StudentNav/>
       <div className="d-flex">
         <div className="col-2">
           <StudentSidebar changeSelectedPage={changeSelectedPage} />
@@ -58,6 +61,7 @@ export const StudentDashboard = () => {
           )}
         </div>{" "}
       </div>
+      <Footer/>
     </div>
   );
 };

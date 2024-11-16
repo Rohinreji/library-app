@@ -44,8 +44,6 @@ import { TutorHome } from "./Components/tutor/TutorHome/studentHome";
 import { TutorFilterByCat } from "./Components/tutor/tutorFilterByCat/tutorFilterByCat";
 import { Tutorwishlist } from "./Components/tutor/tutorWishlist/tutorwishlist";
 import { AdminViewAllBook } from "./Components/admin/adminViewAllBook/adminViewAllBooks";
-import { AdminViewStudentRequest } from "./Components/admin/adminViewStudentRequest/adminViewStudentRequest";
-import { AdminViewApprovedStudent } from "./Components/admin/adminViewApprovedStudent/adminViewApprovedStudent";
 import { StudentActiveRental } from "./Components/student/studentActiveRental/studentActiveRental";
 import { StudentCart } from "./Components/student/studentCart/studentCart";
 import { StudentReturnBooks } from "./Components/student/studentReturnBook/studentReturnBook";

@@ -6,8 +6,13 @@
 {
     padding-left: 14%;
 }
-.tutorActiveRental-text h4
+.tutorActiveRentalFine p
 {
-    padding-left: 10%;
+    padding-left: 15%;
+    font-size: 20px;
     color: red;
+}
+.tutorActiveRentalFine h6
+{
+    color: black;
 }

@@ -4,6 +4,8 @@ import Button from "react-bootstrap/Button";
 import "./tutorCart.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { FaCartShopping } from "react-icons/fa6";
+
 import axiosInstance from "../../../apis/axiosInstance";
 import toast from "react-hot-toast";
 import { BASE_URL } from "../../../apis/baseURL";
@@ -76,16 +78,21 @@ export const TutorCart = () => {
 
   return (
     <div>
-      <h2>Cart</h2>
-
+      <div className="student_viewBooks">
+        <h2>
+          {" "}
+          <FaCartShopping />
+          Cart
+        </h2>
+      </div>
       {data.length <= 0 ? (
         <div
           className="tuturWishlist-noData"
-          style={{ height: "100vh", width: "100%" }}
+          style={{ height: "80vh", width: "100%" }}
         >
           <div>
-            <img src={img} alt="" style={{ height: "450px", width: "450px" }} />
-            <h2 className="px-5">No data found </h2>
+            <img src={img} alt="" style={{ height: "400px", width: "400px" }} />
+            <h2 style={{paddingLeft:"20%"}}>No data found </h2>
           </div>{" "}
         </div>
       ) : (

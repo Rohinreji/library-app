@@ -35,6 +35,10 @@ export const TutorSignUp = () => {
       event.stopPropagation();
     }
     setValidated(true);
+    if(!validation())
+      {
+    return
+      }
 
     const formData = new FormData();
     formData.append("firstName", data.firstName);
@@ -44,6 +48,7 @@ export const TutorSignUp = () => {
     formData.append("idNo", data.idNo);
     formData.append("profile", data.profile);
     event.preventDefault();
+    
     sendDataToServer(formData);
   };
 
@@ -92,6 +97,21 @@ export const TutorSignUp = () => {
   const handleShow2 = () => {
     setshow2(!show2);
   };
+
+
+const validation = () =>
+{
+  const {profile} = data
+  if(!profile)
+  {
+    toast.error("please upload profile")
+    return false
+
+  }
+  return true
+}
+
+
   return (
     <div className="studentSignUp  ">
       <h1>Tutor Registration</h1>
@@ -173,6 +193,7 @@ export const TutorSignUp = () => {
                     />
                   </label>
                 </div>
+                
               </Col>
             </Row>
 

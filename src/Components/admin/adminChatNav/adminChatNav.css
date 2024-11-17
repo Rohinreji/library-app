@@ -1,0 +1,17 @@
+.adminChatNav
+{
+    height: 80px;
+    width: 100%;
+    background-color:#2fda93 ;
+    display: flex;
+    align-items: center;
+}
+
+.adminChatNav img
+{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin-left: 20px;
+    
+} 

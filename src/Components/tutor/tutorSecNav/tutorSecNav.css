@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Pacifico&display=swap');
+.tutorSecNav {
+    background-color: #1fbf7c;
+  }
+  .tutorSecNav-heading {
+    font-family: "Pacifico", cursive !important; 
+    font-size: 28px;
+    font-weight: 600;
+    margin-right: 50px !important;
+  }
+  .tutorSecNav-right-side-text {
+    color: black !important;
+    font-size: large;
+    cursor: pointer;
+    font-family: noto sans;
+  }
+  .tutorSecNav-dashboard {
+    font-weight: 700;
+  }
+  .tutorSecNav img
+
+  {
+    height: 36px;
+    width: 36px;
+    border: 20%;
+    margin-left: 40%;
+  }

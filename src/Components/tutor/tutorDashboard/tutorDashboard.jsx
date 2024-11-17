@@ -9,6 +9,10 @@ import { Tutorwishlist } from "../tutorWishlist/tutorwishlist";
 import { TutorviewSingleProduct } from "../tutorViewSingleProduct.jsx/tutorViewSingleProduct";
 import { TutorReturnBooks } from "../tutorReturnBooks/tutorReturnBooks";
 import { BiLogIn } from "react-icons/bi";
+import { StudentNav } from "../../student/studentHome/studentNav/studentNav";
+import Footer from "../../common/footer/footer";
+import { TutorNav } from "../TutorHome/studentNav/tutorNav";
+import { TutorSecNav } from "../tutorSecNav/tutorSecNav";
 
 export const TutorDashboard = () => {
   const navigate = useNavigate();
@@ -18,6 +22,7 @@ export const TutorDashboard = () => {
     setSelectedPage(value);
   };
   const [fine,setFine] = useState("")
+  const [date,setDate] = useState("")
 
   const reDirectToViewSingleBook = (value) =>
   {
@@ -42,8 +47,16 @@ setSelectedPage("tutorViewSingleProduct")
 setFine(value)
   }
 
+  const getDate = (value) =>
+
+    {
+      setDate(value)
+    }
+
   return (
-    <div className="row">
+    <div>
+      <TutorSecNav changeSelectedPage={changeSelectedPage}/>
+      <div className="row">
       <div className="col-2">
         <TutorSidebar changeSelectedPage={changeSelectedPage} />
       </div>
@@ -59,19 +72,14 @@ setFine(value)
         )}
         {selectePage === "cart" && <TutorCart />}
         {selectePage === "profile" && <TutorProfile />}
-        {selectePage === "activeRental" && <TutorActiveRental redirectToReturnBook={redirectToReturnBook} getFine={getFine} />}
-        {selectePage ==="redirectToReturnBook" && <TutorReturnBooks productId={productId} fine={fine}/>}
+        {selectePage === "activeRental" && <TutorActiveRental redirectToReturnBook={redirectToReturnBook} getFine={getFine} getDate={getDate}/>}
+        {selectePage ==="redirectToReturnBook" && <TutorReturnBooks productId={productId} fine={fine} date={date}/>}
         {selectePage === "tutorWishlist" && <Tutorwishlist reDirectToViewSingleBook={reDirectToViewSingleBook}/>} 
-        {selectePage === "activeRental" && (
-          <TutorActiveRental redirectToReturnBook={redirectToReturnBook} />
-        )}
-        {selectePage === "redirectToReturnBook" && (
-          <TutorReturnBooks productId={productId} />
-        )}
-        {selectePage === "tutorWishlist" && (
-          <Tutorwishlist reDirectToViewSingleBook={reDirectToViewSingleBook} />
-        )}
+     
+      
       </div>
+    </div>
+    <Footer/>
     </div>
   );
 };

@@ -1,7 +1,6 @@
 .adminchatSideBar{
-    height:93vh;
+    height:96vh;
     width:100%;
-    background-color: aliceblue;
     overflow-y: scroll;
     scrollbar-width: none;
 }
@@ -9,7 +8,6 @@
 {
     height:10%;
     width: 100%;
-    background-color: antiquewhite;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,9 +15,16 @@
 .active-tutor{
     height:10%;
     width: 100%;
-    background-color: antiquewhite;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 3px solid black;
+    border: 3px solid rgba(0, 0, 0, 0.471);
+}
+.adminSideBar-profile-box img
+{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin-right: 20px;
+    
 }

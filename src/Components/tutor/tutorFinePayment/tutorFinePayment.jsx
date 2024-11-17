@@ -4,17 +4,20 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import axiosInstance from "../../../apis/axiosInstance";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 function TutorFinePayment({ fine, rentId, quantity, booksId }) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [data, setData] = useState({ accNum: "", validity: "", cvv: "" });
+  const navigate = useNavigate()
   const paymentAndReturn = async () => {
     try {
       const response = await axiosInstance.post(`/tutorReturnReq/${rentId}`);
       if (response.status === 200) {
         toast.success("payed fine successfully");
+        navigate("/tutor-dashboard")
       }
     } catch (error) {
       console.log(error);
@@ -56,7 +59,8 @@ function TutorFinePayment({ fine, rentId, quantity, booksId }) {
       toast.error("account number is required");
       return false;
     }
-    if (accNum.length < 16) {
+
+    if (accNum.length != 16) {
       toast.error("enter valid account number");
       return false;
     }
@@ -67,6 +71,10 @@ function TutorFinePayment({ fine, rentId, quantity, booksId }) {
     if (!cvv) {
       toast.error("cvv is required");
       return false;
+    }
+    if(cvv.length != 3)
+    {
+      toast.error("enter valid cvv")
     }
     return true;
   };
@@ -86,13 +94,13 @@ function TutorFinePayment({ fine, rentId, quantity, booksId }) {
         <Modal.Header>
           <Modal.Title>fine payment</Modal.Title>
         </Modal.Header>
-        <Form
-          onSubmit={() => {
-            handleReturn();
-          }}
-        >
           <Modal.Body>
-            <h2>fine : {fine - 150}</h2>
+        <Form
+          // onSubmit={() => {
+          //   handleReturn();
+          // }}
+        >
+            <h2>fine : {fine-150}</h2>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Account Number</Form.Label>
               <Form.Control
@@ -134,16 +142,14 @@ function TutorFinePayment({ fine, rentId, quantity, booksId }) {
                 />
               </Form.Group>
             </div>
-          </Modal.Body>
-          <Modal.Footer>
-            {/* <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button> */}
-            <Button variant="primary" type="submit">
+            <Button variant="primary" 
+            onClick={handleReturn}
+            >
               pay & return
             </Button>
-          </Modal.Footer>
-        </Form>
+            </Form>
+
+          </Modal.Body>
       </Modal>
     </>
   );

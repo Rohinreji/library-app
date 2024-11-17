@@ -42,6 +42,19 @@ import { AdminDashboard } from "./Components/admin/adminDashboard/adminDashboard
 import StudentForgotPassword from "./Components/student/studentForgotpassword/studentForgotpassword";
 import { TutorHome } from "./Components/tutor/TutorHome/studentHome";
 import { TutorFilterByCat } from "./Components/tutor/tutorFilterByCat/tutorFilterByCat";
+import { Tutorwishlist } from "./Components/tutor/tutorWishlist/tutorwishlist";
+import { AdminViewAllBook } from "./Components/admin/adminViewAllBook/adminViewAllBooks";
+import { StudentActiveRental } from "./Components/student/studentActiveRental/studentActiveRental";
+import { StudentCart } from "./Components/student/studentCart/studentCart";
+import { StudentReturnBooks } from "./Components/student/studentReturnBook/studentReturnBook";
+import { MyVerticallyCenteredModal } from "./Components/admin/adminLoginModal/adminLoginModal";
+import { Studentwishlist } from "./Components/student/studentWishlist/studentWishlist";
+import TutorFinePayment from "./Components/tutor/tutorFinePayment/tutorFinePayment";
+import { TutorChatBox } from "./Components/tutor/tutorChatBox/tutorChatBox";
+import { AdminchatSideBar } from "./Components/admin/adminChatSideBar/adminChatSideBar";
+import { AdminChatDashBoard } from "./Components/admin/adminChatDashboard/adminChatDashBoard";
+import { AdminChatWelcomePage } from "./Components/admin/adminChatWelcome/adminChatWelcome";
+import { AdminChatNav } from "./Components/admin/adminChatNav/adminchatNav";
 
 function App() {
   return (
@@ -50,11 +63,9 @@ function App() {
       <BrowserRouter basename="open_library">
         <Routes>
           <Route path="/" element={<LandingPage />} />
-
           {/* student */}
-          <Route path="/registration" element={<Loginpage />} />
-          <Route path="/login" element={<Signin />} />
-
+          {/* <Route path="/registration" element={<Loginpage />} />
+          <Route path="/login" element={<Signin />} /> */}
           <Route path="/student/navbar" element={<StudentNav />} />
           <Route
             path="/student/home-details"
@@ -70,18 +81,27 @@ function App() {
           <Route path="/student/sidebar" element={<StudentSidebar />} />
           <Route path="/student-dashboard" element={<StudentDashboard />} />
           <Route
-            path="/student/view-single-product"
+            path="/student/view-single-product/:id"
             element={<StudentviewSingleProduct />}
           />
           <Route
             path="/studentForgotpassword"
             element={<StudentForgotPassword />}
           />
+          <Route
+            path="/studentActiveRental"
+            element={<StudentActiveRental />}
+          />
+          <Route path="/studentViewCart" element={<StudentCart />} />
+          <Route
+            path="/studentReturnBook/:id"
+            element={<StudentReturnBooks />}
+          />
+          <Route path="/studentViewWishlist" element={<Studentwishlist />} />
           {/* common */}
           <Route path="/commonNavbar" element={<CommonNavbar />} />
           <Route path="/footer" element={<Footer />} />
           <Route path="/landingPage" element={<LandingPage />} />
-
           {/* admin */}
           <Route path="/adminLogin" element={<AdminLogin />} />
           <Route
@@ -102,14 +122,25 @@ function App() {
             path="/admin/view-retun-req"
             element={<AdminViewReturnReq />}
           />
+          <Route path="/admin-add/products" element={<AdminAddProduct />} />
+          <Route path="/admin/approve-tutor" element={<AdminApproveTutor />} />
+          <Route
+            path="/admin/view-approved-tutor"
+            element={<AdminViewApproveTutor />}
+          />
+          <Route
+            path="/admin/view-all-rental"
+            element={<AdminViewAllRental />}
+          />
+          <Route
+            path="/admin/view-retun-req"
+            element={<AdminViewReturnReq />}
+          />
+          <Route path="/admin/sidebar" element={<AdminSideBar />} />
+          <Route path="/admin/dashBoard" element={<AdminDashboard />} />
+          <Route path="/admin/viewAllBooks" element={<AdminViewAllBook />} />
 
-          <Route path="/admin-add/products" element={<AdminAddProduct/>} />
-          <Route path="/admin/approve-tutor" element={<AdminApproveTutor/>} />
-          <Route path="/admin/view-approved-tutor" element={<AdminViewApproveTutor/>} />
-          <Route path="/admin/view-all-rental" element={<AdminViewAllRental/>} />
-          <Route path="/admin/view-retun-req" element={<AdminViewReturnReq/>} />
-          <Route  path="/admin/sidebar" element={<AdminSideBar/>} />
-          <Route path="/admin/dashBoard" element={<AdminDashboard/>} />
+
           {/* tutor */}
           <Route path="/tutorLogin" element={<TutorLogin />} />
           <Route path="/tutorSignup" element={<TutorSignUp />} />
@@ -117,8 +148,7 @@ function App() {
           <Route path="/tutor-dashboard" element={<TutorDashboard />} />
           <Route path="/tutor-viewBook" element={<TutorViewBook />} />
           <Route path="/tutor/profile" element={<TutorProfile />} />
-
-          <Route path="/tutor/home" element={<TutorHome/>} />
+          <Route path="/tutor/home" element={<TutorHome />} />
           <Route
             path="/tutor/forgot-password"
             element={<TutorForgotPassword />}
@@ -133,20 +163,43 @@ function App() {
             path="/tutor/return-books/:id"
             element={<TutorReturnBooks />}
           />
-          <Route path="/tutorSignup" element={<TutorSignUp/>} />
-          <Route path="/tutor-sidebar" element={<TutorSidebar/>} />
-          <Route path="/tutor-dashboard" element={<TutorDashboard/>} />
-          <Route path="/tutor-viewBook" element={<TutorViewBook/>} />
-          <Route path="/tutor/profile" element={<TutorProfile/>} />
-          <Route path ="/tutor/Edit-profile" element={<TutorEditProfile/>} />
-          <Route path="/tutor/forgot-password" element={<TutorForgotPassword/>} />
-          <Route path="/tutor/view-single-product/:id" element={<TutorviewSingleProduct/>} />
-          <Route path="/tutor/active-rental" element={<TutorActiveRental/>} />
-          <Route path="/tutor/cart" element={<TutorCart/>}/>
-          <Route path="/tutor/return-books/:id" element={<TutorReturnBooks/>} />
-          <Route path="/tutor/filterByCat/:cat" element={<TutorFilterByCat/>}/>
+          <Route path="/tutorSignup" element={<TutorSignUp />} />
+          <Route path="/tutor-sidebar" element={<TutorSidebar />} />
+          <Route path="/tutor-dashboard" element={<TutorDashboard />} />
+          <Route path="/tutor-viewBook" element={<TutorViewBook />} />
+          <Route path="/tutor/profile" element={<TutorProfile />} />
+          <Route path="/tutor/Edit-profile" element={<TutorEditProfile />} />
+          <Route
+            path="/tutor/forgot-password"
+            element={<TutorForgotPassword />}
+          />
+          <Route
+            path="/tutor/view-single-product/:id"
+            element={<TutorviewSingleProduct />}
+          />
+          <Route path="/tutor/active-rental" element={<TutorActiveRental />} />
+          <Route path="/tutor/cart" element={<TutorCart />} />
+          <Route
+            path="/tutor/return-books/:id"
+            element={<TutorReturnBooks />}
+          />
+          <Route
+            path="/tutor/filterByCat/:cat"
+            element={<TutorFilterByCat />}
+          />
+          <Route path="/tutor/wishlist" element={<Tutorwishlist />} />
+          <Route path="/fine" element={<TutorFinePayment />} />
+
+          {/* chat ui */}
+          <Route path="/tutor/helpDesk" element={<TutorChatBox />} />
+          <Route path="/admin/chatSidebar" element={<AdminchatSideBar />} />
+          <Route path = "/admin/chatDashBoard" element={<AdminChatDashBoard/>} />
+          <Route path="/adminChatWelcomePage" element={<AdminChatWelcomePage/>} />
+          <Route path="/admin-chat/nav" element={<AdminChatNav/>} />
           {/* 404 page */}
           <Route path="/*" element={<h1>The page not available</h1>} />
+
+          <Route path="/adminModal" element={<MyVerticallyCenteredModal />} />
         </Routes>
       </BrowserRouter>
     </>

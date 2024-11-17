@@ -13,13 +13,14 @@ export const TutorEditProfile = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [data, setData] = useState({
-    name: "",
+    firstName: "",
     email: "",
     idNo: "",
-          profile
-: null,
+    lastName:"",
+    profile: null,
   });
-const tutorId = localStorage.getItem("tutorId")
+  const tutorId = localStorage.getItem("tutorId");
+  console.log("id",tutorId);
   const handleChange = (e) => {
     const { files, value, name, type } = e.target;
     if (type === "file") {
@@ -40,13 +41,12 @@ const tutorId = localStorage.getItem("tutorId")
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const formData = new FormData();
-    formData.append("name", data.name);
-    formData.append("email",data.email);
-    formData.append("idNo", data.idNo);
-    formData.append("profile",data.profile
-)
+    formData.append("firstName", data.firstName);
+    formData.append("email", data.email);
+    formData.append("lastName", data.lastName);
+    formData.append("profile", data.profile);
     sendDataToServer(formData);
   };
 
@@ -54,7 +54,7 @@ const tutorId = localStorage.getItem("tutorId")
     try {
       const response = await axios.post(
         `http://localhost:3005/updateTutorProfile/${tutorId}`,
-        {data}
+         data 
       );
       if (response.status === 200) {
         toast.success("profile updated successfully");
@@ -68,15 +68,17 @@ const tutorId = localStorage.getItem("tutorId")
     <div>
       <>
         <Button variant="primary" onClick={handleShow}>
-          Edit 
+          Edit
         </Button>
 
         <Modal className="tuorEditProfilModal" show={show} onHide={handleClose}>
-          <Modal.Body>
+          <Modal.Body
+          className="tutorEditprfile-body"
+          >
             <Modal.Title>Edit Profile</Modal.Title>
 
             <Form onSubmit={handleSubmit}>
-              <div className="student-signup-profile">
+              <div className="student-signup-profile tutorEditProfile-photo">
                 {profilePic ? (
                   <img src={profilePic} alt="" />
                 ) : (
@@ -91,7 +93,7 @@ const tutorId = localStorage.getItem("tutorId")
                   <input
                     type="file"
                     style={{ display: "none" }}
-                    name="      profile"
+                    name="profile"
                     onChange={handleFileChange}
                   />
                 </label>
@@ -101,21 +103,37 @@ const tutorId = localStorage.getItem("tutorId")
                 className="mb-3"
                 controlId="exampleForm.ControlInput1"
               >
-                <Form.Label>Name</Form.Label>
+                <Form.Label className="tutorEditProfile-label">First name</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Enter your name"
                   autoFocus
                   className="tutorEditProfileInp"
                   onChange={handleChange}
-                  name="name"
+                  name="firstName"
                 />
               </Form.Group>
+
               <Form.Group
                 className="mb-3"
                 controlId="exampleForm.ControlInput1"
               >
-                <Form.Label>Email</Form.Label>
+                <Form.Label  className="tutorEditProfile-label">Last name</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter your last name"
+                  autoFocus
+                  className="tutorEditProfileInp"
+                  onChange={handleChange}
+                  name="lastName"
+                />
+              </Form.Group>
+
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Label className="tutorEditProfile-label">Email</Form.Label>
                 <Form.Control
                   type="email"
                   placeholder="Enter your email"
@@ -125,20 +143,7 @@ const tutorId = localStorage.getItem("tutorId")
                   name="email"
                 />
               </Form.Group>
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlInput1"
-              >
-                <Form.Label>Id Number</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter your Id number"
-                  autoFocus
-                  className="tutorEditProfileInp"
-                  onChange={handleChange}
-                  name="idNo"
-                />
-              </Form.Group>
+             
               <Button
                 variant="primary"
                 onClick={handleClose}

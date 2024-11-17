@@ -1,51 +1,83 @@
 import { useState } from "react";
 import { StudentNav } from "../../student/studentHome/studentNav/studentNav";
 import { useNavigate } from "react-router-dom";
-
-export const TutorSidebar = ({changeSelectedPage}) => {
+import { SiBookstack } from "react-icons/si";
+import { MdFavoriteBorder } from "react-icons/md";
+import { FaShoppingCart } from "react-icons/fa";
+import { AiFillBook } from "react-icons/ai";
+import { MdOutlineLogout } from "react-icons/md";
+import "../../student/studentSidebar/studentSidebar.css";
+export const TutorSidebar = ({ changeSelectedPage }) => {
   const [dropCat, setDropCat] = useState(false);
-const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <div>
-        <div>
+      <div>
+        <div className="d-flex ">
+          <div className="student-sidebar">
+            <div className="openlibrary-heading">
+              <h3>DashBoard</h3>
+            </div>
 
-      <div className="d-flex ">
-        <div className="student-sidebar">
-        <h2 className="openlibrary-heading">Open Library</h2>
+            <ul>
+              <li
+                onClick={() => {
+                  setDropCat(!dropCat);
+                  changeSelectedPage("dashBoard");
+                }}
+              >
+                <SiBookstack /> Books
+              </li>
+              <></>
 
-          <ul>
-            <li
-              onClick={() => {
-                setDropCat(!dropCat)
-                changeSelectedPage("dashBoard")
-              }}
-            >
-              DashBoard
-            </li>
-            <></>
+              <li
+                onClick={() => {
+                  changeSelectedPage("tutorWishlist");
+                }}
+              >
+                <MdFavoriteBorder className="wishlist_icon" />
+                Wishlist
+              </li>
+              {/* <li>Notification</li> */}
+              <li
+                onClick={() => {
+                  changeSelectedPage("cart");
+                }}
+              >
+                <FaShoppingCart /> Cart
+              </li>
+              {/* <li>Request book</li> */}
+              <li
+                onClick={() => {
+                  changeSelectedPage("activeRental");
+                }}
+              >
+                <AiFillBook />
+                Rentals
+              </li>
 
-            <li onClick={()=>{changeSelectedPage("activeRental")}}>Active Rentals</li>
-            <li>Wishlist</li>
-            <li>Notification</li>
-            <li onClick={()=>{changeSelectedPage("cart")}}>Cart</li>
-            {/* <li>Request book</li> */}
-            <li onClick={()=>{changeSelectedPage("profile")}}>profile</li>
+              {/* <li
+                onClick={() => {
+                  changeSelectedPage("profile");
+                }}
+              >
+                profile
+              </li> */}
 
-            <li 
-            
-            className="text-danger fs-3 fw-bolder"
-            onClick={()=>{localStorage.removeItem("tutorId")
-              navigate("/tutorLogin")
-
-            }
-          }
-            
-            >Logout</li>
-          </ul>
+              <li
+                className="  fw-bolder studentSidebar_logout"
+                onClick={() => {
+                  localStorage.removeItem("tutorId");
+                  navigate("/tutorLogin");
+                }}
+              >
+                {" "}
+                <MdOutlineLogout /> Logout
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-    
     </div>
   );
 };

@@ -1,0 +1,73 @@
+.tutorChatBox-btn {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  background-image: url(../../../Assests/aiImage.jpg);
+  background-size: contain;
+  position: fixed;
+  right: 15px;
+  bottom: 20px;
+
+  animation: messageBox 0.6s ease-in-out 0.06s infinite;
+}
+
+@keyframes messageBox {
+  from {
+    transform: translatey(10px);
+  }
+  to {
+    text-replace: translatey(0px);
+  }
+}
+.tutor-chat-body
+{
+  height: 50vh;
+  display: flex;
+  flex-direction: column-reverse;
+  overflow-y: auto;
+}
+.dispaly-tutor-msg {
+  height:50vh;
+  position: relative;
+  overflow-y: scroll;
+}
+.tutorChatBox-send-btn {
+  height: 40px;
+}
+.tutorChatBox-chat1
+{
+    width: fit-content;
+    max-width: 90%;
+    min-height: 47px;
+    border-radius: 9px;
+    text-align: left;
+    color: black;
+    background-color: #d8c1eb;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 8px 8px 0px 8px;
+    position: relative;
+    left: 5px;
+    display: block;
+    clear: both;
+    word-break: break-all;
+}
+.tutorChatBox-chat2
+{
+    width: fit-content;
+    max-width: 90%;
+    min-height: 37px;
+    border-radius: 9px;
+    text-align: left;
+    color: black;
+    background-color: #aed6c3;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    padding: 8px 8px 8px 8px;
+    position: relative;
+    left:5px;
+    display: block;
+    clear: both;
+    word-break: break-all;
+
+}

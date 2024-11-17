@@ -1,0 +1,18 @@
+.tutorActiveRental-text h6
+{
+    padding-left: 15%;
+}
+.tutorActiveRental-text h5
+{
+    padding-left: 14%;
+}
+.tutorActiveRentalFine p
+{
+    padding-left: 15%;
+    font-size: 20px;
+    color: red;
+}
+.tutorActiveRentalFine h6
+{
+    color: black;
+}

@@ -1,40 +1,62 @@
 import { useState } from "react";
-
 import "./studentSidebar.css";
 import { useNavigate } from "react-router-dom";
-export const StudentSidebar = () => {
+import { SiBookstack } from "react-icons/si";
+import { MdFavoriteBorder } from "react-icons/md";
+import { FaShoppingCart } from "react-icons/fa";
+import { AiFillBook } from "react-icons/ai";
+import { MdOutlineLogout } from "react-icons/md";
+
+export const StudentSidebar = ({ changeSelectedPage }) => {
   const [dropCat, setDropCat] = useState(false);
   const navigate = useNavigate();
   const removeStudentId = () => {
     localStorage.removeItem("studentId", removeStudentId);
     navigate("/studentLogin");
   };
+
   return (
     <div>
       <div className="d-flex ">
         <div className="student-sidebar">
-          <h2 className="openlibrary-heading">Open library</h2>
+          <div className="openlibrary-heading">
+            <h3>DashBoard</h3>
+          </div>
           <ul>
             <li
               onClick={() => {
-                setDropCat(!dropCat);
+                changeSelectedPage("viewProduct");
               }}
             >
-              Category
+              <SiBookstack /> Books
             </li>
-            <></>
-
-            <li>Active Rentals</li>
-            <li>Wishlist</li>
-            <li>Notification</li>
-            <li>Cart</li>
-            <li>Request book</li>
-
             <li
-              className="text-danger fs-3 fw-bolder"
-              onClick={removeStudentId}
+              onClick={() => {
+                changeSelectedPage("studentWishlist");
+              }}
             >
-              Logout
+              <MdFavoriteBorder className="wishlist_icon" />
+              Wishlist
+            </li>
+            <li
+              onClick={() => {
+                changeSelectedPage("studentCart");
+              }}
+            >
+              <FaShoppingCart /> Cart
+            </li>
+            {/* <li>Profile</li> */}
+            <li
+              onClick={() => {
+                changeSelectedPage("stdActiveRentals");
+              }}
+            >
+              <AiFillBook />
+              Rentals
+            </li>
+
+            <li className="studentSidebar_logout" onClick={removeStudentId}>
+              <MdOutlineLogout /> Logout
             </li>
           </ul>
         </div>

@@ -1,10 +1,16 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Pacifico&display=swap');
+
+
 /* student navbar */
 .student-navbar {
   background-color: #1fbf7c;
 }
 .student-nav-heading {
-  font-family: noto sans;
-  font-size: 28px;
+  font-family: "Pacifico", cursive !important; 
+  font-weight: 400;
+  font-style: normal;
+  font-size: 30px;
   font-weight: 600;
   margin-right: 50px !important;
 }

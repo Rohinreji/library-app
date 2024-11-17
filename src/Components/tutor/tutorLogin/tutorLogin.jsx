@@ -9,6 +9,7 @@ import Button from "react-bootstrap/Button";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import CommonNavbar from "../../common/commonNavbar/commonNavbar";
 function TutorLogin() {
   const [showPassword, SetShowPassword] = useState(true);
   const [data, setData] = useState({
@@ -80,6 +81,7 @@ function TutorLogin() {
 
   return (
     <div>
+      <CommonNavbar/>
       <div className="adminLogin-main">
         <div className="adminLogin-box">
           <Row className="adminLogin-content">

@@ -94,7 +94,7 @@ export const StudentActiveRental = ({redirectToReturnBook}) => {
                   <h5 className="student_viewBookTitle">
                   <GiBlackBook />{booksId?.bookTitle}
                   </h5>
-                  <h5 className="mb-5">{booksId?.category}</h5>
+                  <h5 className="std_wishlistCategory">{booksId?.category}</h5>
                   <h4 className="tutorActiveRentalFine">
                     {numberOfRendedDate > 15 ? (
                       <p>fine:{numberOfRendedDate * 10 - 150}</p>

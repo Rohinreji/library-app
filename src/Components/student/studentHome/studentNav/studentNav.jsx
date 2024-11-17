@@ -3,9 +3,15 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import "../studentHome.css";
 import { useNavigate } from "react-router-dom";
+import { FaUserCircle } from "react-icons/fa";
+import StudentProfile from "../../studentProfile/studentProfile";
+import { useState } from "react";
 
 export const StudentNav = () => {
   const navigate = useNavigate();
+  const [show, setShow] = useState(false);
+  const handleShow = () => setShow(true);
+
   return (
     <div>
       <Navbar collapseOnSelect expand="lg" className="student-navbar">
@@ -14,8 +20,8 @@ export const StudentNav = () => {
             href="#home"
             className="student-nav-heading"
             style={{ cursor: "pointer" }}
-            onClick={()=>{
-              navigate("/")
+            onClick={() => {
+              navigate("/");
             }}
           >
             Open Library
@@ -39,10 +45,14 @@ export const StudentNav = () => {
               >
                 Dashboard
               </Nav>
+              <Nav className="student_Profile" onClick={handleShow}>
+                <FaUserCircle />
+              </Nav>
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
+      <StudentProfile handleShow={handleShow} show={show} setShow={setShow} />
     </div>
   );
 };

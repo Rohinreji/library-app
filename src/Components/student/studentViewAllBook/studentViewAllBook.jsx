@@ -98,7 +98,7 @@ export const StudentViewBook = ({ reDirectToViewSingleBook }) => {
     const value = e?.target?.value;
     if (value) {
       const filterData = fixedData.filter((item) => {
-        return item?.name.toLowerCase().includes(value.toLowerCase());
+        return item?.bookTitle?.toLowerCase().includes(value.toLowerCase());
       });
       setData(filterData);
     } else {
@@ -130,7 +130,7 @@ export const StudentViewBook = ({ reDirectToViewSingleBook }) => {
         </InputGroup>
 
         {data.length === 0 ? (
-          <h2 className="text-center">no data found </h2>
+          <h2 className="text-center">No Data Found </h2>
         ) : (
           <div className="d-flex flex-wrap gap-5  px-5 py-5 student-view-product-body">
             {data.map((e, index) => {
@@ -173,14 +173,21 @@ export const StudentViewBook = ({ reDirectToViewSingleBook }) => {
                   <h5 className="student_viewBookTitle">
                     <GiBlackBook /> {e?.bookTitle}{" "}
                   </h5>
-                  <p style={{ height: "20px" ,marginLeft:"8px" }}>
-                    <FaPenFancy  style={{fontSize:"15px"}}/> {e?.author}
+                  <p style={{ height: "20px", marginLeft: "8px" }}>
+                    <FaPenFancy style={{ fontSize: "15px" }} /> {e?.author}
                   </p>
                   <h5 className="student_viewBookAvailable">
                     {e.availableCopies < 0 ? (
-                      <div> <FcHighPriority />Not Available</div>
+                      <div>
+                        {" "}
+                        <FcHighPriority />
+                        Not Available
+                      </div>
                     ) : (
-                      <div> <FcApproval /> Available</div>
+                      <div>
+                        {" "}
+                        <FcApproval /> Available
+                      </div>
                     )}
                   </h5>
                 </div>

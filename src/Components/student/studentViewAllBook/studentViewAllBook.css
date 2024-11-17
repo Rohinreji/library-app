@@ -41,6 +41,9 @@
 }
 .std_wishlistCategory {
   margin-left: 10px;
+  height: 10px;
+  font-size: 15px;
+  margin-bottom: 20px;
 }
 /* std Active Rentals */
 .student_viewBooksActive{

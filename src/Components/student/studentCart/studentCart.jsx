@@ -82,10 +82,14 @@ export const StudentCart = () => {
   };
   return (
     <div className="tutorCartMainBox">
-        <div className="student_viewBooks">
-        <h2> <FaCartShopping />Cart</h2>
-        </div>
-     
+      <div className="student_viewBooks">
+        <h2>
+          {" "}
+          <FaCartShopping />
+          Cart
+        </h2>
+      </div>
+
       {data.map((e, index) => {
         const booksId = e?.booksId;
         return (
@@ -107,29 +111,33 @@ export const StudentCart = () => {
                 <table>
                   <tbody>
                     <tr>
-                      <td> BookTitle</td>
-                      <td>:</td>
-                      <td>{booksId.bookTitle}</td>
+                      <td className="stdCart_headings"> BookTitle</td>
+                      <td style={{ fontWeight: "bold" }}>:</td>
+                      <td className="stdCart_Headname">{booksId.bookTitle}</td>
                     </tr>
                     <tr>
-                      <td>Author</td>
+                      <td className="stdCart_headings">Author</td>
                       <td>:</td>
-                      <td>{booksId.author}</td>
+                      <td className="stdCart_Headname">{booksId.author}</td>
                     </tr>
                     <tr>
-                      <td>Category</td>
+                      <td className="stdCart_headings">Category</td>
                       <td>:</td>
-                      <td>{booksId.category}</td>
+                      <td className="stdCart_Headname">{booksId.category}</td>
                     </tr>
                     <tr>
-                      <td>Language</td>
+                      <td className="stdCart_headings">Language</td>
                       <td>:</td>
-                      <td>{booksId.language}</td>
+                      <td className="stdCart_Headname">{booksId.language}</td>
                     </tr>
                     <tr>
-                      <td>Status</td>
+                      <td className="stdCart_headings"> Status</td>
                       <td>:</td>
-                      <td>{booksId.status}</td>
+                      <td className="stdCart_status ">
+                        {booksId.availableCopies > 0
+                          ? "✅Available"
+                          : "❌Not available"}
+                      </td>
                     </tr>
                   </tbody>
                 </table>
@@ -153,7 +161,7 @@ export const StudentCart = () => {
         );
       })}
       <button className="tutorCart-rentAllBook" onClick={rentAllBook}>
-      <FaCartShopping />  Rent All Books
+        <FaCartShopping /> Rent All Books
       </button>
     </div>
   );

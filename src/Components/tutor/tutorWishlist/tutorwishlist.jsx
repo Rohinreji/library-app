@@ -4,6 +4,12 @@ import axiosInstance from "../../../apis/axiosInstance";
 import { BASE_URL } from "../../../apis/baseURL";
 import img from "../../../Assests/noDataFound.jpg";
 import toast from "react-hot-toast";
+import { SiBookstack } from "react-icons/si";
+
+import { GiBlackBook } from "react-icons/gi";
+import { FaPenFancy } from "react-icons/fa";
+import { FcApproval } from "react-icons/fc";
+import { FcHighPriority } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
 import "./tutorWishlist.css";
 export const Tutorwishlist = ({ reDirectToViewSingleBook }) => {
@@ -48,8 +54,11 @@ export const Tutorwishlist = ({ reDirectToViewSingleBook }) => {
 
   return (
     <div className="tutorWishlist">
-      <h2 className="my-3">wishlist</h2>
-      {data.length <= 0 ? (
+       <div className="student_viewBooks d-flex">
+        <FaHeart style={{ fontSize: "25px", marginRight: "2px" }} />
+        <h2>Wishlist</h2>
+      </div>
+{data.length <= 0 ? (
         <div
           className="tuturWishlist-noData"
           style={{ height: "100vh", width: "100%" }}
@@ -88,9 +97,19 @@ export const Tutorwishlist = ({ reDirectToViewSingleBook }) => {
                     </div>
                   </div>
                   <div className="tutorWishlist-text">
-                    <h5 className="py-1">{booksId.bookTitle}</h5>
-                    <p>{booksId.category}</p>
-                    <h5 className="mb-5">{booksId?.status}</h5>
+                  <h5 className="student_viewBookTitle">
+                    <GiBlackBook /> {booksId?.bookTitle}{" "}
+                  </h5>
+                  <p style={{ height: "20px" ,marginLeft:"8px" }}>
+                    <FaPenFancy  style={{fontSize:"15px"}}/> {booksId?.author}
+                  </p>
+                  <h5 className="student_viewBookAvailable">
+                    {booksId.availableCopies < 0 ? (
+                      <div> <FcHighPriority />Not Available</div>
+                    ) : (
+                      <div> <FcApproval /> Available</div>
+                    )}
+                  </h5>
                   </div>
                 </div>
               </div>

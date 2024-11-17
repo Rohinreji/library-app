@@ -13,6 +13,7 @@ import { FaPenFancy } from "react-icons/fa";
 import { FcApproval } from "react-icons/fc";
 import { FcHighPriority } from "react-icons/fc";
 import "./tutorActiveRental.css";
+
 export const TutorActiveRental = ({
   redirectToReturnBook,
   getFine,
@@ -22,8 +23,7 @@ export const TutorActiveRental = ({
   const [fixedData, setFixedData] = useState([]);
   const navigate = useNavigate();
 
-  const tutorId = localStorage.getItem("tutorId");
-
+  const tutorId = localStorage.getItem("tutorId"); 
   const getData = async () => {
     try {
       const response = await axios.post(
@@ -130,7 +130,6 @@ export const TutorActiveRental = ({
               getDate(formattedDate);
 
               const booksId = e?.booksId;
-
               return (
                 <div>
                   <div
@@ -155,7 +154,6 @@ export const TutorActiveRental = ({
                         <FaPenFancy style={{ fontSize: "15px" }} />{" "}
                         {booksId?.author}
                       </p>
-
                       <div className="tutorActiveRentalFine">
                         {numberOfRendedDate > 15 ? (
                           <p>fine:{numberOfRendedDate * 10 - 150}</p>

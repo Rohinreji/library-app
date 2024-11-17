@@ -54,6 +54,7 @@ import { TutorChatBox } from "./Components/tutor/tutorChatBox/tutorChatBox";
 import { AdminchatSideBar } from "./Components/admin/adminChatSideBar/adminChatSideBar";
 import { AdminChatDashBoard } from "./Components/admin/adminChatDashboard/adminChatDashBoard";
 import { AdminChatWelcomePage } from "./Components/admin/adminChatWelcome/adminChatWelcome";
+import { AdminChatNav } from "./Components/admin/adminChatNav/adminchatNav";
 
 function App() {
   return (
@@ -194,6 +195,7 @@ function App() {
           <Route path="/admin/chatSidebar" element={<AdminchatSideBar />} />
           <Route path = "/admin/chatDashBoard" element={<AdminChatDashBoard/>} />
           <Route path="/adminChatWelcomePage" element={<AdminChatWelcomePage/>} />
+          <Route path="/admin-chat/nav" element={<AdminChatNav/>} />
           {/* 404 page */}
           <Route path="/*" element={<h1>The page not available</h1>} />
 

@@ -6,12 +6,14 @@ import { IoSearch } from "react-icons/io5";
 import { BASE_URL } from "../../../apis/baseURL";
 import { useNavigate } from "react-router-dom";
 import img from "../../../Assests/noDataFound.jpg";
+import { VscFolderActive } from "react-icons/vsc";
+
 import "./tutorActiveRental.css";
-export const TutorActiveRental = ({redirectToReturnBook,getFine}) => {
+export const TutorActiveRental = ({ redirectToReturnBook, getFine,getDate }) => {
   const [data, setData] = useState([]);
   const [fixedData, setFixedData] = useState([]);
   const navigate = useNavigate();
-  
+
   const tutorId = localStorage.getItem("tutorId");
 
   const getData = async () => {
@@ -51,15 +53,18 @@ export const TutorActiveRental = ({redirectToReturnBook,getFine}) => {
 
   return (
     <div>
-      <h2 className="px-5 pt-4">Active rentals</h2>
+      <div className="student_viewBooksActive">
+        <VscFolderActive className="fs-4" />
+        <h2>Active Rentals</h2>
+      </div>{" "}
       {data.length <= 0 ? (
         <div
           className="tuturWishlist-noData"
           style={{ height: "100vh", width: "100%" }}
         >
           <div>
-            <img src={img} alt="" style={{ height: "450px", width: "450px" }} />
-            <h2 className="px-5">No data found</h2>
+            <img src={img} alt="" style={{ height: "400px", width: "400px" }} />
+            <h2 style={{paddingLeft:"20%"}}>No data found</h2>
           </div>{" "}
         </div>
       ) : (
@@ -93,13 +98,28 @@ export const TutorActiveRental = ({redirectToReturnBook,getFine}) => {
                 approvedDate.getDate()
               );
 
+              console.log(approvedDate, "kas555");
+
               // const numberOfRendedDate = lastSubmissionDate - approvedDate;
-              const timeDifference = date1.getTime() - date2.getTime();
-              
+              const timeDifference = date2.getTime() - date1.getTime();
+
               const numberOfRendedDate = timeDifference / (1000 * 3600 * 24); // 1000 ms/s, 3600 s/h, 24 h/day
 
               console.log(numberOfRendedDate);
-              // getFine(numberOfRendedDate*10)
+              getFine(numberOfRendedDate * 10);
+
+              const addedDate = new Date();
+              addedDate.setDate(approvedDate.getDate() + 15);
+              const options = {
+                month: "short",
+                day: "numeric",
+                year: "numeric",
+              };
+              const formattedDate = addedDate
+                .toLocaleDateString("en-US", options)
+                .replace(",", "");
+
+                getDate(formattedDate)
 
               const booksId = e?.booksId;
 
@@ -109,7 +129,7 @@ export const TutorActiveRental = ({redirectToReturnBook,getFine}) => {
                     className="student-product-view-box shadow"
                     onClick={() => {
                       // navigate(`/tutor/return-books/${e._id}`);
-                      redirectToReturnBook(e._id)
+                      redirectToReturnBook(e._id);
                     }}
                   >
                     <div className="">
@@ -122,14 +142,13 @@ export const TutorActiveRental = ({redirectToReturnBook,getFine}) => {
                     <div className="tutorActiveRental-text">
                       <h6>{booksId?.bookTitle}</h6>
                       <h5>{booksId?.category}</h5>
-                      <h4 className="tutorActiveRentalFine">
+                      <div className="tutorActiveRentalFine">
                         {numberOfRendedDate > 15 ? (
-                          <p>fine:{numberOfRendedDate * 10 - (150)}</p>
-                          
+                          <p>fine:{numberOfRendedDate * 10 - 150}</p>
                         ) : (
-                          <p></p>
+                          <h6>submit before { formattedDate}</h6>
                         )}
-                      </h4>
+                      </div>
                     </div>
                   </div>
                 </div>

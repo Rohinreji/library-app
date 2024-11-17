@@ -15,7 +15,7 @@ export const AdminChatDashBoard = () =>
     return(
         <div>
             <div className="d-flex">
-                <div className="col-3 mx-5" >
+                <div className="col-3" style={{marginLeft:"20px"}} >
                 <AdminchatSideBar getTutorId={getTutorId} tutorId={tutorId}/>
                 </div>
                 <div className="col-9">

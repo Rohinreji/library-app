@@ -40,22 +40,22 @@ export const TutorProfile = () => {
         </div>
         
 
-        <table>
+        <table >
           <tbody>
             <tr>
               <td>Name</td>
               <td>:</td>
-              <td>{data?.firstName} {data?.lastName}</td>
+              <td className="px-4">{data?.firstName} {data?.lastName}</td>
             </tr>
             <tr>
               <td>Email</td>
               <td>:</td>
-              <td>{data?.email}</td>{" "}
+              <td className="px-4">{data?.email}</td>{" "}
             </tr>
             <tr>
               <td>Id Number</td>
               <td>:</td>
-              <td>{data?.idNo}</td>
+              <td className="px-4">{data?.idNo}</td>
             </tr>
           </tbody>
         </table>

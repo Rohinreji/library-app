@@ -2,6 +2,7 @@ import axios from "axios";
 import "./adminChatSideBar.css";
 import axiosInstance from "../../../apis/axiosInstance";
 import { useEffect, useLayoutEffect, useState } from "react";
+import { BASE_URL } from "../../../apis/baseURL";
 export const AdminchatSideBar = ({getTutorId,tutorId}) => { 
   const [data, setData] = useState([]);
   const getuser = async () => {
@@ -21,18 +22,22 @@ export const AdminchatSideBar = ({getTutorId,tutorId}) => {
   console.log(data);
   return (
     <div>
-      <div className="adminchatSideBar">
+      <div className="adminchatSideBar shadow">
         {data.map((e) => {
           return (
             <div 
-            className={`adminSideBar-profile-box my-2  ${e._id === tutorId && `active-tutor`}`}
+            className={`shadow adminSideBar-profile-box my-2  ${e._id === tutorId && `active-tutor`}`}
             onClick={()=>
             {
                 getTutorId(e._id)
             }
             }
             >
+              <div className="d-flex">
+                <img src={`${BASE_URL}${e?.profile?.filename}`} alt="" />
               <h3>{e.firstName}</h3>
+
+              </div>
             </div>
           );
         })}

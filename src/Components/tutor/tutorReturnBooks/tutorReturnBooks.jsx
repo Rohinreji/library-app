@@ -8,7 +8,7 @@ import { BASE_URL } from "../../../apis/baseURL";
 import toast from "react-hot-toast";
 import TutorFinePayment from "../tutorFinePayment/tutorFinePayment";
 
-export const TutorReturnBooks = ({productId,fine}) => {
+export const TutorReturnBooks = ({productId,fine,date}) => {
   const { id } = useParams();
   const [data, setData] = useState([]);
   const [rentData, setRentData] = useState("");
@@ -108,11 +108,19 @@ console.log(rentData,"rent data 111111");
                   <td>:</td>
                   <td>{data.language}</td>
                 </tr>
-                <tr>
+              {fine > 150 ? 
+              <tr>
                   <td>Fine</td>
                   <td>:</td>
-                  <td>{fine}</td>
-                </tr>
+                 <td> {fine-150}</td>
+                </tr> :
+              <tr>
+                  <td>submission date</td>
+                  <td>:</td>
+                 <td> {date}</td>
+                </tr> 
+                
+                }
               </tbody>
             </table>
           </Col>
@@ -122,7 +130,7 @@ console.log(rentData,"rent data 111111");
           >
 
 
-            {fine ? <TutorFinePayment fine={fine} rentId={rentData._id} quantity ={rentData.addedQuantity} booksId={data._id}/> : <Button
+            {fine > 150 ? <TutorFinePayment fine={fine} rentId={rentData._id} quantity ={rentData.addedQuantity} booksId={data._id}/> : <Button
               variant="warning"
               onClick={() => {
                 setRentId(rentData._id);

@@ -2,6 +2,7 @@ import axios from "axios";
 import axiosInstance from "../../../apis/axiosInstance";
 import "./adminChatInterFace.css";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { AdminChatNav } from "../adminChatNav/adminchatNav";
 export const AdminChatInterFace = ({ tutorId }) => {
   const [state, setState] = useState([]);
   const [message, setMessage] = useState("");
@@ -47,7 +48,7 @@ export const AdminChatInterFace = ({ tutorId }) => {
 
   useEffect(() => {
     getdata();
-  }, [tutorId, state]);
+  }, [state]);
 
   useLayoutEffect(() => {
     scrollToBottom();
@@ -58,7 +59,8 @@ export const AdminChatInterFace = ({ tutorId }) => {
   };
 
   return (
-    <div a>
+    <div>
+      <AdminChatNav tutorId={tutorId}/>
       <div className="adminChatinterface-body">
         {state.map((e) => {
           if (e.value === "admin") {
@@ -69,7 +71,7 @@ export const AdminChatInterFace = ({ tutorId }) => {
         })}
         <div ref={messagesEndRef} />
       </div>
-      <div className="adminChatinterface-chat ">
+      <div className="adminChatinterface-chat shadow">
         <form
           action="
        "

@@ -7,9 +7,17 @@ import { BASE_URL } from "../../../apis/baseURL";
 import { useNavigate } from "react-router-dom";
 import img from "../../../Assests/noDataFound.jpg";
 import { VscFolderActive } from "react-icons/vsc";
-
+import { SiBookstack } from "react-icons/si";
+import { GiBlackBook } from "react-icons/gi";
+import { FaPenFancy } from "react-icons/fa";
+import { FcApproval } from "react-icons/fc";
+import { FcHighPriority } from "react-icons/fc";
 import "./tutorActiveRental.css";
-export const TutorActiveRental = ({ redirectToReturnBook, getFine,getDate }) => {
+export const TutorActiveRental = ({
+  redirectToReturnBook,
+  getFine,
+  getDate,
+}) => {
   const [data, setData] = useState([]);
   const [fixedData, setFixedData] = useState([]);
   const navigate = useNavigate();
@@ -64,7 +72,7 @@ export const TutorActiveRental = ({ redirectToReturnBook, getFine,getDate }) => 
         >
           <div>
             <img src={img} alt="" style={{ height: "400px", width: "400px" }} />
-            <h2 style={{paddingLeft:"20%"}}>No data found</h2>
+            <h2 style={{ paddingLeft: "20%" }}>No data found</h2>
           </div>{" "}
         </div>
       ) : (
@@ -119,7 +127,7 @@ export const TutorActiveRental = ({ redirectToReturnBook, getFine,getDate }) => 
                 .toLocaleDateString("en-US", options)
                 .replace(",", "");
 
-                getDate(formattedDate)
+              getDate(formattedDate);
 
               const booksId = e?.booksId;
 
@@ -139,14 +147,20 @@ export const TutorActiveRental = ({ redirectToReturnBook, getFine,getDate }) => 
                         className="student-product-view-box-img"
                       />
                     </div>
-                    <div className="tutorActiveRental-text">
-                      <h6>{booksId?.bookTitle}</h6>
-                      <h5>{booksId?.category}</h5>
+                    <div>
+                      <h5 className="student_viewBookTitle my-2">
+                        <GiBlackBook /> {booksId?.bookTitle}{" "}
+                      </h5>
+                      <p style={{ height: "20px", marginLeft: "8px" }}>
+                        <FaPenFancy style={{ fontSize: "15px" }} />{" "}
+                        {booksId?.author}
+                      </p>
+
                       <div className="tutorActiveRentalFine">
                         {numberOfRendedDate > 15 ? (
                           <p>fine:{numberOfRendedDate * 10 - 150}</p>
                         ) : (
-                          <h6>submit before { formattedDate}</h6>
+                          <h6>submit before {formattedDate}</h6>
                         )}
                       </div>
                     </div>

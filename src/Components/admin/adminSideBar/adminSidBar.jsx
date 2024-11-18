@@ -149,7 +149,7 @@ export const AdminSideBar = ({ changeSelectedPage }) => {
                       changeSelectedPage("viewStdRentedBooks");
                     }}
                   >
-                    view rented books
+                     rented books
                   </li>
                 </div>
               )}
@@ -168,8 +168,7 @@ export const AdminSideBar = ({ changeSelectedPage }) => {
                     onClick={() => {
                       changeSelectedPage("viewRentedBooksByTutor");
                     }}
-                  >
-                    view rented books
+                  > rented books
                   </li>
                 </div>
               )}

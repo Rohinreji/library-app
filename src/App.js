@@ -55,6 +55,7 @@ import { AdminchatSideBar } from "./Components/admin/adminChatSideBar/adminChatS
 import { AdminChatDashBoard } from "./Components/admin/adminChatDashboard/adminChatDashBoard";
 import { AdminChatWelcomePage } from "./Components/admin/adminChatWelcome/adminChatWelcome";
 import { AdminChatNav } from "./Components/admin/adminChatNav/adminchatNav";
+import { StudentProfile } from "./Components/student/studentProfile/studentEditProfile";
 
 function App() {
   return (
@@ -97,6 +98,7 @@ function App() {
             path="/studentReturnBook/:id"
             element={<StudentReturnBooks />}
           />
+          <Route path="/studentProfile" element={<StudentProfile/>}/>
           <Route path="/studentViewWishlist" element={<Studentwishlist />} />
           {/* common */}
           <Route path="/commonNavbar" element={<CommonNavbar />} />

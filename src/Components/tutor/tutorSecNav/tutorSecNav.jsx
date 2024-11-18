@@ -8,6 +8,7 @@ import axios from "axios";
 import { BASE_URL } from "../../../apis/baseURL";
 export const TutorSecNav = ({changeSelectedPage}) => {
   const [data, setData] = useState({});
+  const navigate = useNavigate()
   const id = localStorage.getItem("tutorId");
   const getData = async () => {
     try {
@@ -37,10 +38,11 @@ export const TutorSecNav = ({changeSelectedPage}) => {
           <Navbar.Toggle aria-controls="tutorSecNav-nav" />
           <Navbar.Collapse id="tutorSecNav-nav">
             <Nav className="ms-auto tutorSecNav-text tutorSecNav-right-side-text">
-              <Nav href="#deets" className="mx-4 my-2">
+              {/* <Nav href="#deets" className="mx-4 my-2"
+              >
                 Home
-              </Nav>
-              <Nav href="#deets" className="mx-4 d-flex "
+              </Nav> */}
+              <Nav href="#deets" className="mx-4 d-flex"
               onClick={()=>
               {
                 changeSelectedPage("profile")

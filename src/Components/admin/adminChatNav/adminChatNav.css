@@ -1,10 +1,11 @@
 .adminChatNav
 {
-    height: 80px;
+    height: 70px;
     width: 100%;
     background-color:#2fda93 ;
     display: flex;
     align-items: center;
+    margin-top: 5px;
 }
 
 .adminChatNav img

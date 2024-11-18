@@ -76,7 +76,7 @@ export const AdminViewStdRented = () => {
                 <td rowspan={2}>{index + 1}</td>
                 <td>Tutor</td>
                 <td>
-                  {studentId.firstname} {studentId.lastname}{" "}
+                  {studentId?.firstname} {studentId?.lastname}{" "}
                 </td>
                 <td>{studentId.email}</td>
                 <td>{e.addedQuantity}</td>

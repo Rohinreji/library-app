@@ -54,7 +54,7 @@ export const TutorEditProfile = () => {
     try {
       const response = await axios.post(
         `http://localhost:3005/updateTutorProfile/${tutorId}`,
-         data 
+       {  data }
       );
       if (response.status === 200) {
         toast.success("profile updated successfully");

@@ -71,7 +71,7 @@ export const AdminApproveTutor = () => {
   };
 
   const handleSearch = (e) => {
-    const value = e.target.value; 
+    const value = e.target.value;
     if (value) {
       const filterData = fixedData.filter((item) => {
         return `${item.firstName}${item.lastName}`
@@ -85,8 +85,10 @@ export const AdminApproveTutor = () => {
   };
 
   return (
-    <div>
-      <h2 className="mx-5 my-4">pending tutor</h2>
+    <div className="adminApprove-mainBox">
+      <div className="admin_viewBooks">
+        <h2> Tutor Request</h2>
+      </div>{" "}
       <InputGroup className="mb-3 student-serach-box">
         <Form.Control
           placeholder="Search"

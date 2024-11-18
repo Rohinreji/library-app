@@ -38,7 +38,7 @@ export const AdminDashboard = () => {
           </div>
           <div className="col-10">
             {selectedpage ==="adminViewBooks" && <AdminViewAllBook/>}
-            {selectedpage === "adminAddBook" && <AdminAddProduct />}
+            {selectedpage === "adminAddBook" && <AdminAddProduct redirectToAdminViewAllBook={redirectToAdminViewAllBook}/>}
             {selectedpage === "approveTutor" && <AdminApproveTutor />}
             {selectedpage === "viewAllTutor" && <AdminViewApproveTutor />}
             {selectedpage === "approveRentOfTutor" && <AdminViewAllRental />}

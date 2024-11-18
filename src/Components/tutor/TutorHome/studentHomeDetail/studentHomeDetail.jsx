@@ -7,9 +7,10 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import "../studentHome.css"
+import { useNavigate } from "react-router-dom";
 function StudentHomeDetails() {
   const [index, setIndex] = useState(0);
-
+const navigate = useNavigate()
   const handleSelect = (selectedIndex) => {
     setIndex(selectedIndex);
   };
@@ -65,6 +66,11 @@ function StudentHomeDetails() {
               <Button
                 variant="success"
                 className="student-home-details-button shadow"
+                onClick={()=>
+                {
+                  navigate("/tutor-viewBook")
+                }
+                }
               >
                 Explore Now
               </Button>

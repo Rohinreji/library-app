@@ -16,10 +16,10 @@ export const TutorNav = () => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ms-auto student-navbar-text student-nav-right-side-text">
-              <Nav href="#deets" className="mx-4">Home</Nav>
-              <Nav eventKey={2} href="#memes" className="mx-4">
+                {/* <Nav href="#deets" className="mx-4">Home</Nav> */}
+              {/* <Nav eventKey={2} href="#memes" className="mx-4">
                 About
-              </Nav>
+              </Nav> */}
               <Nav
                eventKey={2} href="#memes"
                 className="mx-4 student-nav-dashboard "

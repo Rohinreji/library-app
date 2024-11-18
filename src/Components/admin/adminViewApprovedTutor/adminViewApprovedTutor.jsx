@@ -42,8 +42,12 @@ export const AdminViewApproveTutor = () => {
 
   return (
     <div>
-      <h2 className="mx-5 my-4">Approved tutors</h2>
-      <InputGroup className="mb-3 student-serach-box">
+ <div className="student_viewBooks">
+            <h2>
+              view all tutor
+              {" "}
+            </h2>
+          </div>{" "}      <InputGroup className="mb-3 student-serach-box">
         <Form.Control
           placeholder="Search"
           aria-label="search"

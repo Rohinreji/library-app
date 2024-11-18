@@ -5,7 +5,9 @@ import InputGroup from "react-bootstrap/InputGroup";
 import { IoSearch } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { SiBookstack } from "react-icons/si";
 import { BASE_URL } from "../../../apis/baseURL";
+import "./adminViewAllBooks.css"
 export const AdminViewAllBook = () => {
   const [fixedData, setFixedData] = useState([]);
   const [data, setData] = useState([]);
@@ -28,9 +30,6 @@ export const AdminViewAllBook = () => {
   useEffect(() => {
     getData();
   }, []);
-
-  // tutor wishslist
-
   
   const handleSearch = (e) => {
     e.preventDefault();
@@ -47,6 +46,13 @@ export const AdminViewAllBook = () => {
   
   return (
     <div>
+          <div className="student_viewBooks">
+            <h2>
+              {" "}
+              <SiBookstack />
+              Books
+            </h2>
+          </div>{" "}
       <div className="student-view-product">
         {/* <h2 className="px-5 pt-4">view products</h2> */}
         <InputGroup className="mb-3 student-serach-box">

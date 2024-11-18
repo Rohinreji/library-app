@@ -140,7 +140,6 @@ function App() {
           <Route path="/admin/dashBoard" element={<AdminDashboard />} />
           <Route path="/admin/viewAllBooks" element={<AdminViewAllBook />} />
 
-
           {/* tutor */}
           <Route path="/tutorLogin" element={<TutorLogin />} />
           <Route path="/tutorSignup" element={<TutorSignUp />} />
@@ -193,9 +192,12 @@ function App() {
           {/* chat ui */}
           <Route path="/tutor/helpDesk" element={<TutorChatBox />} />
           <Route path="/admin/chatSidebar" element={<AdminchatSideBar />} />
-          <Route path = "/admin/chatDashBoard" element={<AdminChatDashBoard/>} />
-          <Route path="/adminChatWelcomePage" element={<AdminChatWelcomePage/>} />
-          <Route path="/admin-chat/nav" element={<AdminChatNav/>} />
+          <Route path="/admin/chatDashBoard" element={<AdminChatDashBoard />} />
+          <Route
+            path="/adminChatWelcomePage"
+            element={<AdminChatWelcomePage />}
+          />
+          <Route path="/admin-chat/nav" element={<AdminChatNav />} />
           {/* 404 page */}
           <Route path="/*" element={<h1>The page not available</h1>} />
 

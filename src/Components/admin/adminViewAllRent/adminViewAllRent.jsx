@@ -66,6 +66,19 @@ const rejectRent = async (rentId) =>
 }
 console.log(data);
 
+const updateQuantity = async (id) => {
+  try {
+    const response = await axiosInstance.post(`/addBookQuantity/${id}`, {
+      quantity:1,
+    });
+    if (response.status === 200) {
+      console.log("book quantity added");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 
 
 // search functionality
@@ -132,6 +145,7 @@ const handleSearch = (e) => {
                     onClick={()=>
                     {
                       rejectRent(e._id)
+                      updateQuantity(booksId._id)
                     }
                     }
                     >

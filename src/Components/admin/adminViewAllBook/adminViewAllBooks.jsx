@@ -8,7 +8,7 @@ import axios from "axios";
 import { SiBookstack } from "react-icons/si";
 import { BASE_URL } from "../../../apis/baseURL";
 import "./adminViewAllBooks.css"
-export const AdminViewAllBook = () => {
+export const AdminViewAllBook = ({getProductId,reDirectViewSingleBook}) => {
   const [fixedData, setFixedData] = useState([]);
   const [data, setData] = useState([]);
   
@@ -76,7 +76,12 @@ export const AdminViewAllBook = () => {
                 <div
                   className="student-product-view-box shadow"
                   key={e.id}
-                 
+                 onClick={()=>
+                 {
+                  getProductId(e._id)
+                  reDirectViewSingleBook()
+                 }
+                 }
                 >
                   <div className="">
                     <img
@@ -91,15 +96,11 @@ export const AdminViewAllBook = () => {
                  <div className="tutorViewBooks-text my-5">
                  <h5 className="py-1">{e?.bookTitle}</h5>
                   <p>
-                    {/* {e?.description?.length > 15
-                      ? e.description?.substring(0, 28) + "..."
-                      : e.description}{" "} */}
+                   
                     {e?.author}
                   </p>
                   <h5 className="mb-5">
-                    {/* <FaRupeeSign />
-                    {e.price} */}
-                    {/* {e?.status} */}
+                   
 
                     {e.availableCopies <= 0 ? (
                       <div>Not Available</div>

@@ -17,11 +17,13 @@ import { MyVerticallyCenteredModal } from "../adminLoginModal/adminLoginModal";
 import { AdminViewAllStdRental } from "../adminViewStdRental/adminViewStdRental";
 import { AdminViewStdRented } from "../adminViewStdRented/adminViewStdRented";
 import { AdminViewReturnStdReq } from "../adminViewReturnStdReq/AdminViewReturnStdReq";
+import { AdminviewSingleProduct } from "../adminViewSingleBook/adminViewSingleBook";
 import Footer from "../../common/footer/footer";
 import CommonNavbar from "../../common/commonNavbar/commonNavbar";
 
 export const AdminDashboard = () => {
   const [selectedpage, setSelectedPage] = useState("adminViewBooks");
+  const [productId,setProductId] = useState("")
   const changeSelectedPage = (value) => {
     setSelectedPage(value);
   };
@@ -29,6 +31,19 @@ export const AdminDashboard = () => {
   const redirectToAdminViewAllBook = () => {
     setSelectedPage("adminViewBooks");
   };
+
+  const getProductId = (id) =>
+  {
+setProductId(id)
+  }
+
+  const reDirectViewSingleBook = () =>
+  {
+    setSelectedPage("viewSingleBook")
+  }
+
+
+
   let adminId = localStorage.getItem("adminId");
 
   return (
@@ -39,7 +54,8 @@ export const AdminDashboard = () => {
             <AdminSideBar changeSelectedPage={changeSelectedPage} />
           </div>
           <div className="col-10">
-            {selectedpage ==="adminViewBooks" && <AdminViewAllBook/>}
+            {selectedpage ==="adminViewBooks" && <AdminViewAllBook getProductId={getProductId} reDirectViewSingleBook={reDirectViewSingleBook}/>}
+            {selectedpage ==="viewSingleBook"  && <AdminviewSingleProduct productId={productId} redirectToAdminViewAllBook={redirectToAdminViewAllBook}/>}
             {selectedpage === "adminAddBook" && <AdminAddProduct redirectToAdminViewAllBook={redirectToAdminViewAllBook}/>}
             {selectedpage === "approveTutor" && <AdminApproveTutor />}
             {selectedpage === "viewAllTutor" && <AdminViewApproveTutor />}

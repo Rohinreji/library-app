@@ -72,6 +72,13 @@ export const AdminSideBar = ({ changeSelectedPage }) => {
       <div className="admin-sidebar">
         <h2 className="openlibrary-heading">Open Library</h2>
         <ul>
+        <li
+            onClick={() => {
+              changeSelectedPage("adminViewBooks");
+            }}
+          >
+            Books
+          </li>
           <li
             onClick={() => {
               changeSelectedPage("adminAddBook");

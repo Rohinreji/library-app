@@ -146,7 +146,7 @@ export const StudentviewSingleProduct = ({ productId, reDirectToCart }) => {
               <FaRupeeSign />
               {cartCount > 1 ? product.price * cartCount : product.price}
             </h2> */}
-            <h5>Quantity</h5>
+            {/* <h5>Quantity</h5>
             <div
               role="group"
               className="d-flex mx-5  my-2 student-view-single-product-count "
@@ -170,7 +170,7 @@ export const StudentviewSingleProduct = ({ productId, reDirectToCart }) => {
               >
                 -
               </div>
-            </div>
+            </div> */}
           </div>
           {/* <h6>
             {product.description.length > 220

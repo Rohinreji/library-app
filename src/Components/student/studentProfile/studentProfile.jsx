@@ -17,9 +17,8 @@ function StudentEditProfile({ show, setShow }) {
   const [data, setData] = useState({
     firstname: "",
     email: "",
-    idNo: "",
     lastname: "",
-    profile: null,
+    photo: null,
   });
   useEffect(() => {
     const studentId = localStorage.getItem("studentId");
@@ -55,7 +54,7 @@ function StudentEditProfile({ show, setShow }) {
     formData.append("firstName", data.firstname);
     formData.append("email", data.email);
     formData.append("lastName", data.lastname);
-    formData.append("profile", data.photo);
+    formData.append("photo", data.photo);
     sendDataToServer(formData);
   };
 
@@ -102,7 +101,7 @@ function StudentEditProfile({ show, setShow }) {
                 <input
                   type="file"
                   style={{ display: "none" }}
-                  name="profile"
+                  name="photo"
                   onChange={handleFileChange}
                 />
               </label>

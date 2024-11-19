@@ -17,6 +17,8 @@ import { MyVerticallyCenteredModal } from "../adminLoginModal/adminLoginModal";
 import { AdminViewAllStdRental } from "../adminViewStdRental/adminViewStdRental";
 import { AdminViewStdRented } from "../adminViewStdRented/adminViewStdRented";
 import { AdminViewReturnStdReq } from "../adminViewReturnStdReq/AdminViewReturnStdReq";
+import Footer from "../../common/footer/footer";
+import CommonNavbar from "../../common/commonNavbar/commonNavbar";
 
 export const AdminDashboard = () => {
   const [selectedpage, setSelectedPage] = useState("adminViewBooks");
@@ -59,6 +61,7 @@ export const AdminDashboard = () => {
       ) : (
         <AdminPleaseLogin/>
       )}
+      <Footer/>
     </div>
   );
 };

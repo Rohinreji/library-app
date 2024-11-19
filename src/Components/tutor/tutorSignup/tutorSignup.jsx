@@ -115,9 +115,19 @@ export const TutorSignUp = () => {
       toast.error("email is required")
       return false
     }
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(email)) {
+      toast.error("Please enter a valid email address");
+      return false;
+    }
     if(!idNo)
     {
       toast.error("Id number is required")
+      return false
+    }
+    if(idNo >99999 || idNo < 1000 )
+    {
+      toast.error("Enter a valid id number")
       return false
     }
     if(!password)
@@ -138,15 +148,15 @@ export const TutorSignUp = () => {
       toast.error("confirm password is required")
       return false
     }
-    if (!profile) {
-      toast.error("please upload profile");
-      return false;
-    }
+    
     if (data.password !== data.confirmPassword) {
       toast.error("password do not match");
       return false
     }
-
+    if (!profile) {
+      toast.error("please upload profile");
+      return false;
+    }
     return true;
   };
 
@@ -228,6 +238,8 @@ export const TutorSignUp = () => {
                       style={{ display: "none" }}
                       name="profile"
                       onChange={handleFileChange}
+                      accept=".jpg, .jpeg, .png"
+
                     />
                   </label>
                 </div>
@@ -324,7 +336,7 @@ export const TutorSignUp = () => {
                 className="mx-auto w-25 my-4 student-signup-btn"
                 type="submit"
               >
-                Upload
+                Register
               </Button>
             </div>
           </Form>

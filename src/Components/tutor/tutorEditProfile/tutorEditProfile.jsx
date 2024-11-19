@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
@@ -12,15 +12,16 @@ export const TutorEditProfile = () => {
   const [profilePic, setProfilePic] = useState(null);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [state, setState] = useState({});
   const [data, setData] = useState({
     firstName: "",
     email: "",
     idNo: "",
-    lastName:"",
+    lastName: "",
     profile: null,
   });
   const tutorId = localStorage.getItem("tutorId");
-  console.log("id",tutorId);
+  console.log("id", tutorId);
   const handleChange = (e) => {
     const { files, value, name, type } = e.target;
     if (type === "file") {
@@ -54,7 +55,7 @@ export const TutorEditProfile = () => {
     try {
       const response = await axios.post(
         `http://localhost:3005/updateTutorProfile/${tutorId}`,
-       {  data }
+        data
       );
       if (response.status === 200) {
         toast.success("profile updated successfully");
@@ -64,6 +65,23 @@ export const TutorEditProfile = () => {
     }
   };
 
+  const getData = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3005/tutorViewProfile/${tutorId}`
+      );
+      if (response.status == 200) {
+        setData(response?.data?.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <div>
       <>
@@ -72,9 +90,7 @@ export const TutorEditProfile = () => {
         </Button>
 
         <Modal className="tuorEditProfilModal" show={show} onHide={handleClose}>
-          <Modal.Body
-          className="tutorEditprfile-body"
-          >
+          <Modal.Body className="tutorEditprfile-body">
             <Modal.Title>Edit Profile</Modal.Title>
 
             <Form onSubmit={handleSubmit}>
@@ -103,8 +119,11 @@ export const TutorEditProfile = () => {
                 className="mb-3"
                 controlId="exampleForm.ControlInput1"
               >
-                <Form.Label className="tutorEditProfile-label">First name</Form.Label>
+                <Form.Label className="tutorEditProfile-label">
+                  First name
+                </Form.Label>
                 <Form.Control
+                  value={data.firstName}
                   type="text"
                   placeholder="Enter your name"
                   autoFocus
@@ -118,7 +137,9 @@ export const TutorEditProfile = () => {
                 className="mb-3"
                 controlId="exampleForm.ControlInput1"
               >
-                <Form.Label  className="tutorEditProfile-label">Last name</Form.Label>
+                <Form.Label className="tutorEditProfile-label">
+                  Last name
+                </Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Enter your last name"
@@ -126,6 +147,7 @@ export const TutorEditProfile = () => {
                   className="tutorEditProfileInp"
                   onChange={handleChange}
                   name="lastName"
+                  value={data.lastName}
                 />
               </Form.Group>
 
@@ -133,7 +155,9 @@ export const TutorEditProfile = () => {
                 className="mb-3"
                 controlId="exampleForm.ControlInput1"
               >
-                <Form.Label className="tutorEditProfile-label">Email</Form.Label>
+                <Form.Label className="tutorEditProfile-label">
+                  Email
+                </Form.Label>
                 <Form.Control
                   type="email"
                   placeholder="Enter your email"
@@ -141,9 +165,10 @@ export const TutorEditProfile = () => {
                   className="tutorEditProfileInp"
                   onChange={handleChange}
                   name="email"
+                  value={data.email}
                 />
               </Form.Group>
-             
+
               <Button
                 variant="primary"
                 onClick={handleClose}

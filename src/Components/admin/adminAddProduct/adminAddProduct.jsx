@@ -8,7 +8,7 @@ import img1 from "../../../Assests/adminAddBook.jpg";
 import "./adminAddProduct.css";
 import axios from "axios";
 import toast from "react-hot-toast";
-export const AdminAddProduct = ({redirectToAdminViewAllBook}) => {
+export const AdminAddProduct = ({ redirectToAdminViewAllBook }) => {
   const [data, setData] = useState({
     bookTitle: "",
     author: "",
@@ -59,7 +59,7 @@ export const AdminAddProduct = ({redirectToAdminViewAllBook}) => {
       );
       if (response.status === 200) {
         toast.success("sucess!!");
-        redirectToAdminViewAllBook()
+        redirectToAdminViewAllBook();
       }
     } catch (error) {
       if (error.status === 500) {
@@ -187,7 +187,7 @@ export const AdminAddProduct = ({redirectToAdminViewAllBook}) => {
                   <Form.Label>Available copies</Form.Label>
                   <InputGroup hasValidation>
                     <Form.Control
-                      type="text"
+                      type="number"
                       placeholder="Available copies"
                       aria-describedby="inputGroupPrepend"
                       required
@@ -238,10 +238,11 @@ export const AdminAddProduct = ({redirectToAdminViewAllBook}) => {
                   <InputGroup hasValidation>
                     <Form.Control
                       type="file"
-                      placeholder="title"
-                      aria-describedby="inputGroupPrepend"
-                      required
+                      id="fileInput"
                       name="bookImage"
+                      accept=".jpg, .jpeg, .png"
+
+                      style={{ display: "block" }} // Make sure it's visible
                       onChange={handleChange}
                     />
                     <Form.Control.Feedback type="invalid">

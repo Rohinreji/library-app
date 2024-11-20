@@ -7,6 +7,8 @@ import toast from "react-hot-toast";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { IoSearch } from "react-icons/io5";
+import { FaCodePullRequest } from "react-icons/fa6";
+
 export const AdminViewReturnStdReq = () => {
   const [data, setData] = useState([]);
   const [fixedData, setFixedData] = useState([]);
@@ -81,7 +83,13 @@ export const AdminViewReturnStdReq = () => {
 
   return (
     <div>
-      <h2 className="mx-5 my-3">Return request</h2>
+      <div className="admin_viewBooks">
+        <h4> 
+        <FaCodePullRequest className="mx-2"/>
+
+        Return request</h4>
+      </div>{" "}
+
       <InputGroup className="mb-3 student-serach-box">
         <Form.Control
           placeholder="Search"

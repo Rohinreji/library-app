@@ -4,6 +4,8 @@ import { FaCheck } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { IoGitPullRequestOutline } from "react-icons/io5";
+
 export const AdminViewStudentRequest = () => {
   const [data, setData] = useState([]);
   const getData = async () => {
@@ -60,7 +62,12 @@ export const AdminViewStudentRequest = () => {
 
   return (
     <div>
-      <h2>Pending Student</h2>
+      <div className="admin_viewBooks">
+        <h4> 
+        <IoGitPullRequestOutline className="mx-1"/>
+
+        Student Request</h4>
+      </div>{" "}
       <Table striped bordered hover className="adminApproveTutor-table">
         <thead>
           <tr>

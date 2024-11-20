@@ -52,16 +52,19 @@ export const AdminChatInterFace = ({ tutorId }) => {
 
   useLayoutEffect(() => {
     scrollToBottom();
-  }, [state]);
+  }, [message]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
+    <div className="adminChatInreface">
+        <AdminChatNav tutorId={tutorId}/>
     <div>
-      <AdminChatNav tutorId={tutorId}/>
       <div className="adminChatinterface-body">
+      <div id="display-user-messages">
+
         {state.map((e) => {
           if (e.value === "admin") {
             return <div className="adminChatBox-1">{e.message}</div>;
@@ -70,6 +73,7 @@ export const AdminChatInterFace = ({ tutorId }) => {
           }
         })}
         <div ref={messagesEndRef} />
+        </div>
       </div>
       <div className="adminChatinterface-chat shadow">
         <form
@@ -91,6 +95,7 @@ export const AdminChatInterFace = ({ tutorId }) => {
           </button>
         </form>
       </div>
+    </div>
     </div>
   );
 };

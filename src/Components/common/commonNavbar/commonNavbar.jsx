@@ -45,6 +45,11 @@ function CommonNavbar() {
                   className="nav-link active"
                   style={{ fontWeight: "300px" }}
                   href="#"
+                  onClick={()=>
+                    {
+                      navigate("/contact")
+                    }
+                  }
                 >
                   Contact
                 </a>

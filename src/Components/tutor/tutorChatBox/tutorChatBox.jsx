@@ -61,7 +61,7 @@ export const TutorChatBox = () => {
 
   useLayoutEffect(() => {
     scrollToBottom();
-  }, [state]);
+  }, [message]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./adminSideBar.css";
+import { useNavigate } from "react-router-dom";
 export const AdminSideBar = ({ changeSelectedPage }) => {
   const [viewTutorDD, setViewTutorDD] = useState(false);
   const [rentProductByTutor, setRentProductByTutor] = useState(false);
@@ -8,6 +9,7 @@ export const AdminSideBar = ({ changeSelectedPage }) => {
   const [viewUser, setViewUser] = useState(false);
   const [rental, setRental] = useState(false);
   const [retunReq, setReturnReq] = useState(false);
+  const navigate = useNavigate()
   const toggleViewTutor = () => {
     setViewTutorDD(!viewTutorDD);
     setRentProductByTutor(false);
@@ -208,6 +210,7 @@ export const AdminSideBar = ({ changeSelectedPage }) => {
             className="text-danger fs-3"
             onClick={() => {
               localStorage.removeItem("adminId");
+              navigate("/adminLogin")
             }}
           >
             Logout

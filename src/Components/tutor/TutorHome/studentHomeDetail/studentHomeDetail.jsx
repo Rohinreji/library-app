@@ -34,6 +34,11 @@ const navigate = useNavigate()
               <Button
                 variant="success"
                 className="student-home-details-button shadow"
+                onClick={()=>
+                {
+                  navigate("/tutor-viewBook")
+                }
+                }
               >
                 Explore Now
               </Button>

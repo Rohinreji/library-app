@@ -4,11 +4,13 @@ import InputGroup from "react-bootstrap/InputGroup";
 import { IoSearch } from "react-icons/io5";
 import { ImCross } from "react-icons/im";
 import { FaCheck } from "react-icons/fa";
+import { IoGitPullRequestOutline } from "react-icons/io5";
+
 import "./adminApproveTutor.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-import img from "../../../Assests/noDataFound.jpg";
+import img from "../../../Assests/noDataFound.png";
 export const AdminApproveTutor = () => {
   const [data, setData] = useState([]);
   const [rejectId, setRejectId] = useState("");
@@ -87,7 +89,10 @@ export const AdminApproveTutor = () => {
   return (
     <div className="adminApprove-mainBox">
       <div className="admin_viewBooks">
-        <h2> Tutor Request</h2>
+        <h4> 
+        <IoGitPullRequestOutline className="mx-2"/>
+
+          Tutor Request</h4>
       </div>{" "}
       <InputGroup className="mb-3 student-serach-box">
         <Form.Control
@@ -103,11 +108,11 @@ export const AdminApproveTutor = () => {
       {data.length <= 0 ? (
         <div
           className="tuturWishlist-noData"
-          style={{ height: "100vh", width: "100%" }}
+          style={{ height: "80vh", width: "100%" }}
         >
           <div>
             <img src={img} alt="" style={{ height: "450px", width: "450px" }} />
-            <h2 className="px-5">No data found</h2>
+            {/* <h2 className="px-5">No data found</h2> */}
           </div>{" "}
         </div>
       ) : (

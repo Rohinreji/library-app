@@ -141,12 +141,12 @@ export const StudentviewSingleProduct = ({ productId, reDirectToCart }) => {
         </Col>
         <Col>
           <h3>{data.bookTitle}</h3>
-          <div className="d-flex pt-4">
+          {/* <div className="d-flex pt-4"> */}
             {/* <h2>
               <FaRupeeSign />
               {cartCount > 1 ? product.price * cartCount : product.price}
             </h2> */}
-            <h5>Quantity</h5>
+            {/* <h5>Quantity</h5>
             <div
               role="group"
               className="d-flex mx-5  my-2 student-view-single-product-count "
@@ -171,7 +171,7 @@ export const StudentviewSingleProduct = ({ productId, reDirectToCart }) => {
                 -
               </div>
             </div>
-          </div>
+          </div> */}
           {/* <h6>
             {product.description.length > 220
               ? product.description.substring(0, 220) + "..."

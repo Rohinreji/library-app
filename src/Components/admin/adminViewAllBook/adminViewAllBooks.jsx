@@ -49,7 +49,7 @@ export const AdminViewAllBook = ({getProductId,reDirectViewSingleBook}) => {
           <div className="student_viewBooks">
             <h2>
               {" "}
-              <SiBookstack />
+              <SiBookstack className="mx-3"/>
               Books
             </h2>
           </div>{" "}

@@ -40,36 +40,43 @@
   border-radius: 9px;
   text-align: left;
   color: black;
-  background-color: #e4daec;
+  background-color: #d8c1eb;
   margin-top: 20px;
   margin-bottom: 20px;
   padding: 8px 8px 0px 8px;
   position: relative;
-  left: 25px;
+  left: 20px;
   display: block;
   clear: both;
-  word-break: break-all;
+  word-wrap: break-word;
+  align-self: flex-end;
 }
 .adminChatBox-2 {
-  width: fit-content;
   max-width: 90%;
   min-height: 47px;
   border-radius: 9px;
-  text-align: left;
+  text-align: right;
   color: black;
-  background-color: #d375dcef;
+  background-color: #d8c1eb;
   margin-top: 20px;
   margin-bottom: 20px;
   padding: 8px 8px 0px 8px;
   position: relative;
-  left: 25px;
+  left: -25px;
   display: block;
+  float: right;
   clear: both;
-  word-break: break-all;
+  word-wrap: break-word;
+  align-self: flex-start;
 }
 /* modifications  */
 #display-user-messages {
   height: 100%;
   overflow-y: scroll;
   position: relative;
+}
+.adminChatBoxTime
+{
+  font-size: 10px;
+  text-align: right;
 }

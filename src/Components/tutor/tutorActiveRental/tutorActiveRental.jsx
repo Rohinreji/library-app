@@ -109,7 +109,7 @@ export const TutorActiveRental = ({
               console.log(approvedDate, "kas555");
 
               // const numberOfRendedDate = lastSubmissionDate - approvedDate;
-              const timeDifference = date2.getTime() - date1.getTime();
+              const timeDifference = date1.getTime() - date2.getTime();
 
               const numberOfRendedDate = timeDifference / (1000 * 3600 * 24); // 1000 ms/s, 3600 s/h, 24 h/day
 

@@ -218,6 +218,7 @@ export const StudentSignUp = () => {
                         style={{ display: "none" }}
                         name="photo"
                         onChange={handleFileChange}
+                          accept="image/*"
                       />
                     </label>
                   </div>
@@ -332,7 +333,7 @@ export const StudentSignUp = () => {
                   className="mx-auto w-25 my-4 student-signup-btn"
                   type="submit"
                 >
-                  Upload
+                  SignUp
                 </Button>
               </div>
             </Form>

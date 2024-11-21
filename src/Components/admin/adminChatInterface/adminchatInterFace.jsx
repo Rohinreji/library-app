@@ -67,23 +67,21 @@ export const AdminChatInterFace = ({ tutorId }) => {
             {state.map((e) => {
               const dateString = e.updatedAt;
 
-
               // Convert the string to a Date object
               const date = new Date(dateString);
-              
+
               // Extract hours and minutes
               let hours = date.getUTCHours(); // Get hours in 24-hour format
               const minutes = date.getUTCMinutes().toString().padStart(2, "0");
-              
+
               // Determine AM/PM and adjust hours for 12-hour format
               const ampm = hours >= 12 ? "PM" : "AM";
               hours = hours % 12 || 12; // Convert 0 to 12 for midnight
-              
+
               // Format the time in HH:MM AM/PM
               const time12Hour = `${hours}:${minutes} ${ampm}`;
-              
+
               console.log(time12Hour); // Output: 2:17 PM
-              
 
               if (e.value === "admin") {
                 return (
@@ -101,7 +99,8 @@ export const AdminChatInterFace = ({ tutorId }) => {
                 );
               }
             })}
-            <div ref={messagesEndRef} />
+                      <div ref={messagesEndRef} />
+
           </div>
         </div>
         <div className="adminChatinterface-chat shadow">

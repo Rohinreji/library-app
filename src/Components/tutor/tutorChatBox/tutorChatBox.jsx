@@ -70,7 +70,6 @@ export const TutorChatBox = () => {
   return (
     <>
       <Button
-        variant="primary"
         className="tutorChatBox-btn"
         onClick={handleShow}
       ></Button>

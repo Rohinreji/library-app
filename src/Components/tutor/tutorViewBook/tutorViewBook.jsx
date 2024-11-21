@@ -200,7 +200,7 @@ export const TutorViewBook = ({ reDirectToViewSingleBook }) => {
                       <FaPenFancy style={{ fontSize: "15px" }} /> {e?.author}
                     </p>
                     <h5 className="student_viewBookAvailable">
-                      {e.availableCopies < 0 ? (
+                      {e.availableCopies <= 0 ? (
                         <div>
                           {" "}
                           <FcHighPriority />

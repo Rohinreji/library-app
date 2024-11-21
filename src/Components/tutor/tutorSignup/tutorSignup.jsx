@@ -11,9 +11,9 @@ import { BsEye } from "react-icons/bs";
 import { BsEyeSlash } from "react-icons/bs";
 import axios from "axios";
 import toast from "react-hot-toast";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 export const TutorSignUp = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [data, setData] = useState({
     firstName: "",
     lastName: "",
@@ -30,15 +30,15 @@ export const TutorSignUp = () => {
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
+    event.preventDefault()
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     }
     setValidated(true);
-    if(!validation())
-      {
-    return
-      }
+    if (!validation()) {
+      return;
+    }
 
     const formData = new FormData();
     formData.append("firstName", data.firstName);
@@ -48,7 +48,7 @@ export const TutorSignUp = () => {
     formData.append("idNo", data.idNo);
     formData.append("profile", data.profile);
     event.preventDefault();
-    
+
     sendDataToServer(formData);
   };
 
@@ -98,23 +98,71 @@ export const TutorSignUp = () => {
     setshow2(!show2);
   };
 
-
-const validation = () =>
-{
-  const {profile} = data
-  if(!profile)
-  {
-    toast.error("please upload profile")
-    return false
-
-  }
-  return true
-}
-
+  const validation = () => {
+    const { profile, password, confirmPassword,idNo,firstName,lastName,email } = data;
+    if(!firstName)
+    {
+      toast.error("first name is required")
+      return false
+    }
+    if(!lastName)
+    {
+      toast.error("last name is required")
+      return false
+    }
+    if(!email)
+    {
+      toast.error("email is required")
+      return false
+    }
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(email)) {
+      toast.error("Please enter a valid email address");
+      return false;
+    }
+    if(!idNo)
+    {
+      toast.error("Id number is required")
+      return false
+    }
+    if(idNo >99999 || idNo < 1000 )
+    {
+      toast.error("Enter a valid id number")
+      return false
+    }
+    if(!password)
+    {
+      toast.error("password is required")
+      return false
+    }
+  
+    const passwordRegex = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[A-Z]).{6,}$/;
+    if (!passwordRegex.test(password)) {
+      toast.error(
+        "Password must contain at least one number, one special character, and one capital letter"
+      );
+      return false;
+    }
+    if(!confirmPassword)
+    {
+      toast.error("confirm password is required")
+      return false
+    }
+    
+    if (data.password !== data.confirmPassword) {
+      toast.error("password do not match");
+      return false
+    }
+    if (!profile) {
+      toast.error("please upload profile");
+      return false;
+    }
+    return true;
+  };
 
   return (
     <div className="studentSignUp  ">
-      <h1>Tutor Registration</h1>
+      <h1 style={{marginLeft:"15%"}}>Tutor Registration</h1>
       <Row className="row">
         <Col className="col-sm-12 col-md-12 col-lg-6 d-flex justify-content-center align-item-center">
           <img
@@ -190,10 +238,11 @@ const validation = () =>
                       style={{ display: "none" }}
                       name="profile"
                       onChange={handleFileChange}
+                      accept=".jpg, .jpeg, .png"
+
                     />
                   </label>
                 </div>
-                
               </Col>
             </Row>
 
@@ -287,7 +336,7 @@ const validation = () =>
                 className="mx-auto w-25 my-4 student-signup-btn"
                 type="submit"
               >
-                Upload
+                Register
               </Button>
             </div>
           </Form>

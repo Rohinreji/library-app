@@ -1,0 +1,15 @@
+.adminEditBook-btn
+{
+    height:53px ;
+    width: 220px;
+    background-color:orange;
+    color: white;
+    font-weight: 600;
+    font-size: 20px;
+border: none;
+margin-right: 20px;
+}
+.adminEditBook-modal
+{
+    height: 85%;
+}

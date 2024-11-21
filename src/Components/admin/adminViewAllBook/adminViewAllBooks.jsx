@@ -5,8 +5,10 @@ import InputGroup from "react-bootstrap/InputGroup";
 import { IoSearch } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { SiBookstack } from "react-icons/si";
 import { BASE_URL } from "../../../apis/baseURL";
-export const AdminViewAllBook = () => {
+import "./adminViewAllBooks.css"
+export const AdminViewAllBook = ({getProductId,reDirectViewSingleBook}) => {
   const [fixedData, setFixedData] = useState([]);
   const [data, setData] = useState([]);
   
@@ -28,9 +30,6 @@ export const AdminViewAllBook = () => {
   useEffect(() => {
     getData();
   }, []);
-
-  // tutor wishslist
-
   
   const handleSearch = (e) => {
     e.preventDefault();
@@ -47,6 +46,13 @@ export const AdminViewAllBook = () => {
   
   return (
     <div>
+          <div className="student_viewBooks">
+            <h2>
+              {" "}
+              <SiBookstack className="mx-3"/>
+              Books
+            </h2>
+          </div>{" "}
       <div className="student-view-product">
         {/* <h2 className="px-5 pt-4">view products</h2> */}
         <InputGroup className="mb-3 student-serach-box">
@@ -70,7 +76,12 @@ export const AdminViewAllBook = () => {
                 <div
                   className="student-product-view-box shadow"
                   key={e.id}
-                 
+                 onClick={()=>
+                 {
+                  getProductId(e._id)
+                  reDirectViewSingleBook()
+                 }
+                 }
                 >
                   <div className="">
                     <img
@@ -85,15 +96,11 @@ export const AdminViewAllBook = () => {
                  <div className="tutorViewBooks-text my-5">
                  <h5 className="py-1">{e?.bookTitle}</h5>
                   <p>
-                    {/* {e?.description?.length > 15
-                      ? e.description?.substring(0, 28) + "..."
-                      : e.description}{" "} */}
+                   
                     {e?.author}
                   </p>
                   <h5 className="mb-5">
-                    {/* <FaRupeeSign />
-                    {e.price} */}
-                    {/* {e?.status} */}
+                   
 
                     {e.availableCopies <= 0 ? (
                       <div>Not Available</div>

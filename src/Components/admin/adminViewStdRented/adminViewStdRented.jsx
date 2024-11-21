@@ -5,6 +5,8 @@ import InputGroup from "react-bootstrap/InputGroup";
 import { IoSearch } from "react-icons/io5";
 import { ImCross } from "react-icons/im";
 import { useEffect, useState } from "react";
+import { FiGrid } from "react-icons/fi";
+
 export const AdminViewStdRented = () => {
   const [data, setData] = useState([]);
   const [fixedData, setFixedData] = useState([]);
@@ -32,7 +34,7 @@ export const AdminViewStdRented = () => {
     const value = e.target.value;
     if (value) {
       const filterData = fixedData.filter((item) => {
-        return `${item.studentId.firstname} ${item.studentId.lastname}`
+        return `${item.studentId?.firstname} ${item.studentId?.lastname}`
           .toLowerCase()
           .includes(value.toLowerCase());
       });
@@ -44,8 +46,12 @@ export const AdminViewStdRented = () => {
 
   return (
     <div>
-      <h2 className="mx-5 my-3">Rented Books</h2>
-      <InputGroup className="mb-3 student-serach-box">
+  <div className="admin_viewBooks">
+        <h4> 
+        <FiGrid className="mx-2"/>
+
+    Rented Books</h4>
+      </div>{" "}      <InputGroup className="mb-3 student-serach-box">
         <Form.Control
           placeholder="Search"
           aria-label="search"
@@ -76,16 +82,16 @@ export const AdminViewStdRented = () => {
                 <td rowspan={2}>{index + 1}</td>
                 <td>Tutor</td>
                 <td>
-                  {studentId.firstname} {studentId.lastname}{" "}
+                  {studentId?.firstname} {studentId?.lastname}{" "}
                 </td>
-                <td>{studentId.email}</td>
-                <td>{e.addedQuantity}</td>
+                <td>{studentId?.email}</td>
+                <td>{e?.addedQuantity}</td>
               </tr>
               <tr>
                 <td>Book</td>
-                <td>{booksId.bookTitle}</td>
-                <td>{booksId.author}</td>
-                <td>{booksId.availableCopies}</td>
+                <td>{booksId?.bookTitle}</td>
+                <td>{booksId?.author}</td>
+                <td>{booksId?.availableCopies}</td>
               </tr>
             </tbody>
           );

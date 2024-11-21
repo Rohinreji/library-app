@@ -7,6 +7,8 @@ import { IoSearch } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { FaCodePullRequest } from "react-icons/fa6";
+
 import axiosInstance from "../../../apis/axiosInstance";
 import "./adminViewAllRent.css";
 export const AdminViewAllRental = () => {
@@ -66,6 +68,19 @@ const rejectRent = async (rentId) =>
 }
 console.log(data);
 
+const updateQuantity = async (id) => {
+  try {
+    const response = await axiosInstance.post(`/addBookQuantity/${id}`, {
+      quantity:1,
+    });
+    if (response.status === 200) {
+      console.log("book quantity added");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 
 
 // search functionality
@@ -88,8 +103,12 @@ const handleSearch = (e) => {
   return (
     <div>
       <div>
-        <h2 className="mx-5 my-4">Tutor rental request</h2>
+        <div className="admin_viewBooks">
+        <h4> 
+        <FaCodePullRequest className="mx-3"/>
 
+    Rent request</h4>
+      </div>{" "}
         <InputGroup className="mb-3 student-serach-box">
           <Form.Control
             placeholder="Search"
@@ -132,6 +151,7 @@ const handleSearch = (e) => {
                     onClick={()=>
                     {
                       rejectRent(e._id)
+                      updateQuantity(booksId._id)
                     }
                     }
                     >

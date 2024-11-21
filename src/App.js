@@ -55,6 +55,7 @@ import { AdminchatSideBar } from "./Components/admin/adminChatSideBar/adminChatS
 import { AdminChatDashBoard } from "./Components/admin/adminChatDashboard/adminChatDashBoard";
 import { AdminChatWelcomePage } from "./Components/admin/adminChatWelcome/adminChatWelcome";
 import { AdminChatNav } from "./Components/admin/adminChatNav/adminchatNav";
+import { Contact } from "./Components/common/contact/contact";
 
 function App() {
   return (
@@ -198,6 +199,11 @@ function App() {
             element={<AdminChatWelcomePage />}
           />
           <Route path="/admin-chat/nav" element={<AdminChatNav />} />
+
+{/* common */}
+
+<Route path="/contact" element={<Contact/>} />
+
           {/* 404 page */}
           <Route path="/*" element={<h1>The page not available</h1>} />
 

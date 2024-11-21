@@ -24,7 +24,7 @@ export const TutorProfile = () => {
 
   useEffect(() => {
     getData();
-  },[]);
+  },[data]);
 
   console.log(`${BASE_URL}${data?.profile?.filename}`);
   return (

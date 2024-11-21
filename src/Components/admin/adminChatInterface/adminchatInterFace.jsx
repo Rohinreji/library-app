@@ -18,7 +18,7 @@ export const AdminChatInterFace = ({ tutorId }) => {
       console.log(error);
     } finally {
       getdata();
-      setMessage("")
+      setMessage("");
     }
   };
 
@@ -52,44 +52,77 @@ export const AdminChatInterFace = ({ tutorId }) => {
 
   useLayoutEffect(() => {
     scrollToBottom();
-  }, [state]);
+  }, [message]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <div>
-      <AdminChatNav tutorId={tutorId}/>
-      <div className="adminChatinterface-body">
-        {state.map((e) => {
-          if (e.value === "admin") {
-            return <div className="adminChatBox-1">{e.message}</div>;
-          } else {
-            return <div className="adminChatBox-2">{e.message}</div>;
-          }
-        })}
-        <div ref={messagesEndRef} />
-      </div>
-      <div className="adminChatinterface-chat shadow">
-        <form
-          action="
+    <div className="adminChatInreface">
+      <AdminChatNav tutorId={tutorId} />
+      <div>
+        <div className="adminChatinterface-body">
+          <div id="display-user-messages">
+            {state.map((e) => {
+              const dateString = e.updatedAt;
+
+              // Convert the string to a Date object
+              const date = new Date(dateString);
+
+              // Extract hours and minutes
+              let hours = date.getUTCHours(); // Get hours in 24-hour format
+              const minutes = date.getUTCMinutes().toString().padStart(2, "0");
+
+              // Determine AM/PM and adjust hours for 12-hour format
+              const ampm = hours >= 12 ? "PM" : "AM";
+              hours = hours % 12 || 12; // Convert 0 to 12 for midnight
+
+              // Format the time in HH:MM AM/PM
+              const time12Hour = `${hours}:${minutes} ${ampm}`;
+
+              console.log(time12Hour); // Output: 2:17 PM
+
+              if (e.value === "admin") {
+                return (
+                  <div className="adminChatBox-1">
+                    {e.message}
+                    <p className="adminChatBoxTime">{time12Hour} </p>
+                  </div>
+                );
+              } else {
+                return (
+                  <div className="adminChatBox-2">
+                    {e.message}
+                    <p className="adminChatBoxTime">{time12Hour}</p>
+                  </div>
+                );
+              }
+            })}
+                      <div ref={messagesEndRef} />
+
+          </div>
+        </div>
+        <div className="adminChatinterface-chat shadow">
+          <form
+            action="
        "
-          onSubmit={sendMessage}
-          className="d-flex"
-          role="group"
-        >
-          <input
-            type="text"
-            className="adminChatinterface-text"
-            name="message"
-            value={message}
-            onChange={handleChange}
-          />
-          <button className="adminChatinterface-btn" type="submit">
-            send
-          </button>
-        </form>
+            onSubmit={sendMessage}
+            className="d-flex"
+            role="group"
+          >
+            <input
+              type="text"
+              className="adminChatinterface-text"
+              name="message"
+              value={message}
+              onChange={handleChange}
+            />
+            <button className="adminChatinterface-btn" type="submit">
+              send
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );

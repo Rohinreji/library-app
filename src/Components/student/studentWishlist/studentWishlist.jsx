@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import axiosInstance from "../../../apis/axiosInstance";
 import { BASE_URL } from "../../../apis/baseURL";
-import img from "../../../Assests/noDataFound.jpg";
+import img from "../../../Assests/noDataFound.png";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { GiBlackBook } from "react-icons/gi";

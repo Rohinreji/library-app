@@ -4,6 +4,9 @@ import Table from "react-bootstrap/Table";
 import { IoSearch } from "react-icons/io5";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
+import { TbListDetails } from "react-icons/tb";
+import { BsTypeH4 } from "react-icons/bs";
+
 export const AdminViewApproveTutor = () => {
   const [data, setData] = useState([]);
   const [fixedData, setFixedData] = useState([]);
@@ -42,7 +45,12 @@ export const AdminViewApproveTutor = () => {
 
   return (
     <div>
-      <h2 className="mx-5 my-4">Approved tutors</h2>
+      <div className="student_viewBooks">
+        <h4>
+          <TbListDetails />
+          view all tutor{" "}
+        </h4>
+      </div>{" "}
       <InputGroup className="mb-3 student-serach-box">
         <Form.Control
           placeholder="Search"

@@ -21,7 +21,6 @@ export const TutorviewSingleProduct = ({ productId, redirectToCart }) => {
   const navigate = useNavigate();
   // book details api call
 
-
   const getData = async () => {
     try {
       const response = await axios.get(
@@ -146,10 +145,7 @@ export const TutorviewSingleProduct = ({ productId, redirectToCart }) => {
   useEffect(() => {
     const id = localStorage.getItem("tutorId");
     viewCart(id);
-
   }, [data]);
-
-
 
   const newArray = cartData.find((value) => {
     if (data._id === value?.booksId._id) return true;
@@ -166,12 +162,8 @@ export const TutorviewSingleProduct = ({ productId, redirectToCart }) => {
           />
         </Col>
         <Col>
-          <h3>{data.bookTitle}</h3>
-          <div className="d-flex pt-4">
-            {/* <h2>
-              <FaRupeeSign />
-              {cartCount > 1 ? product.price * cartCount : product.price}
-            </h2> */}
+          <h3 className="mx-5">{data.bookTitle}</h3>
+          {/* <div className="d-flex pt-4">
             <h5>Quantity</h5>
 
             <div
@@ -194,14 +186,9 @@ export const TutorviewSingleProduct = ({ productId, redirectToCart }) => {
                 -
               </div>
             </div>
-          </div>
-          <h6>
-            {/* {product.description.length > 220
-              ? product.description.substring(0, 220) + "..."
-              : product.description} */}
-          </h6>
+          </div> */}
 
-          <table className="tutorView-single-product-table">
+          <table className="tutorView-single-product-table my-5">
             <tr>
               <td>Author</td>
               <td>:</td>
@@ -229,12 +216,11 @@ export const TutorviewSingleProduct = ({ productId, redirectToCart }) => {
               <button
                 className="student-view-single-product-addToCart"
                 onClick={() => {
-                  // navigate("/tutor/cart");
                   redirectToCart();
                 }}
               >
                 {" "}
-                <MdOutlineShoppingCart /> got to Cart
+                <MdOutlineShoppingCart /> Go to Cart
               </button>
             ) : (
               <button

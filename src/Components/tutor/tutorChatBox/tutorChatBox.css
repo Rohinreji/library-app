@@ -1,16 +1,24 @@
 .tutorChatBox-btn {
-  height: 60px;
-  width: 60px;
+  height: 70px;
+  width: 70px;
   border-radius: 50%;
-  background-image: url(../../../Assests/aiImage.jpg);
-  background-size: contain;
+  background-image: url(../../../Assests/chat.png);
+  background-size:45px;
+  background-position:center;
+  background-repeat: no-repeat;
   position: fixed;
   right: 15px;
   bottom: 20px;
+  background-color: white;
+  border: none;
 
-  animation: messageBox 0.6s ease-in-out 0.06s infinite;
+  animation: messageBox 1s ease-in-out 0.09s infinite;
 }
 
+.tutorChatBox-btn ::hover
+{
+  background-color: white;
+}
 @keyframes messageBox {
   from {
     transform: translatey(10px);
@@ -36,38 +44,40 @@
 }
 .tutorChatBox-chat1
 {
-    width: fit-content;
-    max-width: 90%;
-    min-height: 47px;
-    border-radius: 9px;
-    text-align: left;
-    color: black;
-    background-color: #d8c1eb;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 8px 8px 0px 8px;
-    position: relative;
-    left: 5px;
-    display: block;
-    clear: both;
-    word-break: break-all;
-}
+  width: fit-content;
+  max-width: 90%;
+  min-height: 47px;
+  border-radius: 9px;
+  text-align: left;
+  color: black;
+  background-color: #d8c1eb;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 8px 8px 0px 8px;
+  position: relative;
+  left: 20px;
+  display: block;
+  clear: both;
+  word-wrap: break-word;
+  align-self: flex-end;
+  }
 .tutorChatBox-chat2
 {
-    width: fit-content;
-    max-width: 90%;
-    min-height: 37px;
-    border-radius: 9px;
-    text-align: left;
-    color: black;
-    background-color: #aed6c3;
-    margin-top: 8px;
-    margin-bottom: 8px;
-    padding: 8px 8px 8px 8px;
-    position: relative;
-    left:5px;
-    display: block;
-    clear: both;
-    word-break: break-all;
+  max-width: 90%;
+  min-height: 47px;
+  border-radius: 9px;
+  text-align: right;
+  color: black;
+  background-color: #d8c1eb;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 8px 8px 0px 8px;
+  position: relative;
+  left: -25px;
+  display: block;
+  float: right;
+  clear: both;
+  word-wrap: break-word;
+  align-self: flex-start;
 
 }

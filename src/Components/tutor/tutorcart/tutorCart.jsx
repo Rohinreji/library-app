@@ -9,7 +9,7 @@ import { FaCartShopping } from "react-icons/fa6";
 import axiosInstance from "../../../apis/axiosInstance";
 import toast from "react-hot-toast";
 import { BASE_URL } from "../../../apis/baseURL";
-import img from "../../../Assests/noDataFound.jpg";
+import img from "../../../Assests/noDataFound.png";
 export const TutorCart = () => {
   const [data, setdata] = useState([]);
   const tutorId = localStorage.getItem("tutorId");

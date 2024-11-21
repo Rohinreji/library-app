@@ -1,6 +1,16 @@
 import { useState } from "react";
 import "./adminSideBar.css";
 import { useNavigate } from "react-router-dom";
+import { SiBookstack } from "react-icons/si";
+import { BiSolidBookAdd } from "react-icons/bi";
+import { BsChatDotsFill } from "react-icons/bs";
+import { FaUsers } from "react-icons/fa";
+import { FaUsersCog } from "react-icons/fa";
+import { TiUserAdd } from "react-icons/ti";
+import { AiFillBook } from "react-icons/ai";
+import { FaCodePullRequest } from "react-icons/fa6";
+import { MdOutlineLogout } from "react-icons/md";
+
 export const AdminSideBar = ({ changeSelectedPage }) => {
   const [viewTutorDD, setViewTutorDD] = useState(false);
   const [rentProductByTutor, setRentProductByTutor] = useState(false);
@@ -9,7 +19,7 @@ export const AdminSideBar = ({ changeSelectedPage }) => {
   const [viewUser, setViewUser] = useState(false);
   const [rental, setRental] = useState(false);
   const [retunReq, setReturnReq] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const toggleViewTutor = () => {
     setViewTutorDD(!viewTutorDD);
     setRentProductByTutor(false);
@@ -72,34 +82,40 @@ export const AdminSideBar = ({ changeSelectedPage }) => {
   return (
     <div>
       <div className="admin-sidebar">
-        <h2 className="openlibrary-heading">Open Library</h2>
+        <h2 className="openlibrary-heading">Admin Panel</h2>
         <ul>
-        <li
+          <li
             onClick={() => {
               changeSelectedPage("adminViewBooks");
             }}
           >
-            Books
+            <SiBookstack /> Books
           </li>
           <li
             onClick={() => {
               changeSelectedPage("adminAddBook");
             }}
           >
-            Add books
+            <BiSolidBookAdd /> Add books
           </li>
           <li
             onClick={() => {
               changeSelectedPage("chat");
             }}
           >
-            chat with tutor
+            <BsChatDotsFill /> chat with tutor
           </li>
 
-          <li onClick={toggleViewUsers}>View Users</li>
+          <li onClick={toggleViewUsers}>
+            <FaUsers /> Users
+          </li>
           {viewUser && (
-            <div className="shadow mx-3">
-              <li onClick={toggleViewTutor}> tutors</li>
+            <div className="admin_toggle shadow mx-3">
+              <li onClick={toggleViewTutor}>
+                {" "}
+                <FaUsersCog />
+                tutors
+              </li>
               {viewTutorDD && (
                 <div className="shadow mx-3">
                   <li
@@ -107,43 +123,52 @@ export const AdminSideBar = ({ changeSelectedPage }) => {
                       changeSelectedPage("approveTutor");
                     }}
                   >
-                    Approve 
+                    <TiUserAdd /> Approve
                   </li>
                   <li
                     onClick={() => {
                       changeSelectedPage("viewAllTutor");
                     }}
                   >
-                    View all 
+                    <FaUsers /> View all
                   </li>
                 </div>
               )}
-              <li onClick={toggleViewStudents}> Students</li>
+              <li onClick={toggleViewStudents}>
+                <FaUsersCog />
+                Students
+              </li>
               {viewStudent && (
-                <div className="shadow mx-3">
+                <div className="admin_toggle shadow mx-3">
                   <li
                     onClick={() => {
                       changeSelectedPage("studentReq");
                     }}
                   >
-                    Approve 
+                    <TiUserAdd /> Approve
                   </li>
                   <li
                     onClick={() => {
                       changeSelectedPage("approvedStudent");
                     }}
                   >
-                    View all 
+                    <FaUsers /> View all
                   </li>
                 </div>
               )}
             </div>
           )}
 
-          <li onClick={toggleRentals}>Rentals</li>
+          <li onClick={toggleRentals}>
+            {" "}
+            <AiFillBook /> Rentals
+          </li>
           {rental && (
-            <div className="shadow mx-3">
-              <li onClick={toggleStudentRentProduct}>Student </li>
+            <div className="admin_toggle shadow mx-3">
+              <li onClick={toggleStudentRentProduct}>
+                {" "}
+                <FaUsers /> Students{" "}
+              </li>
               {studentRentProduct && (
                 <div className="shadow mx-3">
                   <li
@@ -158,14 +183,17 @@ export const AdminSideBar = ({ changeSelectedPage }) => {
                       changeSelectedPage("viewStdRentedBooks");
                     }}
                   >
-                     rented books
+                    rented books
                   </li>
                 </div>
               )}
 
-              <li onClick={toggleTutorRentProduct}>tutor </li>
+              <li onClick={toggleTutorRentProduct}>
+                {" "}
+                <FaUsers /> tutors{" "}
+              </li>
               {rentProductByTutor && (
-                <div className="shadow mx-3">
+                <div className="admin_toggle shadow mx-3">
                   <li
                     onClick={() => {
                       changeSelectedPage("approveRentOfTutor");
@@ -177,23 +205,27 @@ export const AdminSideBar = ({ changeSelectedPage }) => {
                     onClick={() => {
                       changeSelectedPage("viewRentedBooksByTutor");
                     }}
-                  > rented books
+                  >
+                    {" "}
+                    rented books
                   </li>
                 </div>
               )}
             </div>
           )}
 
-          <li onClick={toggleRetunReq}>Return Request</li>
+          <li onClick={toggleRetunReq}>
+            <FaCodePullRequest /> Return Request
+          </li>
 
           {retunReq && (
-            <div className="shadow mx-3">
+            <div className="admin_toggle shadow mx-3">
               <li
                 onClick={() => {
                   changeSelectedPage("tutorReturnReq");
                 }}
               >
-                Tutor
+                <FaUsers /> Tutors
               </li>
 
               <li
@@ -201,7 +233,7 @@ export const AdminSideBar = ({ changeSelectedPage }) => {
                   changeSelectedPage("studentReturnRequest");
                 }}
               >
-                Student
+                <FaUsers /> Students
               </li>
             </div>
           )}
@@ -210,10 +242,10 @@ export const AdminSideBar = ({ changeSelectedPage }) => {
             className="text-danger fs-3"
             onClick={() => {
               localStorage.removeItem("adminId");
-              navigate("/adminLogin")
+              navigate("/adminLogin");
             }}
           >
-            Logout
+           <MdOutlineLogout />   Logout
           </li>
         </ul>
       </div>

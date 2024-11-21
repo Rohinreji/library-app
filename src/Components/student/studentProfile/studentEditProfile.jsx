@@ -21,6 +21,8 @@ export const StudentProfile = () => {
       }
     } catch (error) {
       console.log(error);
+    }finally{
+      getData()
     }
   };
   console.log(data, "data");

@@ -51,9 +51,9 @@ function StudentEditProfile({ show, setShow }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("firstName", data.firstname);
+    formData.append("firstname", data.firstname);
     formData.append("email", data.email);
-    formData.append("lastName", data.lastname);
+    formData.append("lastname", data.lastname);
     formData.append("photo", data.photo);
     sendDataToServer(formData);
   };
@@ -106,7 +106,7 @@ function StudentEditProfile({ show, setShow }) {
                 />
               </label>
             </div>
-            <Row className="mb-3">
+           
               <Form.Group as={Col} controlId="formGridEmail">
                 <Form.Label>Firstname</Form.Label>
                 <Form.Control
@@ -128,7 +128,7 @@ function StudentEditProfile({ show, setShow }) {
                   onChange={handleChange}
                 />
               </Form.Group>
-            </Row>
+         
 
             <Form.Group
               as={Col}
@@ -144,18 +144,6 @@ function StudentEditProfile({ show, setShow }) {
                 onChange={handleChange}
               />
             </Form.Group>
-            {/* 
-            <Row className="mb-3">
-              <Form.Group as={Col} controlId="formGridEmail">
-                <Form.Label>Old password</Form.Label>
-                <Form.Control type="password" placeholder="Old Password" />
-              </Form.Group>
-
-              <Form.Group as={Col} controlId="formGridPassword">
-                <Form.Label>New Password</Form.Label>
-                <Form.Control type="password" placeholder="new Password" />
-              </Form.Group>
-            </Row> */}
           </Modal.Body>
           <Modal.Footer>
             <Button variant="primary" type="submit" onClick={handleClose}>

@@ -1,38 +1,32 @@
- .adminAddProduct-body {
-  width:95%;
-  height:75vh;
+.adminAddProduct-body {
+  width: 95%;
+  height: 75vh;
   margin-top: 3%;
-  
-} 
-.adminAddProduct-inp
-{
-    width :43% !important;
-    margin: auto;
-    
 }
-.adminAddBook-image
-{
-    height: 500px;
-    width: 650px;
-    margin-left: 3%;
-    margin-top: 3%;
+.adminAddProduct-inp {
+  width: 43% !important;
+  margin: auto;
 }
-.adminAddProduct-body h2{
-    text-align: center;
-    padding-top: 20px;
+.adminAddBook-image {
+  height: 500px;
+  width: 650px;
+  margin-left: 3%;
+  margin-top: 3%;
 }
-.adminAddProduct-body button
-{
-    background-color: #1fbf7c;
-    color: white;
-    margin-top: 20px;
+.adminAddProduct-body h2 {
+  text-align: center;
+  padding-top: 20px;
 }
-.adminAddProduct-inp1
-{
-    width :43% !important;
-    margin: auto;}
-    .adminAddProduct-radio
-    {
-
-margin-right: 100px;
-margin-left: 25px;    }
+.adminAddProduct-body button {
+  background-color: #1fbf7c;
+  color: white;
+  margin-top: 20px;
+}
+.adminAddProduct-inp1 {
+  width: 43% !important;
+  margin: auto;
+}
+.adminAddProduct-radio {
+  margin-right: 100px;
+  margin-left: 25px;
+}

@@ -6,34 +6,71 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import { FaUserCircle } from "react-icons/fa";
 import toast from "react-hot-toast";
-import axiosInstance from "../../../apis/axiosInstance";
-import { BASE_URL } from "../../../apis/baseURL";
+import { BiCloudUpload } from "react-icons/bi";
+import { FaRegImages } from "react-icons/fa6";
+import axios from "axios";
 
-function StudentProfile({ handleShow, show, setShow }) {
+function StudentEditProfile({ show, setShow }) {
   const handleClose = () => setShow(false);
   const [studentId, setStudentId] = useState();
-  const [data, setData] = useState({});
+  const [profilePic, setProfilePic] = useState(null);
+  const [data, setData] = useState({
+    firstname: "",
+    email: "",
+    lastname: "",
+    photo: null,
+  });
   useEffect(() => {
     const studentId = localStorage.getItem("studentId");
     if (studentId) {
       setStudentId(studentId);
-      getData();
     } else {
       toast.error("Login Again");
     }
   }, [studentId]);
 
-  const getData = async () => {
+  const handleChange = (e) => {
+    const { files, value, name, type } = e.target;
+    if (type === "file") {
+      setData({ ...data, [name]: files[0] });
+    } else {
+      setData({ ...data, [name]: value });
+    }
+  };
+  console.log(data);
+
+  const handleImageUpload = (e) => {
+    setProfilePic(URL.createObjectURL(e.target.files[0]));
+  };
+
+  const handleFileChange = (e) => {
+    handleImageUpload(e);
+    handleChange(e);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("firstname", data.firstname);
+    formData.append("email", data.email);
+    formData.append("lastname", data.lastname);
+    formData.append("photo", data.photo);
+    sendDataToServer(formData);
+  };
+
+  const sendDataToServer = async (data) => {
     try {
-      const response = await axiosInstance.get(`viewStudentById/${studentId}`);
-      if (response.status == 200) {
-        setData(response.data.data);
+      const response = await axios.post(
+        `http://localhost:3005/updateStudentProfile/${studentId}`,
+        data
+      );
+      if (response.status === 200) {
+        toast.success("profile updated successfully");
       }
     } catch (error) {
       console.log(error);
     }
   };
-
   return (
     <>
       {/* <Button variant="primary" onClick={handleShow}>
@@ -47,33 +84,37 @@ function StudentProfile({ handleShow, show, setShow }) {
             <FaUserCircle /> Profile
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <form
-              action="upload.php"
-              method="post"
-              enctype="multipart/form-data"
-            >
-              <label for="fileToUpload">
-                <div className="profile-pic" style={{ marginLeft: "100%" }}>
-                  <img
-                    src={`${BASE_URL}${data?.photo?.filename}`}
-                    className="profile-pic"
-                    alt=""
-                  />
-                  <span className="glyphicon glyphicon-camera"></span>
-                  <span>Change Image</span>
-                </div>
+        <Form onSubmit={handleSubmit}>
+          <Modal.Body>
+            <div className="student-signup-profile tutorEditProfile-photo">
+              {profilePic ? (
+                <img src={profilePic} alt="" />
+              ) : (
+                <FaRegImages
+                  color="grey"
+                  className="student-signup-fake-image"
+                />
+              )}
+
+              <label className="student-signup-upload-icon">
+                <BiCloudUpload color="" />
+                <input
+                  type="file"
+                  style={{ display: "none" }}
+                  name="photo"
+                  onChange={handleFileChange}
+                />
               </label>
-              <input type="File" name="fileToUpload" id="fileToUpload" />
-            </form>
-            <Row className="mb-3">
+            </div>
+           
               <Form.Group as={Col} controlId="formGridEmail">
                 <Form.Label>Firstname</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Enter Firstname"
                   value={data?.firstname}
+                  name="firstname"
+                  onChange={handleChange}
                 />
               </Form.Group>
 
@@ -83,9 +124,11 @@ function StudentProfile({ handleShow, show, setShow }) {
                   type="text"
                   placeholder="Enter Lastname"
                   value={data?.lastname}
+                  name="lastname"
+                  onChange={handleChange}
                 />
               </Form.Group>
-            </Row>
+         
 
             <Form.Group
               as={Col}
@@ -97,34 +140,20 @@ function StudentProfile({ handleShow, show, setShow }) {
                 type="email"
                 placeholder="Enter email"
                 value={data?.email}
+                name="email"
+                onChange={handleChange}
               />
             </Form.Group>
-
-            <Row className="mb-3">
-              <Form.Group as={Col} controlId="formGridEmail">
-                <Form.Label>Old password</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" />
-              </Form.Group>
-
-              <Form.Group as={Col} controlId="formGridPassword">
-                <Form.Label>New Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
-              </Form.Group>
-            </Row>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-        </Modal.Footer>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="primary" type="submit" onClick={handleClose}>
+              Submit
+            </Button>
+          </Modal.Footer>
+        </Form>
       </Modal>
     </>
   );
 }
 
-export default StudentProfile;
+export default StudentEditProfile;

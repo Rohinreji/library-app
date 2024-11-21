@@ -56,6 +56,7 @@ import { AdminChatDashBoard } from "./Components/admin/adminChatDashboard/adminC
 import { AdminChatWelcomePage } from "./Components/admin/adminChatWelcome/adminChatWelcome";
 import { AdminChatNav } from "./Components/admin/adminChatNav/adminchatNav";
 import { Contact } from "./Components/common/contact/contact";
+import { StudentProfile } from "./Components/student/studentProfile/studentEditProfile";
 
 function App() {
   return (
@@ -98,6 +99,7 @@ function App() {
             path="/studentReturnBook/:id"
             element={<StudentReturnBooks />}
           />
+          <Route path="/studentProfile" element={<StudentProfile/>}/>
           <Route path="/studentViewWishlist" element={<Studentwishlist />} />
           {/* common */}
           <Route path="/commonNavbar" element={<CommonNavbar />} />

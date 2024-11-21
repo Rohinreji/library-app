@@ -71,11 +71,10 @@ export const StudentSignUp = () => {
         toast.error("Enter your addmission number");
         return false;
       }
-      if(addNo >99999 || addNo < 1000 )
-        {
-          toast.error("Enter a valid id number")
-          return false
-        }
+      if (addNo > 99999 || addNo < 1000) {
+        toast.error("Enter a valid id number");
+        return false;
+      }
       if (!password) {
         toast.error("Enter password");
         return false;
@@ -149,7 +148,7 @@ export const StudentSignUp = () => {
       }
       console.log(response?.status);
     } catch (error) {
-      if (error?.status === 409 || error?.status === 408 ) {
+      if (error?.status === 409 || error?.status === 408) {
         toast.error(error?.response?.data.msg);
       } else {
         console.log(error);
@@ -235,6 +234,7 @@ export const StudentSignUp = () => {
                         style={{ display: "none" }}
                         name="photo"
                         onChange={handleFileChange}
+                        accept="image/*"
                       />
                     </label>
                   </div>
@@ -334,10 +334,10 @@ export const StudentSignUp = () => {
                       color: "blue",
                       fontSize: "18px",
                       cursor: "pointer",
-                      fontWeight:"500"
+                      fontWeight: "500",
                     }}
-                    onClick={()=>{
-                      navigate("/studentLogin")
+                    onClick={() => {
+                      navigate("/studentLogin");
                     }}
                   >
                     Login

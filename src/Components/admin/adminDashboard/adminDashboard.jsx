@@ -6,10 +6,8 @@ import { AdminViewReturnReq } from "../adminViewReturnReq/adminViewReturnReq";
 import { AdminSideBar } from "../adminSideBar/adminSidBar";
 import { AdminAddProduct } from "../adminAddProduct/adminAddProduct";
 import { AdminViewRentedBooks } from "../adminViewRentedBook/adminViewRentedBooks";
-
 import { AdminViewStudentRequest } from "../adminViewStudentRequest/adminViewStudentRequest";
 import { AdminViewApprovedStudent } from "../adminViewApprovedStudent/adminViewApprovedStudent";
-
 import { AdminViewAllBook } from "../adminViewAllBook/adminViewAllBooks";
 import { AdminChatDashBoard } from "../adminChatDashboard/adminChatDashBoard";
 import { AdminPleaseLogin } from "../adminPleaseLogin/adminPleaseLogin";
@@ -18,10 +16,12 @@ import { AdminViewAllStdRental } from "../adminViewStdRental/adminViewStdRental"
 import { AdminViewStdRented } from "../adminViewStdRented/adminViewStdRented";
 import { AdminViewReturnStdReq } from "../adminViewReturnStdReq/AdminViewReturnStdReq";
 import { AdminviewSingleProduct } from "../adminViewSingleBook/adminViewSingleBook";
+import Footer from "../../common/footer/footer";
+import AdminNavbar from "../adminNavbar/adminNavbar";
 
 export const AdminDashboard = () => {
   const [selectedpage, setSelectedPage] = useState("adminViewBooks");
-  const [productId,setProductId] = useState("")
+  const [productId, setProductId] = useState("");
   const changeSelectedPage = (value) => {
     setSelectedPage(value);
   };
@@ -30,31 +30,42 @@ export const AdminDashboard = () => {
     setSelectedPage("adminViewBooks");
   };
 
-  const getProductId = (id) =>
-  {
-setProductId(id)
-  }
+  const getProductId = (id) => {
+    setProductId(id);
+  };
 
-  const reDirectViewSingleBook = () =>
-  {
-    setSelectedPage("viewSingleBook")
-  }
-
-
+  const reDirectViewSingleBook = () => {
+    setSelectedPage("viewSingleBook");
+  };
 
   let adminId = localStorage.getItem("adminId");
 
   return (
     <div>
+      <AdminNavbar />
       {adminId ? (
         <div className="row">
           <div className="col-2">
             <AdminSideBar changeSelectedPage={changeSelectedPage} />
           </div>
           <div className="col-10">
-            {selectedpage ==="adminViewBooks" && <AdminViewAllBook getProductId={getProductId} reDirectViewSingleBook={reDirectViewSingleBook}/>}
-            {selectedpage ==="viewSingleBook"  && <AdminviewSingleProduct productId={productId} redirectToAdminViewAllBook={redirectToAdminViewAllBook}/>}
-            {selectedpage === "adminAddBook" && <AdminAddProduct redirectToAdminViewAllBook={redirectToAdminViewAllBook}/>}
+            {selectedpage === "adminViewBooks" && (
+              <AdminViewAllBook
+                getProductId={getProductId}
+                reDirectViewSingleBook={reDirectViewSingleBook}
+              />
+            )}
+            {selectedpage === "viewSingleBook" && (
+              <AdminviewSingleProduct
+                productId={productId}
+                redirectToAdminViewAllBook={redirectToAdminViewAllBook}
+              />
+            )}
+            {selectedpage === "adminAddBook" && (
+              <AdminAddProduct
+                redirectToAdminViewAllBook={redirectToAdminViewAllBook}
+              />
+            )}
             {selectedpage === "approveTutor" && <AdminApproveTutor />}
             {selectedpage === "viewAllTutor" && <AdminViewApproveTutor />}
             {selectedpage === "approveRentOfTutor" && <AdminViewAllRental />}
@@ -64,7 +75,7 @@ setProductId(id)
             {selectedpage === "tutorReturnReq" && <AdminViewReturnReq />}
             {selectedpage === "studentReq" && <AdminViewStudentRequest />}
             {selectedpage === "approvedStudent" && <AdminViewApprovedStudent />}
-            {selectedpage === "chat" && <AdminChatDashBoard/>}
+            {selectedpage === "chat" && <AdminChatDashBoard />}
             {selectedpage === "viewStdRentals" && <AdminViewAllStdRental />}
             {selectedpage === "viewStdRentedBooks" && <AdminViewStdRented />}
             {selectedpage === "studentReturnRequest" && (
@@ -73,8 +84,9 @@ setProductId(id)
           </div>
         </div>
       ) : (
-        <AdminPleaseLogin/>
+        <AdminPleaseLogin />
       )}
+      <Footer />
     </div>
   );
 };

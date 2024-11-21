@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import axiosInstance from "../../../apis/axiosInstance";
+import { FaCodePullRequest } from "react-icons/fa6";
 
 export const AdminViewAllStdRental = () => {
   const [data, setdata] = useState([]);
@@ -69,7 +70,7 @@ export const AdminViewAllStdRental = () => {
     const value = e.target.value;
     if (value) {
       const filterData = fixedData.filter((item) => {
-        return `${item.studentId.firstName} ${item.studentId.lastName}`
+        return `${item.studentId?.firstName} ${item.studentId?.lastName}`
           .toLowerCase()
           .includes(value.toLowerCase());
       });
@@ -82,8 +83,12 @@ export const AdminViewAllStdRental = () => {
   return (
     <div>
       <div>
-        <h2 className="mx-5 my-4">Student rental request</h2>
+        <div className="admin_viewBooks">
+        <h4> 
+        <FaCodePullRequest className="mx-3"/>
 
+    Rent request</h4>
+      </div>{" "}
         <InputGroup className="mb-3 student-serach-box">
           <Form.Control
             placeholder="Search"
@@ -117,10 +122,10 @@ export const AdminViewAllStdRental = () => {
                   <td rowSpan={2}>{index + 1}</td>
                   <td>Tutor</td>
                   <td>
-                    {studentId.firstname} {studentId.lastname}
+                    {studentId?.firstname} {studentId?.lastname}
                   </td>
-                  <td>{studentId.email}</td>
-                  <td>{studentId.addNo}</td>
+                  <td>{studentId?.email}</td>
+                  <td>{studentId?.addNo}</td>
                   <td rowSpan={2} className="">
                     <button
                       className="admin-approve-tutor-cross "

@@ -54,6 +54,11 @@ export const StudentSignUp = () => {
         toast.error("Enter your lastname");
         return false;
       }
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (!emailRegex.test(email)) {
+        toast.error("Please enter a valid email address");
+        return false;
+      }
       if (!email) {
         toast.error("Enter your email");
         return false;
@@ -66,12 +71,24 @@ export const StudentSignUp = () => {
         toast.error("Enter your addmission number");
         return false;
       }
+      if(addNo >99999 || addNo < 1000 )
+        {
+          toast.error("Enter a valid id number")
+          return false
+        }
       if (!password) {
         toast.error("Enter password");
         return false;
       }
       if (password.length < 8) {
         toast.error("Password needs minimum 8 charaters");
+        return false;
+      }
+      const passwordRegex = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[A-Z]).{6,}$/;
+      if (!passwordRegex.test(password)) {
+        toast.error(
+          "Password must contain at least one number, one special character, and one capital letter"
+        );
         return false;
       }
       if (!confirmPassword) {
@@ -132,7 +149,7 @@ export const StudentSignUp = () => {
       }
       console.log(response?.status);
     } catch (error) {
-      if (error?.status === 409) {
+      if (error?.status === 409 || error?.status === 408 ) {
         toast.error(error?.response?.data.msg);
       } else {
         console.log(error);
@@ -333,7 +350,7 @@ export const StudentSignUp = () => {
                   className="mx-auto w-25 my-4 student-signup-btn"
                   type="submit"
                 >
-                  SignUp
+                  Register
                 </Button>
               </div>
             </Form>

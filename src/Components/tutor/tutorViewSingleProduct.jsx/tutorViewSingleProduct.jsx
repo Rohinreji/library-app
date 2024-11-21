@@ -220,7 +220,7 @@ export const TutorviewSingleProduct = ({ productId, redirectToCart }) => {
                 }}
               >
                 {" "}
-                <MdOutlineShoppingCart /> got to Cart
+                <MdOutlineShoppingCart /> Go to Cart
               </button>
             ) : (
               <button

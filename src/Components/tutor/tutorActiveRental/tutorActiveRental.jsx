@@ -5,7 +5,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 import { IoSearch } from "react-icons/io5";
 import { BASE_URL } from "../../../apis/baseURL";
 import { useNavigate } from "react-router-dom";
-import img from "../../../Assests/noDataFound.jpg";
+import img from "../../../Assests/noDataFound.png";
 import { VscFolderActive } from "react-icons/vsc";
 import { SiBookstack } from "react-icons/si";
 import { GiBlackBook } from "react-icons/gi";
@@ -158,7 +158,7 @@ export const TutorActiveRental = ({
                         {numberOfRendedDate > 15 ? (
                           <p>fine:{numberOfRendedDate * 10 - 150}</p>
                         ) : (
-                          <h6>submit before {formattedDate}</h6>
+                          <h6 className="mx-4">submit before: {formattedDate}</h6>
                         )}
                       </div>
                     </div>

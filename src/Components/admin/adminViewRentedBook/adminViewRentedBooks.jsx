@@ -4,6 +4,8 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { IoSearch } from "react-icons/io5";
 import { ImCross } from "react-icons/im";
+import { FiGrid } from "react-icons/fi";
+
 import { useEffect, useState } from "react";
 import "./adminViewRentedBook.css"
 export const AdminViewRentedBooks = () => {
@@ -43,7 +45,12 @@ export const AdminViewRentedBooks = () => {
 
   return (
     <div>
-      <h2 className="mx-5 my-3">Rented Books</h2>
+      <div className="admin_viewBooks">
+        <h4> 
+        <FiGrid className="mx-2"/>
+
+    Rented Books</h4>
+      </div>{" "}
       <InputGroup className="mb-3 student-serach-box">
         <Form.Control
           placeholder="Search"

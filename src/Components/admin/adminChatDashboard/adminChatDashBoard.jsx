@@ -18,7 +18,7 @@ export const AdminChatDashBoard = () =>
                 <div className="col-3" style={{marginLeft:"20px"}} >
                 <AdminchatSideBar getTutorId={getTutorId} tutorId={tutorId}/>
                 </div>
-                <div className="col-9">
+                <div className="col-8">
 {tutorId ? <AdminChatInterFace tutorId={tutorId}/> : <AdminChatWelcomePage/>}
                 </div>
 

@@ -142,11 +142,11 @@ export const StudentviewSingleProduct = ({ productId, reDirectToCart }) => {
         <Col>
           <h3>{data.bookTitle}</h3>
           {/* <div className="d-flex pt-4"> */}
-            {/* <h2>
+          {/* <h2>
               <FaRupeeSign />
               {cartCount > 1 ? product.price * cartCount : product.price}
             </h2> */}
-            {/* <h5>Quantity</h5>
+          {/* <h5>Quantity</h5>
             <div
               role="group"
               className="d-flex mx-5  my-2 student-view-single-product-count "
@@ -182,22 +182,22 @@ export const StudentviewSingleProduct = ({ productId, reDirectToCart }) => {
             <tr>
               <td>Author</td>
               <td>:</td>
-              <td>{data.author}</td>
+              <td>{data?.author}</td>
             </tr>
             <tr>
               <td>Category</td>
               <td>:</td>
-              <td>{data.category}</td>
+              <td>{data?.category}</td>
             </tr>
             <tr>
               <td>Language</td>
               <td>:</td>
-              <td>{data.language}</td>
+              <td>{data?.language}</td>
             </tr>
             <tr>
               <td>Available copies</td>
               <td>:</td>
-              <td>{data.availableCopies}</td>
+              <td>{data?.availableCopies}</td>
             </tr>
           </table>
           <div className="d-flex my-5">

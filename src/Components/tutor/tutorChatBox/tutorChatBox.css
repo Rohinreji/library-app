@@ -3,8 +3,8 @@
   width: 70px;
   border-radius: 50%;
   background-image: url(../../../Assests/chat.png);
-  background-size:45px;
-  background-position:center;
+  background-size: 45px;
+  background-position: center;
   background-repeat: no-repeat;
   position: fixed;
   right: 15px;
@@ -15,8 +15,7 @@
   animation: messageBox 1s ease-in-out 0.09s infinite;
 }
 
-.tutorChatBox-btn ::hover
-{
+.tutorChatBox-btn ::hover {
   background-color: white;
 }
 @keyframes messageBox {
@@ -27,23 +26,21 @@
     text-replace: translatey(0px);
   }
 }
-.tutor-chat-body
-{
+.tutor-chat-body {
   height: 50vh;
   display: flex;
   flex-direction: column-reverse;
   overflow-y: auto;
 }
 .dispaly-tutor-msg {
-  height:50vh;
+  height: 50vh;
   position: relative;
   overflow-y: scroll;
 }
 .tutorChatBox-send-btn {
   height: 40px;
 }
-.tutorChatBox-chat1
-{
+.tutorChatBox-chat1 {
   width: fit-content;
   max-width: 90%;
   min-height: 47px;
@@ -60,9 +57,8 @@
   clear: both;
   word-wrap: break-word;
   align-self: flex-end;
-  }
-.tutorChatBox-chat2
-{
+}
+.tutorChatBox-chat2 {
   max-width: 90%;
   min-height: 47px;
   border-radius: 9px;
@@ -79,5 +75,4 @@
   clear: both;
   word-wrap: break-word;
   align-self: flex-start;
-
 }

@@ -98,7 +98,7 @@ export const StudentActiveRental = ({ redirectToReturnBook }) => {
                     className="student-product-view-box "
                     onClick={() => {
                       // navigate(`/studentReturnBook/${e._id}`);
-                      redirectToReturnBook(e._id);
+                      redirectToReturnBook(e?._id);
                     }}
                   >
                     <div className="">

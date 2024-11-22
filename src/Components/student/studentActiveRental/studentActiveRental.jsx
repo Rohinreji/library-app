@@ -92,6 +92,20 @@ export const StudentActiveRental = ({ redirectToReturnBook }) => {
               const numberOfRendedDate = timeDifference / (1000 * 3600 * 24);
               const booksId = e?.booksId;
               console.log(booksId._id, "bookId");
+
+              const addedDate = new Date();
+              addedDate.setDate(approvedDate.getDate() + 15);
+              const options = {
+                month: "short",
+                day: "numeric",
+                year: "numeric",
+              };
+              const formattedDate = addedDate
+                .toLocaleDateString("en-US", options)
+                .replace(",", "");
+
+            
+
               return (
                 <div>
                   <div
@@ -120,7 +134,7 @@ export const StudentActiveRental = ({ redirectToReturnBook }) => {
                       {numberOfRendedDate > 15 ? (
                         <p>fine:{numberOfRendedDate * 10 - 150}</p>
                       ) : (
-                        <p>Submit Before</p>
+                        <h6 className="mx-4 ">Submit before: {formattedDate}</h6>
                       )}
                     </h4>
                   </div>

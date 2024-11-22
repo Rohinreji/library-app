@@ -113,28 +113,28 @@ export const StudentCart = () => {
                     <tr>
                       <td className="stdCart_headings"> BookTitle</td>
                       <td style={{ fontWeight: "bold" }}>:</td>
-                      <td className="stdCart_Headname">{booksId.bookTitle}</td>
+                      <td className="stdCart_Headname">{booksId?.bookTitle}</td>
                     </tr>
                     <tr>
                       <td className="stdCart_headings">Author</td>
                       <td>:</td>
-                      <td className="stdCart_Headname">{booksId.author}</td>
+                      <td className="stdCart_Headname">{booksId?.author}</td>
                     </tr>
                     <tr>
                       <td className="stdCart_headings">Category</td>
                       <td>:</td>
-                      <td className="stdCart_Headname">{booksId.category}</td>
+                      <td className="stdCart_Headname">{booksId?.category}</td>
                     </tr>
                     <tr>
                       <td className="stdCart_headings">Language</td>
                       <td>:</td>
-                      <td className="stdCart_Headname">{booksId.language}</td>
+                      <td className="stdCart_Headname">{booksId?.language}</td>
                     </tr>
                     <tr>
                       <td className="stdCart_headings"> Status</td>
                       <td>:</td>
                       <td className="stdCart_status ">
-                        {booksId.availableCopies > 0
+                        {booksId?.availableCopies > 0
                           ? "✅Available"
                           : "❌Not available"}
                       </td>

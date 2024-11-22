@@ -78,12 +78,16 @@ export const Studentwishlist = ({ reDirectToViewSingleBook }) => {
                 <div className="student-product-view-box ">
                   <div className="">
                     <img
-                      src={`${BASE_URL}${booksId?.bookImage?.filename}`}
+                      src={
+                        `${BASE_URL}${booksId?.bookImage?.filename}`
+                          ? `${BASE_URL}${booksId?.bookImage?.filename}`
+                          : "book not available"
+                      }
                       alt=""
                       className="student-product-view-box-img "
                       onClick={() => {
                         // navigate(`/tutor/view-single-product/${booksId._id}`);
-                        reDirectToViewSingleBook(booksId._id);
+                        reDirectToViewSingleBook(booksId?._id);
                       }}
                     />
 
@@ -91,7 +95,7 @@ export const Studentwishlist = ({ reDirectToViewSingleBook }) => {
                       <FaHeart
                         className="tutor-wishlist-filled-heart"
                         onClick={() => {
-                          removeFromWishlist(booksId._id);
+                          removeFromWishlist(booksId?._id);
                           // console.log(booksId._id,"wishlist id");
                         }}
                       />
@@ -101,11 +105,11 @@ export const Studentwishlist = ({ reDirectToViewSingleBook }) => {
                     <h5 className="student_viewBookTitle">
                       {" "}
                       <GiBlackBook />
-                      {booksId.bookTitle}
+                      {booksId?.bookTitle}
                     </h5>
                     <p className="std_wishlistCategory">
                       <BiCategory />
-                      {booksId.category}
+                      {booksId?.category}
                     </p>
                     <h5 className="student_viewBookAvailable">
                       {e.availableCopies < !0 ? (

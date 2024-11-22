@@ -27,7 +27,7 @@ export const StudentDashboard = () => {
   };
   const redirectToReturnBook = (value) => {
     setProductId(() => value);
-    setSelectedPage("redairectToReturnBook");
+    setSelectedPage("redirectToReturnBook");
   };
   return (
     <div>

@@ -33,9 +33,9 @@ function CommonNavbar() {
                   className="nav-link active"
                   aria-current="page"
                   style={{ fontWeight: "300px" }}
-                onClick={()=>{
-                  navigate("/landingPage")
-                }}
+                  onClick={() => {
+                    navigate("/landingPage");
+                  }}
                 >
                   Home
                 </a>
@@ -45,11 +45,9 @@ function CommonNavbar() {
                   className="nav-link active"
                   style={{ fontWeight: "300px" }}
                   href="#"
-                  onClick={()=>
-                    {
-                      navigate("/contact")
-                    }
-                  }
+                  onClick={() => {
+                    navigate("/contact");
+                  }}
                 >
                   Contact
                 </a>
@@ -76,6 +74,13 @@ function CommonNavbar() {
                     }}
                   >
                     Tutor
+                  </Dropdown.Item>
+                  <Dropdown.Item
+                    onClick={() => {
+                      navigate("/adminLogin");
+                    }}
+                  >
+                    Admin
                   </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
